@@ -68,3 +68,219 @@
 7. Запустить проект на телефоне
 8. Сделать коммит и запушить изменения на remote-сервер в `develop` ветку
 9. Пройти все задания на ресурсе [LearnGitBranching](https://learngitbranching.js.org/?locale=ru_RU). Обратите внимание, что эта часть практического задания также обязательна к выполнению в полном объёме. 
+
+---
+## II. Java. Часть 1
+---
+### Теоретическая часть
+
+**Основы**  
++ [Java-платформа](https://docs.oracle.com/javase/tutorial/getStarted/intro/definition.html) **(\*\*)**
++ [Типы данных и переменные](https://metanit.com/java/tutorial/2.1.php) **(\*\*\*\*)**
++ [Преобразования базовых типов данных](https://metanit.com/java/tutorial/2.2.php) **(\*\*\*\*)**
++ [Операции языка Java](https://metanit.com/java/tutorial/2.3.php) **(\*\*\*\*)**
++ [Массивы](https://metanit.com/java/tutorial/2.4.php) **(\*\*\*\*)**
++ [Условные конструкции](https://metanit.com/java/tutorial/2.5.php) **(\*\*\*\*)**
++ [Циклы](https://metanit.com/java/tutorial/2.6.php) **(\*\*\*\*)**
++ [Методы](https://metanit.com/java/tutorial/2.7.php) **(\*\*\*\*)**
++ [Рекурсивные функции](https://metanit.com/java/tutorial/2.8.php) **(\*\*\*)**
++ [Введение в обработку исключений](https://metanit.com/java/tutorial/2.10.php) **(\*\*)**
++ [Java Code Conventions - Oracle](http://www.oracle.com/technetwork/java/codeconventions-150003.pdf) **(\*\*\*\*)**
++ [Классы и объекты](https://metanit.com/java/tutorial/3.1.php)  **(\*\*\*\*)**
++ [Пакеты](https://metanit.com/java/tutorial/3.2.php)  **(\*\*\*\*)**
++ [Модификаторы доступа и инкапсуляция](https://metanit.com/java/tutorial/3.3.php)  **(\*\*\*\*)**
++ [Статические члены и модификатор static](https://metanit.com/java/tutorial/3.4.php)  **(\*\*\*\*)**
++ [Наследование, полиморфизм и ключевое слово super](https://metanit.com/java/tutorial/3.5.php)  **(\*\*\*\*)**
++ [Класс Object и его методы](https://habrahabr.ru/post/168195/)  **(\*\*\*)**
++ [Объекты как параметры методов](https://metanit.com/java/tutorial/3.14.php)  **(\*\*\*\*)**
+
+**Отладка** 
++ [Android Studio Debugging: Базовые понятия](https://medium.com/@artem_shevchenko/android-studio-debugging-%D0%B1%D0%B0%D0%B7%D0%BE%D0%B2%D1%8B%D0%B5-%D0%BF%D0%BE%D0%BD%D1%8F%D1%82%D0%B8%D1%8F-%D0%B8-%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%D1%81%D1%82%D0%B8-658ee6dcc641) **(\*\*\*)**
++ [Android Studio Debugging: Продвинутый уровень](https://medium.com/@artem_shevchenko/android-studio-debugging-%D0%BF%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D1%8B%D0%B9-%D1%83%D1%80%D0%BE%D0%B2%D0%B5%D0%BD%D1%8C-e05dac22439f) **(\*\*\*)**
+
+
+### Практическое задание
+Все задачи должны быть выполнены в указанном репозитории в отдельной ветке, вида training/lastname_firstname_date. После выполнения должен быть создан merge request на ментора.
+
+***Важно! Весь код должен быть написан по предоставленному Java Code Conventions***
+
+1. [Работа с примитивными типами]
+2. [Работа с массивами]
+
+---
+## III. Java. Часть 2
+---
+### Теоретическая часть
+
+**1. Классы**
++ [Абстрактные классы](https://metanit.com/java/tutorial/3.6.php)  **(\*\*\*\*)**
++ [Иерархия наследования и преобразование типов](https://metanit.com/java/tutorial/3.10.php)  **(\*\*\*\*)**
++ [Внутренние классы](https://metanit.com/java/tutorial/3.12.php)  **(\*\*\*\*)**
++ [Интерфейсы](https://metanit.com/java/tutorial/3.7.php)  **(\*\*\*\*)**
++ [Интерфейсы в механизме обратного вызова](https://metanit.com/java/tutorial/3.16.php)  **(\*\*\*)**
++ [Перечисления enum](https://metanit.com/java/tutorial/3.8.php)  **(\*\*\*\*)**
++ [Обобщенные типы и методы](https://metanit.com/java/tutorial/3.11.php)  **(\*\*\*)**
++ [Наследование и обобщения](https://metanit.com/java/tutorial/3.15.php)  **(\*\*\*)**
++ [Типы ссылок](https://javadevblog.com/tipy-ssy-lok-v-java-strongreference-weakreference-softreference-i-phantomreference.html)  **(\*\*\*)**
++ [Ссылочные типы и клонирование объектов](https://metanit.com/java/tutorial/3.13.php) **(\*\*\*)**
+
+**2. Обработка исключений**  
++ [Оператор throws](https://metanit.com/java/tutorial/4.1.php) **(\*\*\*\*)**
++ [Классы исключений](https://metanit.com/java/tutorial/4.2.php) **(\*\*\*\*)**
++ [try-with-resources](https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html) **(\*\*\*\*)**
++ [Создание своих классов исключений](https://metanit.com/java/tutorial/4.3.php) **(\*\*)**
+
+**3. Коллекции**  
++ [Введение в коллекции в Java](https://metanit.com/java/tutorial/5.1.php) **(\*\*\*\*)**
++ [Класс ArrayList и интерфейс List](https://metanit.com/java/tutorial/5.2.php) **(\*\*\*\*)**
++ [Структуры данных в картинках. ArrayList](https://habr.com/en/post/128269/) **(\*\*\*\*)**
++ [Класс LinkedList](https://metanit.com/java/tutorial/5.3.php) **(\*\*)**
++ [Структуры данных в картинках. LinkedList](https://habr.com/en/post/127864/) **(\*\*)**
++ [Класс HashSet](https://metanit.com/java/tutorial/5.4.php) **(\*\*\*\*)**
++ [Класс TreeSet](https://metanit.com/java/tutorial/5.5.php) **(\*\*\*)**
++ [Интерфейсы Comparable и Comporator. Сортировка](https://metanit.com/java/tutorial/5.6.php) **(\*\*\*)**
++ [Очереди и класс ArrayDeque](https://metanit.com/java/tutorial/5.7.php) **(\*\*)**
++ [Отображения и класс HashMap](https://metanit.com/java/tutorial/5.8.php) **(\*\*\*\*)**
++ [Структуры данных в картинках. HashMap](https://habr.com/en/post/128017/) **(\*\*\*\*)**
++ [Класс TreeMap](https://metanit.com/java/tutorial/5.9.php) **(\*\*)**
++ [Итераторы](https://metanit.com/java/tutorial/5.10.php) **(\*\*)**
++ [SparseArray](https://developer.android.com/reference/android/util/SparseArray?hl=ru) **(\*\*)**
++ [ArrayMap](https://developer.android.com/reference/android/util/ArrayMap?hl=ru) **(\*\*)**
++ [ArrayMap&SparseArray](https://android.jlelse.eu/app-optimization-with-arraymap-sparsearray-in-android-c0b7de22541a) **(\*\*)**
+
+**4. Работа со строками**  
++ [Введение в строки. Класс String](https://metanit.com/java/tutorial/7.1.php) **(\*\*\*\*)**
++ [Основные операции со строками](https://metanit.com/java/tutorial/7.2.php) **(\*\*\*\*)**
++ [StringBuffer и StringBuilder](https://metanit.com/java/tutorial/7.3.php) **(\*\*\*)**
++ [Регулярные выражения](https://metanit.com/java/tutorial/7.4.php) **(\*\*)**
+
+**5. Лямбда-выражения**  
++ [Введение в лямбда-выражения](https://metanit.com/java/tutorial/9.1.php) **(\*\*\*\*)**
++ [Лямбды как параметры методов и ссылки на методы](https://metanit.com/java/tutorial/9.2.php) **(\*\*\*\*)**
++ [Встроенные функциональные интерфейсы](https://metanit.com/java/tutorial/9.3.php) **(\*\*)**
+  
+  
+### Базовое задание
+Все задачи должны быть выполнены в указанном репозитории в отдельной ветке, вида training/lastname_firstname_date. После выполнения должен быть создан merge request на ментора.
+
+1. [Работа со списками]
+2. [Работа с классами]
+3. [Работа со строками]
+
+---
+## IV. Kotlin. Часть 1.
+---
+### Теоретическая часть
+
+ **1. Основы**
+ + [Введение в kotlin](https://kotlinlang.ru/docs/reference/basic-syntax.html) **(\*\*\*\*)**
+ + [Основные типы](https://kotlinlang.ru/docs/reference/basic-types.html) **(\*\*\*\*)**
+ + [Пакеты](https://kotlinlang.ru/docs/reference/packages.html) **(\*\*\*\*)**
+ + [Условия, циклы](https://kotlinlang.ru/docs/reference/control-flow.html) **(\*\*\*\*)**
+ + [Return, break, continue](https://kotlinlang.ru/docs/reference/returns.html) **(\*\*\*\*)**
+ + [Классы и наследование](https://kotlinlang.ru/docs/reference/classes.html) **(\*\*\*\*)**
+ + [Свойства и поля](https://kotlinlang.ru/docs/reference/properties.html) **(\*\*\*\*)**
+ + [Интерфейсы](https://kotlinlang.ru/docs/reference/interfaces.html) **(\*\*\*\*)**
+ + [Модификаторы доступа](https://kotlinlang.ru/docs/reference/visibility-modifiers.html) **(\*\*\*\*)**
+ + [Функции](https://kotlinlang.ru/docs/reference/functions.html) **(\*\*\*\*)**
+ + [Лямбда-выражения](https://kotlinlang.ru/docs/reference/lambdas.html) **(\*\*\*\*)**
+ + [Ключевое слово this](https://kotlinlang.ru/docs/reference/this-expressions.html) **(\*\*\*\*)**
+ + [Равенство](https://kotlinlang.ru/docs/reference/equality.html) **(\*\*\*\*)**
+ + [Null безопасность](https://kotlinlang.ru/docs/reference/null-safety.html) **(\*\*\*\*)**
+ + [Функции области видимости](https://kotlinlang.ru/docs/reference/scope-functions.html) **(\*\*\*\*)**
+ 
+### Практическое задание
+**Важно!**
+Работа должна производится в созданном ранее проекте в отдельном файле. Задачи должны быть разделены комментариями, указывающими на номер или текст задания.
+
+Все изменения должны быть закоммичены, а названия коммитов должны коротко и исчерпывающе описывать содержащие изменения. Каждый коммит должен быть рабочим, отправка некомпилирующегося кода недопустима. Для работы над этим заданием необходимо переключится на ветку `kotlin-part-1` и все изменения пушить в нее. После завершения работы над задачей в gitlab необходимо создать merge request в ветку `develop`.
+Код должен быть читабельным и написан согласно code-style.
+
+1. Необходимо создать интерфейс `Publication`, у которого должно быть свойства – `price` и `wordCount`, а также метод `getType`, возвращающий строку. Создать два класса, реализующих данный интерфейс – Book и Magazine. 
+В методе `getType` для класса `Book` возвращаем строку с зависимости от количества слов. Если количество слов не превышает 1000, то вывести “Flash Fiction”, 7,500 –“Short Story”, всё, что выше – “Novel”. Для класса `Magazine` возвращаем строку “Magazine”.
+2. Создать два объекта класса `Book` и один объект `Magazine`. Вывести в лог для каждого объекта тип, количество строк и цену в евро в отформатированном виде.
+ У класса `Book` переопределить метод `equals` и произвести сравнение сначала по ссылке, затем используя метод `equals`. Результаты сравнений вывести в лог.
+3. Создать метод `buy`, который в качестве параметра принимает `Publication` (notnull - значения) и выводит в лог “The purchase is complete. The purchase amount was [цена издания]”. Создать две переменных класса `Book`, в которых могут находиться null значения. Присвоить одной null, а второй любое notnull значение и вызвать метод `buy` с каждой из переменных.
+4. Создать переменную `sum` и присвоить ей лямбда-выражение, которое будет складывать два переданных ей числа и выводить результат в лог. Вызвать данное лямбда-выражение с произвольными параметрами.
+
+---
+## V. Kotlin. Часть 2.
+---
+### Теоретическая часть
+
+ **1. Коллекции**
+ + [Коллекции](https://kotlinlang.org/docs/reference/collections-overview.html) **(\*\*\*\*)**
+ + [Создание коллекций](https://kotlinlang.org/docs/reference/constructing-collections.html) **(\*\*\*\*)**
+ + [Обзор операций для коллекций](https://kotlinlang.org/docs/reference/collection-operations.html) **(\*\*\*\*)**
+ + [Преобразования коллекций](https://kotlinlang.org/docs/reference/collection-transformations.html) **(\*\*\*\*)**
+ + [Фильтрация коллекций](https://kotlinlang.org/docs/reference/collection-filtering.html) **(\*\*\*\*)**
+ + [Группировка коллекций](https://kotlinlang.org/docs/reference/collection-grouping.html) **(\*\*\*\*)**
+ + [Получение частей коллекции](https://kotlinlang.org/docs/reference/collection-parts.html) **(\*\*\*\*)**
+ + [Получение элементов коллекции](https://kotlinlang.org/docs/reference/collection-elements.html) **(\*\*\*\*)**
+ + [Сортировка коллекции](https://kotlinlang.org/docs/reference/collection-ordering.html) **(\*\*\*\*)**
+ + [Операторы записи](https://kotlinlang.org/docs/reference/collection-write.html) **(\*\*\*\*)**
+ + [Итераторы](https://kotlinlang.org/docs/reference/iterators.html) **(\*\*\*)**
+ + [Интервалы](https://kotlinlang.ru/docs/reference/ranges.html) **(\*\*\*)**
+ + [Последовательности](https://kotlinlang.org/docs/reference/sequences.html) **(\*\*\*)**
+ + [Операторы плюс и минус](https://kotlinlang.org/docs/reference/collection-plus-minus.html) **(\*\*\*)**
+ + [Операторы объединения](https://kotlinlang.org/docs/reference/collection-aggregate.html) **(\*\*\*)**
+ + [Особые операторы для списков](https://kotlinlang.org/docs/reference/list-operations.html) **(\*\*\*)**
+ + [Особые операторы для множеств](https://kotlinlang.org/docs/reference/set-operations.html) **(\*\*\*)**
+ + [Особые операторы для 'Map'](https://kotlinlang.org/docs/reference/map-operations.html) **(\*\*\*)**
+
+ **2. Расширенный раздел**
+ + [Исключения](https://kotlinlang.ru/docs/reference/exceptions.html) **(\*\*\*\*)**
+ + [Расширения (функции и свойства)](https://kotlinlang.ru/docs/reference/extensions.html) **(\*\*\*\*)**
+ + [Классы данных](https://kotlinlang.ru/docs/reference/data-classes.html) **(\*\*\*\*)**
+ + [Изолированные классы](https://kotlinlang.ru/docs/reference/sealed-classes.html) **(\*\*\*\*)**
+ + [Generics](https://kotlinlang.ru/docs/reference/generics.html) **(\*\*\*\*)**
+ + [Вложенные классы](https://kotlinlang.ru/docs/reference/nested-classes.html) **(\*\*\*\*)**
+ + [Enum](https://kotlinlang.ru/docs/reference/enum-classes.html) **(\*\*\*\*)**
+ + [Объекты](https://kotlinlang.ru/docs/reference/object-declarations.html) **(\*\*\*\*)**
+ + [Делегирование](https://kotlinlang.ru/docs/reference/delegation.html) **(\*\*\*\*)**
+ + [Делегированные свойства](https://kotlinlang.ru/docs/reference/delegated-properties.html) **(\*\*\*\*)**
+ + [Встроенные функции](https://kotlinlang.ru/docs/reference/inline-functions.html) **(\*\*\*\*)**
+ + [Аннотации](https://kotlinlang.ru/docs/reference/annotations.html) **(\*\*\*)**
+ + [Приведение и проверка типов](https://kotlinlang.ru/docs/reference/typecasts.html) **(\*\*\*)**
+ + [Функциональные интерфейсы (SAM)](https://kotlinlang.org/docs/reference/fun-interfaces.html) **(\*\*)**
+ + [Псевдонимы типов](https://kotlinlang.ru/docs/reference/type-aliases.html) **(\*\*)**
+ + [Встроенные классы](https://kotlinlang.org/docs/reference/inline-classes.html) **(\*\*)**
+ + [Мульти-декларации](https://kotlinlang.ru/docs/reference/multi-declarations.html) **(\*\*)**
+ + [Перегрузка операторов](https://kotlinlang.ru/docs/reference/operator-overloading.html) **(\*\*)**
+ + [Рефлексия](https://kotlinlang.ru/docs/reference/reflection.html) **(\*\*)**
+ 
+ **3. Лучшие практики**
+ + [Идиомы](https://kotlinlang.ru/docs/reference/idioms.html) **(\*\*\*)**
+ + [Стилистика кода](https://kotlinlang.ru/docs/reference/coding-conventions.html) **(\*\*\*)**
+ + [Неочевидный Kotlin. Советы, трюки, подводные камни](Материалы/Kotlin.pdf) **(\*\*\*)**
+ + [Лучшие практики](https://phauer.com/2017/idiomatic-kotlin-best-practices/) **(\*\*\*)**
+ + [Лучшие практики для написания чистого кода](https://blog.intive-fdv.com/best-practices-to-write-a-clean-code-with-kotlin-part-ii/) **(\*\*\*)**
+ + [Использование последовательностей](https://blog.kotlin-academy.com/effective-kotlin-use-sequence-for-bigger-collections-with-more-than-one-processing-step-649a15bb4bf) **(\*\*\*)**
+ + [Лучшие практики для написания тестов](https://resources.jetbrains.com/storage/products/kotlinconf2018/slides/4_Best%20Practices%20for%20Unit%20Testing%20in%20Kotlin.pdf) **(\*\*)**
+ 
+ **4. Антипаттерны**
+ + [Антипаттерны](https://github.com/Zhuinden/guide-to-kotlin/wiki), см. часть 6 - Антипаттерны **(\*\*\*)**
+ + [Ещё немного антипаттернов](https://www.notion.so/Java-Kotlin-fdd36663b9e4452b9c605107761278b4) **(\*\*\*)**
+
+ **5. Kotlin koans**
+ + [Kotlin koans](https://www.jetbrains.com/help/education/learner-start-guide.html?section=Kotlin%20Koans)
+ 
+### Практическое задание
+**Важно!**
+Работа должна производится в созданном ранее проекте в отдельном файле. Задачи должны быть разделены комментариями, указывающими на номер или текст задания.
+
+Все изменения должны быть закоммичены, а названия коммитов должны коротко и исчерпывающе описывать содержащие изменения. Каждый коммит должен быть рабочим, отправка некомпилирующегося кода недопустима. Для работы над этим заданием необходимо переключится на ветку `kotlin-part-2` и все изменения пушить в нее. После завершения работы над задачей в gitlab необходимо создать merge request в ветку `develop`.
+Код должен быть читабельным и написан согласно code-style.
+
+1. Создать enum `Type` с константами `DEMO` и `FULL`. 
+2. Реализовать класс данных `User` с полями `id`, `name`, `age` и `type`. У класса `User` создать ленивое свойство `startTime`, в котором получаем текущее время. 
+3. Создать объект класса `User`, вывести в лог startTime данного юзера, после вызвать Thread.sleep(1000) и повторно вывести в лог startTime.
+4. Создать список пользователей, содержащий в себе один объект класса `User`. Используя функцию **apply**, добавить ещё несколько объектов класса `User` в список пользователей. 
+5. Получить список пользователей, у которых имеется полный доступ (поле `type` имеет значение `FULL`). 
+6. Преобразовать список `User` в список имен пользователей. Получить первый и последний элементы списка и вывести их в лог.
+7. Создать функцию-расширение класса `User`, которая проверяет, что юзер старше 18 лет, и в случае успеха выводит в лог, а в случае неуспеха возвращает ошибку.
+8. Создать интерфейс `AuthCallback` с методами `authSuccess`, `authFailed` и реализовать анонимный объект данного интерфейса. В методах необходимо вывести в лог информацию о статусе авторизации.
+9. Реализовать **inline** функцию `auth`, принимающую в качестве параметра функцию `updateCache`. Функция `updateCache `должна выводить в лог информацию об обновлении кэша. 
+10. Внутри функции `auth` вызвать метод коллбека `authSuccess` и переданный `updateCache`, если проверка возраста пользователя произошла без ошибки. В случае получения ошибки вызвать `authFailed`.
+11. Реализовать изолированный класс `Action` и его наследников – `Registration`, `Login` и `Logout`. `Login` должен принимать в качестве параметра экземпляр класса User. 
+12. Реализовать метод `doAction`, принимающий экземпляр класса `Action`. В зависимости от переданного действия выводить в лог текст, к примеру “Auth started”. Для действия `Login` вызывать метод `auth`.
