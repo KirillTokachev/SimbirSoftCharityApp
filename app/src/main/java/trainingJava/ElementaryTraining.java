@@ -1,4 +1,4 @@
-package com.example.user.javacoretraining.training;
+package trainingJava;
 
 /**
  * Набор тренингов по работе с примитивными типами java.
@@ -20,8 +20,11 @@ public class ElementaryTraining {
      * @return среднее значение для введенных чисел
      */
     public double averageValue(int firstValue, int secondValue) {
-        //TODO: implement it
-        return 0;
+        double result = 0;
+
+        result = (firstValue + secondValue) / 2;
+
+        return result;
     }
 
     /**
@@ -34,8 +37,14 @@ public class ElementaryTraining {
      * @return сумма новых трех чисел
      */
     public double complicatedAmount(int firstValue, int secondValue, int thirdValue) {
-        //TODO: implement it
-        return 0;
+
+        double usFirstValue = firstValue*2;
+        double usSecondValue = secondValue-3;
+        double usThirdValue = Math.pow(thirdValue,2);
+
+        double summ = usFirstValue+usSecondValue+usThirdValue;
+
+        return summ;
     }
 
     /**
@@ -47,7 +56,9 @@ public class ElementaryTraining {
      * @return новое значение
      */
     public int changeValue(int value) {
-        //TODO: implement it
+
+        if (value > 3) value += 10;else value -= 10;
+
         return value;
     }
 
@@ -62,8 +73,34 @@ public class ElementaryTraining {
      * @return новое число
      */
     public int swapNumbers(int value) {
-        //TODO: implement it
-        return 0;
+
+        int result = 0;
+
+        // Проверяем и возвращаем число если оно меньше 10
+        if (value < 10) result = value; else {
+
+            // Преобразуем число в массив цифр
+            String temp = Integer.toString(value);
+            int[] tempArr = new int[temp.length()];
+
+            // Возвращаем число если она больше 5 символов
+            if (tempArr.length > 5) return value;
+            for (int i = 0; i < tempArr.length; i++) {
+                tempArr[i] = temp.charAt(i) - '0';
+            }
+
+            // Меняем местами первую и послдию цифру
+            int swap = tempArr[0];
+            tempArr[0] = tempArr[tempArr.length - 1];
+            tempArr[tempArr.length -1] = swap;
+
+
+            // Преобразование массива обратно в число
+            for (int i = 0; i < tempArr.length; i++) {
+                result = result * 10 + tempArr[i];
+            }
+        }
+        return result;
     }
 
     /**
@@ -77,7 +114,34 @@ public class ElementaryTraining {
      * @return новое число
      */
     public int zeroEvenNumber(int value) {
-        //TODO: implement it
-        return 0;
+
+        int result = 0;
+
+        // Проверяем и возвращаем число если оно меньше 10
+        if (value < 10) result = value; else {
+
+            // Преобразуем число в массив цифр
+            String temp = Integer.toString(value);
+            int[] tempArr = new int[temp.length()];
+            for (int i = 0; i < tempArr.length; i++) {
+                tempArr[i] = temp.charAt(i) - '0';
+            }
+
+            // Возвращаем число если она больше 5 символов
+            if (tempArr.length > 5) return value;
+            // Заменяем чётные числа на ноль
+            for (int i = 1; i < tempArr.length; i++){
+                if (tempArr[i] % 2 == 0){
+                    tempArr[i] = 0;
+                }
+            }
+
+
+            // Преобразование массива обратно в число
+            for (int i = 0; i < tempArr.length; i++) {
+                result = result * 10 + tempArr[i];
+            }
+        }
+        return result;
     }
 }
