@@ -42,9 +42,9 @@ public class ElementaryTraining {
         double usSecondValue = secondValue-3;
         double usThirdValue = Math.pow(thirdValue,2);
 
-        double summ = usFirstValue+usSecondValue+usThirdValue;
+        double sum = usFirstValue+usSecondValue+usThirdValue;
 
-        return summ;
+        return sum;
     }
 
     /**
