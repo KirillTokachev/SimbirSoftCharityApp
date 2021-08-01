@@ -60,9 +60,9 @@ public class ArraysTraining {
     public int[] reverse(int[] array) {
 
         for (int i = 0; i < array.length / 2; i++) {
-            int tmp = array[i];
+            int buff = array[i];
             array[i] = array[array.length - 1 - i];
-            array[array.length - 1 - i] = tmp;
+            array[array.length - 1 - i] = buff;
         }
         return array;
     }

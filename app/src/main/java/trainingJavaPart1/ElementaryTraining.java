@@ -80,12 +80,12 @@ public class ElementaryTraining {
         if (value < 10) {
             result = value;
         } else {
-            String temp = Integer.toString(value);
-            int[] tempArr = new int[temp.length()];
+            String buff = Integer.toString(value);
+            int[] tempArr = new int[buff.length()];
 
             if (tempArr.length > 5) return value;
             for (int i = 0; i < tempArr.length; i++) {
-                tempArr[i] = temp.charAt(i) - '0';
+                tempArr[i] = buff.charAt(i) - '0';
             }
 
             // Меняем местами первую и последнюю цифру
