@@ -1,4 +1,4 @@
-package trainingJava;
+package trainingJavaPart1;
 
 /**
  * Набор тренингов по работе с массивами в java.
@@ -9,6 +9,7 @@ package trainingJava;
  * <p>
  * Доступна проверка тестированием @see ArraysTrainingTest.
  */
+
 public class ArraysTraining {
 
     /**
@@ -21,8 +22,8 @@ public class ArraysTraining {
     public int[] sort(int[] valuesArray) {
 
         for (int i = 1; i < valuesArray.length; i++){
-            for (int j = valuesArray.length -1; j > i; j--){
-                if (valuesArray[j-1] > j){
+            for (int j = valuesArray.length -1; j >= i; j--){
+                if (valuesArray[j-1] > valuesArray[j]){
                     int buff = valuesArray[j-1];
                     valuesArray[j-1] = valuesArray[j];
                     valuesArray[j] = buff;
@@ -41,7 +42,7 @@ public class ArraysTraining {
      * @return максимальное число или 0
      */
     public int maxValue(int... values) {
-
+        if (values.length == 0) return 0;
         int save = values[0];
 
         for (int i = 0; i < values.length; i++){
@@ -64,7 +65,6 @@ public class ArraysTraining {
             array[i] = array[array.length - 1 - i];
             array[array.length - 1 - i] = temp;
         }
-
         return array;
     }
 
@@ -81,24 +81,25 @@ public class ArraysTraining {
     public int[] fibonacciNumbers(int numbersCount) {
 
         // Проверяем не является ли входящий аргумент 0
-        if (numbersCount == 0) return new int[]{}; else {
+        if (numbersCount == 0 || numbersCount < 0){
+            return new int[]{};
+        }else {
             // Объявляем первые две цифры последовательности
-            int a = 0;
-            int b = 1;
+            int firstNumber = 1;
+            int secondNumber = 1;
 
             int[] result = new int[numbersCount];
-            result[1] = b;
+            result[0] = firstNumber;
+            result[1] = secondNumber;
 
             // Проходимся циклом по массиву и заполняем его числами
-            for (int i = 2; i <= result.length; i++){
-                result[i] = a + b;
-                a = b;
-                b = result[i];
+            for (int i = 2; i < result.length; i++){
+                result[i] = firstNumber + secondNumber;
+                firstNumber = secondNumber;
+                secondNumber = result[i];
             }
-
             return result;
         }
-
     }
 
     /**
@@ -114,22 +115,12 @@ public class ArraysTraining {
         // Если входящий массиву пустой возврщаем 0
         if (array == null || array.length == 0) return 0;
 
-
         int current = 0;
         int last = array[0];
         int count = 1;
 
         // Сортируем массив
-        for(int i = 1; i < array.length; i++){
-            for(int j  = array.length-1; j >= i; j--){
-                if(array[j-1]>array[j]){
-
-                    int buff = array[j-1];
-                    array[j-1] = array[j];
-                    array[j] = buff;
-                }
-            }
-        }
+        sort(array);
 
         // Сверяем элементы массива
         for (int i = 1; i < array.length; i++){
