@@ -39,11 +39,11 @@ public class Answer {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
 
-        Answer answer = (Answer) o;
+        Answer answer = (Answer) obj;
 
         return (Objects.equals(examName, answer.examName)) && (Objects.equals(answerText, answer.answerText));
     }

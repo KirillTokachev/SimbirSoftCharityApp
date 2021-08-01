@@ -32,7 +32,7 @@ public class Rectangle implements Shape {
 
     @Override
     public double getArea() {
-        double s = width * length;
-        return s;
+        double area = width * length;
+        return area;
     }
 }

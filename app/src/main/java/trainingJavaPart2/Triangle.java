@@ -4,12 +4,11 @@ public class Triangle {
 
     private Point a,b,c;
 
-    Triangle(Point a, Point b, Point c) {
+    Triangle (Point a, Point b, Point c) {
         this.a = a;
         this.b = b;
         this.c = c;
     }
-
 
     public double sideAB() {
         return this.a.distanceTo(this.b);
@@ -33,8 +32,8 @@ public class Triangle {
     }
 
     public void getMediaCrossing() {
-        Point out = new Point((a.getX() + b.getX() + c.getX()) / 3, (a.getY() + b.getY() + c.getY()) / 3);
-        System.out.println(out.toString());
+        Point point = new Point((a.getX() + b.getX() + c.getX()) / 3, (a.getY() + b.getY() + c.getY()) / 3);
+        System.out.println(point.toString());
     }
 
 }

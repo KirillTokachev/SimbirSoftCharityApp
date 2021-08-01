@@ -19,11 +19,11 @@ public class Teacher {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
 
-        Teacher teacher = (Teacher) o;
+        Teacher teacher = (Teacher) obj;
 
         return Objects.equals(username, teacher.username);
     }

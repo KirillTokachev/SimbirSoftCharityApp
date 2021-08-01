@@ -14,8 +14,17 @@ public class Student implements Comparable<Student> {
 
         public Student(){}
 
-        public Student(String lastName, String firstName, String middleName, LocalDate yearOfBirth, int course,
-                       int groupNumber, int algebra, int geometry, int physics, int programing, int robotoTech)
+        public Student(String lastName,
+                       String firstName,
+                       String middleName,
+                       LocalDate yearOfBirth,
+                       int course,
+                       int groupNumber,
+                       int algebra,
+                       int geometry,
+                       int physics,
+                       int programing,
+                       int robotoTech)
         {
             this.lastName = lastName;
             this.firstName = firstName;

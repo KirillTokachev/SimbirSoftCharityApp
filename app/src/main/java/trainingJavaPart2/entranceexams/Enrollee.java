@@ -64,11 +64,11 @@ public class Enrollee {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
 
-        Enrollee enrollee = (Enrollee) o;
+        Enrollee enrollee = (Enrollee) obj;
 
         return (Objects.equals(name, enrollee.name)) && (Objects.equals(facultyName, enrollee.facultyName));
     }

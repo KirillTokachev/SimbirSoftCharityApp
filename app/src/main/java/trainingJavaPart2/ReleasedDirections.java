@@ -7,7 +7,7 @@ import static trainingJavaPart2.Directions.UP;
 
 import java.util.Arrays;
 
-public class RealeseDirections {
+public class ReleasedDirections {
 
     public int[] coordinatChanges(int x, int y, Directions p){
 

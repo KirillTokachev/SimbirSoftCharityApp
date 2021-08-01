@@ -50,16 +50,16 @@ public class StringsTraining {
     public int[] getArrayLastSymbol(String text) {
 
         // Преобразуем полученную строку в массив символов
-        char[] input = text.toCharArray();
-        if (input.length == 0) return new int[]{};
+        char[] inputChars = text.toCharArray();
+        if (inputChars.length == 0) return new int[]{};
 
         // Объявляем список что бы занести в него номера символов
         ArrayList<Integer> outList = new ArrayList();
 
 
         // Заполянем массив номерами одинаковых сиволово идентичных последнему
-        for (int i = 0; i < input.length; i++){
-            if(input[input.length-1] == (input[i])) outList.add((int) input[i]);
+        for (int i = 0; i < inputChars.length; i++){
+            if(inputChars[inputChars.length-1] == (inputChars[i])) outList.add((int) inputChars[i]);
         }
 
         // Костыль для того что бы удалить записавшийся сивол у которого нету идентичных

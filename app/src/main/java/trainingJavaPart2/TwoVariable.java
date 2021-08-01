@@ -22,8 +22,8 @@ public class TwoVariable {
     }
 
     public int plusVar(){
-        int summ = a+b;
-        return summ;
+        int sum = a+b;
+        return sum;
     }
 
     public int overVar(){

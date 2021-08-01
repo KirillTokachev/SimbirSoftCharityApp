@@ -1,5 +1,6 @@
 package trainingJavaPart2;
 
+// Комент для коммита
 public class Square implements Shape {
     private double sideLength;
 
@@ -17,7 +18,7 @@ public class Square implements Shape {
 
     @Override
     public double getPerimeter() {
-        return 4*sideLength;
+        return 4 * sideLength;
     }
 
     @Override
