@@ -5,30 +5,30 @@ import android.util.Log
 class Test {
 }
 
-    fun main(){
+fun main(){
 
-        var n: Int? = null
+    var n: Int? = null
 
-        val book1 = Book(50,550)
-        val book2 = Book(75,1523)
+    val book1 = Book(50,550)
+    val book2 = Book(75,1523)
+    val magazine = Magazine(1500,15000)
+    val book3 = n?.let { Book(it,2341) }
 
-        val book3 = n?.let { Book(it,2341) }
-        val book4 = Book(56,3431)
+    Log.d("Test", book1.getType("Harry Potter") + ", strings: " + "${book1.wordCount}, " + "price: " + "${book1.price}" + " euro")
+    Log.d("Test", book2.getType("Piece and War") + ", strings: " + "${book2.wordCount}, " + "price: " + "${book2.price}" + " euro")
+    Log.d("Test", magazine.getType("Black Howl") + ", strings: " + "${magazine.wordCount}, " + "price: " + "${magazine.price}" + " euro")
+    Log.d("Test", (book1 === book2).toString())
+    Log.d("Test",book1.equals(book2).toString())
 
+    book3?.let { buy(it) }
 
-        Log.d("Test", (book1 === book2).toString())
+    buy(book1);
 
-        Log.d("Test",book1.equals(book2).toString())
+    val sum = { x: Int, y: Int -> Log.d("sum",((x+y).toString())) }
 
-        book3?.let { buy(it) }
+    sum(5,6)
 
-        buy(book4);
-
-        val sum = { x: Int, y: Int -> Log.d("sum",((x+y).toString())) }
-
-        sum(5,6)
-
-    }
+}
 
 fun buy(publication: Publication) {
     println("The purchase is complete. The purchase amount was ${publication.price}")
