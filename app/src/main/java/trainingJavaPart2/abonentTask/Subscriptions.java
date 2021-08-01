@@ -30,7 +30,7 @@ public class Subscriptions {
                 output.add(inputList.get(i).getSurname());
             }
         }
-        return "Превышение лимита у следующих абонентов :" + output;
+        return "Лимит превыщает у следующих абонентов :" + output;
     }
 
     public static String toCalsIntercity(ArrayList<Subscriber> inputList){

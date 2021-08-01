@@ -8,16 +8,13 @@ public class Order {
     private boolean payed = false;
     private boolean register = false;
 
-
-    public void addProductToOrder(ArrayList<Product> orderlist) {
-        this.orderlist = orderlist;
+    public void addProductToOrder(ArrayList<Product> orderslist) {
+        this.orderlist = orderslist;
     }
-
 
     public void addProductToOrder(Product product) {
         orderlist.add(product);
     }
-
 
     public void showOrder() {
         for (Product e: orderlist) {
@@ -25,11 +22,9 @@ public class Order {
         }
     }
 
-
     public boolean isPayed() {
         return payed;
     }
-
 
     public void setPayed(boolean s) {
         payed = s;

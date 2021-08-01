@@ -56,9 +56,9 @@ public class MyArray {
         Random random = new Random();
         for(int i = 0; i < input.size(); i++) {
             int index = random.nextInt(i + 1);
-            int a = input.get(index);
+            int x = input.get(index);
             input.set(index, i);
-            input.set(i, a);
+            input.set(i, x);
         }
     }
 

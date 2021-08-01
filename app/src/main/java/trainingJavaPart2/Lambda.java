@@ -2,13 +2,16 @@ package trainingJavaPart2;
 
 @FunctionalInterface
 interface Runnable {
-    String print(int i, String str);
+    public String sayLoveJava();
 }
 public class Lambda {
 
-    public void repeatTask(int times, Runnable task){
+    Runnable run = () -> {
+        return "I Love Java!";
+    };
+    public void repeatTask(int times){
         for (int i = 0; i < times; i++){
-            task.print(i, "I love Java");
+            System.out.println(run);
         }
     }
 

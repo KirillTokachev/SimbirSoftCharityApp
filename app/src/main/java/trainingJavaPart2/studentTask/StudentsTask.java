@@ -22,8 +22,7 @@ public class StudentsTask {
      */
 
     public static void main(String[] args) {
-
-        // Студенты
+        
         Student ivan = new Student("Иванов","Иван","Ивановчи",LocalDate.of(1992, 12, 2),2,202,4,5,5,4,5);
         Student oleg = new Student("Коржев","Олег","Олегович",LocalDate.of(1991, 10, 22),3,203,5,4,5,5,5);
         Student kirill = new Student("Токачев","Кирилл","Кириллович",LocalDate.of(1992, 2, 12),2,202,5,5,5,5,5);
@@ -32,7 +31,6 @@ public class StudentsTask {
         Student alex = new Student("Макаренко","Алексей","Алексеевич",LocalDate.of(1994, 4, 18),4,204,5,5,5,4,5);
         Student sergey = new Student("Абрамов","Сергей","Сергеевич",LocalDate.of(1994, 8, 9),4,204,5,5,5,4,5);
 
-        // Заполняем список студентов
         ArrayList<Student> students = new ArrayList();
         students.add(ivan);
         students.add(oleg);

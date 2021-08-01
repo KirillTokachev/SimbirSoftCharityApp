@@ -7,7 +7,7 @@ public class Subscriber {
     private String name;
     private String middleName;
     private String address;
-    private long debetCard;
+    private long debitCard;
     private long creditCard;
     private int timeCals;
     private int timeCalsIntercity;
@@ -20,7 +20,7 @@ public class Subscriber {
                       String name,
                       String middleName,
                       String address,
-                      long debetCard,
+                      long debitCard,
                       long creditCard,
                       int timeCals,
                       int timeCalsIntercity) {
@@ -29,7 +29,7 @@ public class Subscriber {
         this.name = name;
         this.middleName = middleName;
         this.address = address;
-        this.debetCard = debetCard;
+        this.debitCard = debitCard;
         this.creditCard = creditCard;
         this.timeCals = timeCals;
         this.timeCalsIntercity = timeCalsIntercity;
@@ -40,7 +40,7 @@ public class Subscriber {
                       String name,
                       String middleName,
                       String address,
-                      long debetCard,
+                      long debitCard,
                       long creditCard,
                       int timeCals) {
         this.id = id;
@@ -48,7 +48,7 @@ public class Subscriber {
         this.name = name;
         this.middleName = middleName;
         this.address = address;
-        this.debetCard = debetCard;
+        this.debitCard = debitCard;
         this.creditCard = creditCard;
         this.timeCals = timeCals;
     }
@@ -58,14 +58,14 @@ public class Subscriber {
                       String name,
                       String middleName,
                       String address,
-                      long debetCard,
+                      long debitCard,
                       int timeCals) {
         this.id = id;
         this.surname = surname;
         this.name = name;
         this.middleName = middleName;
         this.address = address;
-        this.debetCard = debetCard;
+        this.debitCard = debitCard;
         this.timeCals = timeCals;
     }
 
@@ -75,7 +75,7 @@ public class Subscriber {
         this.name = name;
         this.middleName = middleName;
         this.address = address;
-        this.debetCard = debetCard;
+        this.debitCard = debitCard;
         this.creditCard = creditCard;
         this.timeCals = timeCals;
         this.timeCalsIntercity = timeCalsIntercity;
@@ -85,7 +85,7 @@ public class Subscriber {
         + "фамилия, " + name
         + "имя, " + middleName
         + "отчество, " + address
-        + "адрес, " + debetCard
+        + "адрес, " + debitCard
         + "кредитная карта, " + creditCard
         + "время городских переговоров, " + timeCals
         + "время междугородних переговоров " + timeCalsIntercity);
@@ -111,13 +111,13 @@ public class Subscriber {
         return address;
     }
 
-    public long getDebetCard() {
-        if(Long.toString(debetCard).length() != 10);
-        return debetCard;
+    public long getDebitCard() {
+        if(Long.toString(debitCard).length() != 10);
+        return debitCard;
     }
 
     public long getCreditCard() {
-        if((Long.toString(debetCard).length() != 10));
+        if((Long.toString(debitCard).length() != 10));
         return creditCard;
     }
 
@@ -130,7 +130,7 @@ public class Subscriber {
     }
 
     public void setId(long id) {
-        if(Long.toString(debetCard).length() != 8);
+        if(Long.toString(debitCard).length() != 8);
         this.id = id;
     }
 
@@ -150,8 +150,8 @@ public class Subscriber {
         this.address = address;
     }
 
-    public void setDebetCard(long debetCard) {
-        this.debetCard = debetCard;
+    public void setDebitCard(long debitCard) {
+        this.debitCard = debitCard;
     }
 
     public void setCreditCard(long creditCard) { this.creditCard = creditCard; }

@@ -27,7 +27,7 @@ public class Institute {
     }
 
     public Faculty getByName(String name) {
-        return faculties.stream().filter(faculty -> Objects.equals(faculty.getName(), name)).findFirst().orElse(null);
+        return faculties.stream().filter(faculty -> Objects.equals(faculty.getFacultyName(), name)).findFirst().orElse(null);
     }
 
 }

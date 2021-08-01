@@ -161,8 +161,8 @@ public class CollectionsBlock<T extends Comparable> {
         if (inputList == null || a == null || b == null) throw new NullPointerException("Один из параметров null");
 
         for (int i = 0; i < inputList.size(); i++){
-            String buff = inputList.get(i);
-            if(buff == a){
+            String tmp = inputList.get(i);
+            if(tmp == a){
                 inputList.set(i, b);
             }
         }
