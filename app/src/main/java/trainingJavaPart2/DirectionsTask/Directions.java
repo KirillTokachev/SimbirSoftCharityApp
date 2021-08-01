@@ -1,4 +1,4 @@
-package trainingJava;
+package trainingJavaPart2.DirectionsTask;
 
 public enum Directions {
 

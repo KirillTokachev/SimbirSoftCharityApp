@@ -1,4 +1,4 @@
-package trainingJava.entranceexams;
+package trainingJavaPart2.entranceexams;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -8,25 +8,25 @@ import java.util.stream.Collectors;
 
 public class Faculty {
 
-    private String name;
+    private String facultyName;
     private String teacherUsername;
     private List<Exam> exams;
     private List<Enrollee> enrollees;
     private List<Faculty> faculties;
 
-    public Faculty(String name, String teacherUsername) {
-        this.name = name;
+    public Faculty(String facultyName, String teacherUsername) {
+        this.facultyName = facultyName;
         this.teacherUsername = teacherUsername;
         exams = new ArrayList<>();
         enrollees = new ArrayList<>();
     }
 
-    public String getName() {
-        return name;
+    public String getFacultyName() {
+        return facultyName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFacultyName(String facultyName) {
+        this.facultyName = facultyName;
     }
 
     public String getTeacherUsername() {
@@ -79,12 +79,12 @@ public class Faculty {
 
         Faculty faculty = (Faculty) o;
 
-        return Objects.equals(name, faculty.name);
+        return Objects.equals(facultyName, faculty.facultyName);
     }
 
     @Override
     public int hashCode() {
-        return name != null ? name.hashCode() : 0;
+        return facultyName != null ? facultyName.hashCode() : 0;
     }
 
 }
