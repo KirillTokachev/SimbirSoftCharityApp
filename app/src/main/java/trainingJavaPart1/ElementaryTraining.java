@@ -1,4 +1,4 @@
-package trainingJava;
+package trainingJavaPart1;
 
 /**
  * Набор тренингов по работе с примитивными типами java.
@@ -22,7 +22,7 @@ public class ElementaryTraining {
     public double averageValue(int firstValue, int secondValue) {
         double result = 0;
 
-        result = (firstValue + secondValue) / 2;
+        result = (firstValue + secondValue) / 2.0;
 
         return result;
     }
@@ -57,7 +57,9 @@ public class ElementaryTraining {
      */
     public int changeValue(int value) {
 
-        if (value > 3) value += 10;else value -= 10;
+        if (value > 3) {
+            value += 10;
+        } else value -= 10;
 
         return value;
     }
@@ -73,27 +75,23 @@ public class ElementaryTraining {
      * @return новое число
      */
     public int swapNumbers(int value) {
-
         int result = 0;
 
-        // Проверяем и возвращаем число если оно меньше 10
-        if (value < 10) result = value; else {
-
-            // Преобразуем число в массив цифр
+        if (value < 10) {
+            result = value;
+        } else {
             String temp = Integer.toString(value);
             int[] tempArr = new int[temp.length()];
 
-            // Возвращаем число если она больше 5 символов
             if (tempArr.length > 5) return value;
             for (int i = 0; i < tempArr.length; i++) {
                 tempArr[i] = temp.charAt(i) - '0';
             }
 
-            // Меняем местами первую и послдию цифру
+            // Меняем местами первую и последнюю цифру
             int swap = tempArr[0];
             tempArr[0] = tempArr[tempArr.length - 1];
             tempArr[tempArr.length -1] = swap;
-
 
             // Преобразование массива обратно в число
             for (int i = 0; i < tempArr.length; i++) {
@@ -117,31 +115,27 @@ public class ElementaryTraining {
 
         int result = 0;
 
-        // Проверяем и возвращаем число если оно меньше 10
-        if (value < 10) result = value; else {
-
-            // Преобразуем число в массив цифр
+        if (value < 10){
+            result = value;
+        }else {
             String temp = Integer.toString(value);
             int[] tempArr = new int[temp.length()];
             for (int i = 0; i < tempArr.length; i++) {
                 tempArr[i] = temp.charAt(i) - '0';
             }
 
-            // Возвращаем число если она больше 5 символов
             if (tempArr.length > 5) return value;
-            // Заменяем чётные числа на ноль
             for (int i = 1; i < tempArr.length; i++){
                 if (tempArr[i] % 2 == 0){
                     tempArr[i] = 0;
                 }
             }
 
-
-            // Преобразование массива обратно в число
             for (int i = 0; i < tempArr.length; i++) {
                 result = result * 10 + tempArr[i];
             }
         }
         return result;
     }
+
 }
