@@ -1,20 +1,19 @@
-package trainingJava.Internetshop;
+package trainingJavaPart2.internetshop;
 
 import java.util.ArrayList;
 
 public class Administrator {
 
     private ArrayList<Product> products = new ArrayList<Product>();
-    private ArrayList<Client> blackclients = new ArrayList<Client>();
+    private ArrayList<Client> blackListClients = new ArrayList<Client>();
 
-    public void registerOrder(Client client) {
-        if (client.getOrder().isPayment()) {
+    public void checkIsOrderPayed(Client client) {
+        if (client.getOrder().isPayed()) {
             client.getOrder().setRegister(true);
         } else {
-            blackclients.add(client);
+            blackListClients.add(client);
         }
     }
-
     public void createNewProduct(String name, int price) {
         products.add(new Product(name,price));
     }

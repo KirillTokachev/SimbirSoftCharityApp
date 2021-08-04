@@ -1,12 +1,15 @@
-package trainingJava;
+package trainingJavaPart2;
 
 public class Time {
 
-    private int hours, minutes, second;
-    public Time(int hours, int minutes, int second) {
+    private final int MIN_SECOND = 60;
+    private final int HOUR = 24;
+
+    private int hours, minutes, seconds;
+    public Time(int hours, int minutes, int seconds) {
         setHours(hours);
         setMinutes(minutes);
-        setSecond(second);
+        setSeconds(seconds);
     }
     public Time(int hours, int minutes) {
         this(hours, minutes, 0);
@@ -15,22 +18,25 @@ public class Time {
         this(0, 0, 0);
     }
     public void setHours(int h) {
-        if (h < 0 || h > 23)
+        if (h < 0 || h > HOUR-1){
             throw new IllegalArgumentException("Введенно некоретктрное значние");
-        else
+        } else {
             hours = h;
+        }
     }
     public void setMinutes(int m) {
-        if (m < 0 || m > 59)
+        if (m < 0 || m > MIN_SECOND -1) {
             throw new IllegalArgumentException("Введенно некоретктрное значние");
-        else
+        } else {
             minutes = m;
+        }
     }
-    public void setSecond(int s) {
-        if (s < 0 || s > 59)
+    public void setSeconds(int s) {
+        if (s < 0 || s > MIN_SECOND -1) {
             throw new IllegalArgumentException("Введенно некоретктрное значние");
-        else
-            second = s;
+        } else {
+            seconds = s;
+        }
     }
     public int hours() {
         return hours;
@@ -39,26 +45,27 @@ public class Time {
         return minutes;
     }
     public int seconds() {
-        return second;
+        return seconds;
     }
 
+    @Override
     public String toString() {
-        return String.format("%02d:%02d:%02d", hours, minutes, second);
+        return String.format("%02d:%02d:%02d", hours, minutes, seconds);
     }
 
     public void addSeconds(int s) {
-        second += s;
-        minutes += second / 60;
-        second = second % 60;
-        hours += minutes / 60;
-        minutes = minutes % 60;
-        hours = hours % 24;
+        seconds += s;
+        minutes += seconds / MIN_SECOND;
+        seconds = seconds % MIN_SECOND;
+        hours += minutes / MIN_SECOND;
+        minutes = minutes % MIN_SECOND;
+        hours = hours % HOUR;
     }
     public void addMinutes(int m) {
-        addSeconds(m * 60);
+        addSeconds(m * MIN_SECOND);
     }
     public void addHours(int h) {
-        addSeconds(h * 60 * 60);
+        addSeconds(h * MIN_SECOND * MIN_SECOND);
     }
 
 }

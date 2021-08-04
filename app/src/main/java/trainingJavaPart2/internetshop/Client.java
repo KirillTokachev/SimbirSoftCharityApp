@@ -1,4 +1,4 @@
-package trainingJava.Internetshop;
+package trainingJavaPart2.internetshop;
 
 public class Client {
 
@@ -18,15 +18,15 @@ public class Client {
     }
 
     public void pay() {
-        if(order.isPayment()) {
+        if(order.isPayed()) {
             System.out.println("Вы уже оплатили заказ");
         } else {
-            order.setPayment(true);
+            order.setPayed(true);
         }
     }
 
     public void take() {
-        if(!order.isPayment()) {
+        if(!order.isPayed()) {
             System.out.println("Вы ещё не оплатили товар");
         } else if(!order.isRegister()) {
             System.out.println("Ваша заявка ещё не обработана");
@@ -34,6 +34,5 @@ public class Client {
             System.out.println("Спасибо за покупку!");
         }
     }
-
 
 }

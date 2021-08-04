@@ -1,4 +1,4 @@
-package trainingJava;
+package trainingJavaPart2;
 
 public class TwoVariable {
 
@@ -12,21 +12,26 @@ public class TwoVariable {
         this.b = b;
     }
 
-    public void getVar(int a, int b){
+    public void setVar(int a, int b){
         this.a = a;
         this.b = b;
+    }
 
+    public void getVar(int a, int b){
         System.out.println(a + ", " + b);
     }
 
     public int plusVar(){
-        int summ = a+b;
-        return summ;
+        int sum = a+b;
+        return sum;
     }
 
     public int overVar(){
-        if (a > b) return a;
-        else return b;
+        if (a > b) {
+            return a;
+        } else {
+            return b;
+        }
     }
 
 }

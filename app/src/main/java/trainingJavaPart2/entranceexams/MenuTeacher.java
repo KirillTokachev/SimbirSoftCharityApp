@@ -1,6 +1,5 @@
-package trainingJava.entranceexams;
+package trainingJavaPart2.entranceexams;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
@@ -8,17 +7,12 @@ import java.util.Scanner;
 public class MenuTeacher {
 
     private final String teacherUsername;
-
     private Institute institute;
-
     Scanner scanner = new Scanner(System.in);
-
-
 
     public MenuTeacher(String teacherUsername) {
         this.teacherUsername = teacherUsername;
     }
-
 
     private void checkStudent(Enrollee enrollee) {
         List<Answer> answers = enrollee.getAnswers();
@@ -26,9 +20,9 @@ public class MenuTeacher {
         System.out.println("Оцените ответы ");
         Faculty faculty = institute.getByName(enrollee.getFacultyName());
         for (Answer answer : answers) {
-            Exam exam = faculty.getExams().stream().filter(Exam -> Objects.equals(Exam.getName(), answer.getExamName())).findFirst().orElse(null);
+            Exam exam = faculty.getExams().stream().filter(Exam -> Objects.equals(Exam.getNameExam(), answer.getExamName())).findFirst().orElse(null);
             assert exam != null;
-            System.out.println("Задание по предмету " + exam.getName());
+            System.out.println("Задание по предмету " + exam.getNameExam());
             System.out.println(exam.getTask());
             System.out.println("Ответ поступающего: " + answer.getAnswerText());
             boolean state = false;
@@ -51,6 +45,5 @@ public class MenuTeacher {
         System.out.println("Оценка абитуриента завершена");
         enrollee.refreshAvg();
     }
-
 
 }

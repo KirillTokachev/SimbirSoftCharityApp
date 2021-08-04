@@ -1,6 +1,4 @@
-package trainingJava;
-
-
+package trainingJavaPart2;
 
 import androidx.annotation.NonNull;
 
@@ -37,10 +35,8 @@ public class CollectionsBlock<T extends Comparable> {
         if (firstList.size() == 0 || secondList.size() ==0) throw new NullPointerException("У одного из параметров size() == 0");
 
         List<T> output = new ArrayList<T>();
-
         output.addAll(firstList);
         output.addAll(secondList);
-
         Collections.sort(output);
 
         return output;
@@ -64,7 +60,6 @@ public class CollectionsBlock<T extends Comparable> {
             output.add(inputList.get(i));
             output.addAll(inputList.subList(0,i));
         }
-
         return output;
     }
 
@@ -84,8 +79,12 @@ public class CollectionsBlock<T extends Comparable> {
         Collections.sort(firstList);
         Collections.sort(secondList);
 
-        if (firstList.equals(secondList)) return true;
-        else  return false;
+        if (firstList.equals(secondList)){
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     /**
@@ -123,18 +122,14 @@ public class CollectionsBlock<T extends Comparable> {
                 //// Сохраняем первый элемент в буфер, а на его место ставим последний элемент
                 T buff = inputList.get(0);
                 inputList.set(0, inputList.get(inputList.size() - 1));
-
                 // Сам цилк по сдвигу массива
                 for (int j = 1; j < inputList.size() - 1; j++){
                     inputList.set(inputList.size() - j, inputList.get(inputList.size() - j - 1));
                 }
-
                 inputList.set(1, buff);
             }
-
             // Если n меньше 0 то сдвигаем в лево
         }else if (n < 0){
-
             for (int i = 0; i > n; i--){
                 // Сохраняем первый элемент в буфер, а на его место ставим последний элемент
                 T buff = inputList.get(inputList.size() - 1);
@@ -143,13 +138,9 @@ public class CollectionsBlock<T extends Comparable> {
                 for (int j = 1; j < inputList.size() - 1; j++){
                     inputList.set(j - 1, inputList.get(j));
                 }
-
                 inputList.set(inputList.size() - 2, buff);
-
             }
-
         }
-
         return inputList;
     }
 
@@ -165,15 +156,14 @@ public class CollectionsBlock<T extends Comparable> {
      */
     public List<String> collectionTask4(@NonNull List<String> inputList, @NonNull String a,
                                         @NonNull String b) {
-        if (inputList == null) throw new NullPointerException("Один из параметров null");
+        if (inputList == null || a == null || b == null) throw new NullPointerException("Один из параметров null");
 
         for (int i = 0; i < inputList.size(); i++){
-            String buff = inputList.get(i);
-            if(buff == a){
+            String tmp = inputList.get(i);
+            if(tmp == a){
                 inputList.set(i, b);
             }
         }
-
         return inputList;
     }
 

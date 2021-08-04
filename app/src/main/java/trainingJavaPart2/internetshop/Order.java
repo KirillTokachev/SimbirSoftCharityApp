@@ -1,23 +1,20 @@
-package trainingJava.Internetshop;
+package trainingJavaPart2.internetshop;
 
 import java.util.ArrayList;
 
 public class Order {
 
     private ArrayList<Product> orderlist = new ArrayList<Product>();
-    private boolean payment = false;
+    private boolean payed = false;
     private boolean register = false;
 
-
-    public void addProdToOrder(ArrayList<Product> orderlist) {
-        this.orderlist = orderlist;
+    public void addProductToOrder(ArrayList<Product> orderslist) {
+        this.orderlist = orderslist;
     }
 
-
-    public void addProdToOrder(Product product) {
+    public void addProductToOrder(Product product) {
         orderlist.add(product);
     }
-
 
     public void showOrder() {
         for (Product e: orderlist) {
@@ -25,14 +22,12 @@ public class Order {
         }
     }
 
-
-    public boolean isPayment() {
-        return payment;
+    public boolean isPayed() {
+        return payed;
     }
 
-
-    public void setPayment(boolean s) {
-        payment = s;
+    public void setPayed(boolean s) {
+        payed = s;
     }
 
     public boolean isRegister() {

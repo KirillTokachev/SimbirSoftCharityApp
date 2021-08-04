@@ -1,4 +1,4 @@
-package trainingJava;
+package trainingJavaPart2;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,38 +27,14 @@ public class StringsTraining {
      */
     public String getOddCharacterString(String text) {
 
-        // Преобразуем строку в массив символов
-        char[] input = text.toCharArray();
+        String result = "";
 
-        // Добовляем ArrayList для того что бы заполнить его числами
-        ArrayList<Integer> outList = new ArrayList<Integer>();
-
-        // Заполняем массив outList
-        for (int i = 0; i < input.length; i = i + 2){
-            if ((int) input[i] != 0) outList.add((int) input[i]);
+        for (int i = 0; i < text.length(); i++ ){
+            if (i % 2 != 0){
+                result += text.charAt(i);
+            }
         }
-
-        // Добавляем массив интов для того что бы переести в него значения
-        // из ArrayList
-        int[] outInt = new int[outList.size()];
-
-        // Заполняем массив outInt
-        for (int i = 0; i < outList.size(); i++){
-            outInt[i] = outList.get(i);
-        }
-
-        // Добавляем массив сиволов что бы преобразовать его в строку
-        char[] out = new char[outInt.length];
-
-        // Заполянем массив out
-        for (int i = 0; i < outInt.length; i++){
-            out[i] = (char) outInt[i];
-        }
-
-        text = String.valueOf(out);
-
-        return text;
-
+        return result;
     }
 
     /**
@@ -74,15 +50,16 @@ public class StringsTraining {
     public int[] getArrayLastSymbol(String text) {
 
         // Преобразуем полученную строку в массив символов
-        char[] input = text.toCharArray();
+        char[] inputChars = text.toCharArray();
+        if (inputChars.length == 0) return new int[]{};
 
         // Объявляем список что бы занести в него номера символов
-        ArrayList<Integer> outList = new ArrayList<Integer>();
+        ArrayList<Integer> outList = new ArrayList();
 
 
         // Заполянем массив номерами одинаковых сиволово идентичных последнему
-        for (int i = 0; i < input.length; i++){
-            if(input[input.length-1] == (input[i])) outList.add((int) input[i]);
+        for (int i = 0; i < inputChars.length; i++){
+            if(inputChars[inputChars.length-1] == (inputChars[i])) outList.add((int) inputChars[i]);
         }
 
         // Костыль для того что бы удалить записавшийся сивол у которого нету идентичных
@@ -91,7 +68,9 @@ public class StringsTraining {
         }
 
         // Объявдяем интовый массив для заполнения его идентичными номерами
-        int[] outInt = new int[outList.size()];
+        int size = outList.size()-1;
+        if (size <= 0) return new int[]{};
+        int[] outInt = new int[size];
 
         // Заполняем массив
         for (int i = 0; i < outInt.length; i++){
@@ -127,10 +106,10 @@ public class StringsTraining {
      * @param text текст для поиска и замены
      * @return текст, где цифры заменены словами
      */
-    public String replaceAllNumbers(String text) {
+    public static String replaceAllNumbers(String text) {
 
         // Создаём пустой объект строки куда будем помещать результат
-        String result = "";
+        StringBuilder result = new StringBuilder("");
 
         // Создаем HashMap для связывания ключа цифры и значения слова
         Map<String, String> mapInt = new HashMap<String, String>();
@@ -150,13 +129,13 @@ public class StringsTraining {
         for (int i = 0; i < text.length(); i++){
             String key = text.substring(i, i + 1);
             if (mapInt.containsKey(key)){
-                result = result + mapInt.get(key);
+                result.append(mapInt.get(key));
             } else {
-                result = result + key;
+                result.append(key);
             }
         }
 
-        return result;
+        return result.toString();
     }
 
     /**

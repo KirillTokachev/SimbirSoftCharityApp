@@ -1,23 +1,23 @@
-package trainingJava.entranceexams;
+package trainingJavaPart2.entranceexams;
 
 import java.util.Objects;
 
 public class Exam {
 
-    private String name;
+    private String nameExam;
     private String task;
 
-    public Exam(String name, String task) {
-        this.name = name;
+    public Exam(String nameExam, String task) {
+        this.nameExam = nameExam;
         this.task = task;
     }
 
-    public String getName() {
-        return name;
+    public String getNameExam() {
+        return nameExam;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNameExam(String nameExam) {
+        this.nameExam = nameExam;
     }
 
     public String getTask() {
@@ -35,12 +35,12 @@ public class Exam {
 
         Exam exam = (Exam) o;
 
-        return Objects.equals(name, exam.name);
+        return Objects.equals(nameExam, exam.nameExam);
     }
 
     @Override
     public int hashCode() {
-        return name != null ? name.hashCode() : 0;
+        return nameExam != null ? nameExam.hashCode() : 0;
     }
 
 }
