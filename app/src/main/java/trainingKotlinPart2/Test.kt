@@ -23,31 +23,40 @@ fun main() {
     Log.i("test", usersName.first())
     Log.i("test", usersName.last())
 
+    val Io = User(77,"Io",45,Type.FULL)
+
+    sleep(Io)
+
+    fullAccess(users)
 
 }
 
 
-fun fullAccess (user: List<User>){
-    user.forEach { if (it.type == Type.FULL) Log.i("test", "Полный доступ имеют: ${it.name}") }
+fun fullAccess (user: List<User>) : List<User>{
+    var fullAccessUser: List<User> = mutableListOf()
+    fullAccessUser = user.filter { it.type == Type.FULL }
+    Log.d("test", "Полный доступ имеют: ${user}")
+    return fullAccessUser
 }
 
 fun updateCache(){
-    Log.i("Test","Cache update")
+    Log.d("Test","Cache update")
 }
 
-inline fun auth (updateCache: () -> Unit) {
-    if (User().age >= 18){
-        obj.authSuccess()
-        updateCache()
-    } else {
-        obj.authFailed()
-    }
+inline fun auth (updateCache: User) {
+    User().validate(User().age)
 }
 
 fun doAction (action: Action){
     when (action){
         Action.Registration() -> Log.i("test", "Registered")
-        Action.Login(User()) -> auth { updateCache() }
+        Action.Login(User()) -> Log.i("test", "Log in ${auth(User())}")
         Action.Logout() -> Log.i("test", "Logout")
     }
+}
+
+fun sleep (user: User){
+    Log.d("sleep", user.startTime)
+    Thread.sleep(1000)
+    Log.d("sleep", user.startTime)
 }
