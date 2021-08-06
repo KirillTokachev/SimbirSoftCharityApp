@@ -14,11 +14,7 @@ fun main() {
         users.add(User(14,"Jhon",25,Type.FULL))
     }
 
-    val usersName = mutableListOf<String>()
-
-    for (User in users){
-        usersName.add(User.name)
-    }
+    val usersName = users.map {it.name}
 
     Log.i("test", usersName.first())
     Log.i("test", usersName.last())
@@ -28,32 +24,49 @@ fun main() {
     sleep(Io)
 
     fullAccess(users)
+    
+    Io.validate()
+
+    auth(Io, ::updateCache)
+
+    var act: Action = Action.Login(Io)
+
+    doAction(act, Io)
 
 }
 
+fun User.validate () = if (age >= ADULT) Log.d("test", "Permitted") else throw IllegalAccessException("No entry")
 
 fun fullAccess (user: List<User>) : List<User>{
     var fullAccessUser: List<User> = mutableListOf()
     fullAccessUser = user.filter { it.type == Type.FULL }
-    Log.d("test", "Полный доступ имеют: ${user}")
+    Log.d("test", "Полный доступ имеют: " + "$user")
     return fullAccessUser
 }
 
-fun updateCache(){
-    Log.d("Test","Cache update")
-}
+fun updateCache() = Log.d("Test","Cache update")
 
-inline fun auth (updateCache: User) {
-    User().validate(User().age)
-}
 
-fun doAction (action: Action){
-    when (action){
-        Action.Registration() -> Log.i("test", "Registered")
-        Action.Login(User()) -> Log.i("test", "Log in ${auth(User())}")
-        Action.Logout() -> Log.i("test", "Logout")
+
+inline fun auth(user: User, func: () -> Unit){
+    try {
+        user.validate()
+        obj.authSuccess()
+        func()
+    } catch (e:Exception) {
+        obj.authFailed()
     }
 }
+
+fun doAction (action: Action, user: User){
+    when (action){
+        is Action.Login -> auth(user, ::updateCache)
+        is Action.Logout -> Log.d("test", "Logout")
+        is Action.Registration -> Log.d("test", "Registered")
+    }
+}
+
+
 
 fun sleep (user: User){
     Log.d("sleep", user.startTime)

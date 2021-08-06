@@ -2,8 +2,8 @@ package trainingKotlinPart2
 
 sealed class Action {
 
-    class Registration() : Action()
+    object Registration : Action()
     class Login(user: User) : Action()
-    class Logout() : Action()
+    object Logout : Action()
 
 }
