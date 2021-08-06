@@ -44,7 +44,10 @@ fun fullAccess (user: List<User>) : List<User>{
     return fullAccessUser
 }
 
-fun updateCache() = Log.d("Test","Cache update")
+fun updateCache(){
+    Log.d("Test","Cache update")
+}
+
 
 
 
@@ -57,6 +60,7 @@ inline fun auth(user: User, func: () -> Unit){
         obj.authFailed()
     }
 }
+
 
 fun doAction (action: Action, user: User){
     when (action){
