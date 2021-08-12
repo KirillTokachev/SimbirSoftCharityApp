@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/avatar_profile_image_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/avatar"/>
+
+    <TextView
+        android:id="@+id/name_friend_text_view"
+        style="@style/TitleTextStyleProfile2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/avatar_profile_image_view"
+        android:layout_alignBottom="@+id/avatar_profile_image_view"
+        android:layout_marginLeft="20dp"
+        android:layout_toEndOf="@+id/avatar_profile_image_view"
+        android:gravity="center_vertical"
+        android:text="@string/friend_name"
+        android:textColor="@color/black" />
+
+</RelativeLayout>
