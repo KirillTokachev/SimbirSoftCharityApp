@@ -7,27 +7,36 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.simbirsoftsummerworkshop.MainActivity
 import com.example.simbirsoftsummerworkshop.R
+import com.example.simbirsoftsummerworkshop.SplashFragment
 import com.example.simbirsoftsummerworkshop.adapters.FriendsAdapter
 import com.example.simbirsoftsummerworkshop.data.FriendsDataBase
-
+import com.example.simbirsoftsummerworkshop.databinding.FragmentProfileBinding
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_profile.*
 
 
 class ProfileFragment : Fragment() {
+    lateinit var binding: FragmentProfileBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+        binding = FragmentProfileBinding.inflate(inflater)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val recyclerView: RecyclerView = view.findViewById(R.id.friends_recycler_view)
-        recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.adapter = FriendsAdapter(FriendsDataBase.friendsList)
+
+        friends_recycler_view.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = FriendsAdapter(FriendsDataBase.friendsList)
+        }
+
     }
 
 }
