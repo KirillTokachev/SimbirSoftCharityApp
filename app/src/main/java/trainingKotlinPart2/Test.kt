@@ -27,7 +27,7 @@ fun main() {
     
     Io.validate()
 
-    auth(Io, ::updateCache)
+    auth(Io) { updateCache() }
 
     var act: Action = Action.Login(Io)
 
@@ -55,7 +55,7 @@ inline fun auth(user: User, func: () -> Unit){
     try {
         user.validate()
         obj.authSuccess()
-        func()
+        func.invoke()
     } catch (e:Exception) {
         obj.authFailed()
     }
