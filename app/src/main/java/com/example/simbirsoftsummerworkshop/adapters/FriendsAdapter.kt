@@ -11,15 +11,13 @@ import com.example.simbirsoftsummerworkshop.R
 import com.example.simbirsoftsummerworkshop.data.Person
 
 
-class FriendsAdapter(private val friends: MutableList<Person>) : RecyclerView.Adapter<FriendsAdapter.MyViewHolder>()  {
-
+class FriendsAdapter(private val friends: List<Person>) : RecyclerView.Adapter<FriendsAdapter.MyViewHolder>()  {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView = LayoutInflater.from(parent.context)
             .inflate(R.layout.friends_item, parent, false)
         return MyViewHolder(itemView)
     }
-
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.avatarImageView?.setImageResource(friends[position].avatarId)
@@ -30,7 +28,7 @@ class FriendsAdapter(private val friends: MutableList<Person>) : RecyclerView.Ad
         return friends.size
     }
 
-    inner class MyViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
+    class MyViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
         var avatarImageView: ImageView? = null
         var name: TextView? = null
 

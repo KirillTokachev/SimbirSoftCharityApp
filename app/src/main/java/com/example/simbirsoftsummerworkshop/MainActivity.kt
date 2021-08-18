@@ -8,23 +8,25 @@ import androidx.navigation.fragment.findNavController
 import com.example.simbirsoftsummerworkshop.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-
-    lateinit var navController: NavController
-    lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
+    lateinit var mainNavController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
-        navController = navHostFragment.findNavController()
+        val mainNavHostFragment =
+            supportFragmentManager.findFragmentById(R.id.main_nav_container) as NavHostFragment
+        mainNavController = mainNavHostFragment.findNavController()
 
     }
+
     override fun onSupportNavigateUp(): Boolean {
-        return navController.navigateUp() || super.onSupportNavigateUp()
+        return mainNavController.navigateUp() || super.onSupportNavigateUp()
     }
 
 }
+
+
 

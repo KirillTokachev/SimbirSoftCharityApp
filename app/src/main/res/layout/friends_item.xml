@@ -1,27 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="10dp"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:padding="10dp">
 
     <ImageView
         android:id="@+id/avatar_profile_image_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/avatar"/>
+        android:src="@drawable/avatar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/name_friend_text_view"
-        style="@style/TitleTextStyleProfile2"
+        style="@style/text_style_16sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/avatar_profile_image_view"
         android:layout_alignBottom="@+id/avatar_profile_image_view"
-        android:layout_marginLeft="20dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="10dp"
         android:layout_toEndOf="@+id/avatar_profile_image_view"
-        android:gravity="center_vertical"
         android:text="@string/friend_name"
-        android:textColor="@color/black" />
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@+id/avatar_profile_image_view"
+        app:layout_constraintTop_toTopOf="@+id/avatar_profile_image_view" />
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

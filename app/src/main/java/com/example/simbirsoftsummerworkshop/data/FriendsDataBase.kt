@@ -6,7 +6,7 @@ import java.time.LocalDate
 class FriendsDataBase {
 
     companion object {
-        val friendsList = mutableListOf(
+        val friendsList = listOf(
             Person("Дмитрий Валерьевич",
                 LocalDate.of(1992,3,13),
                 "Хирург",

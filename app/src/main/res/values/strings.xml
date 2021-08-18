@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Хочу помочь</string>
+    <string name="app_name">SimbirSoftSummerWorkshop</string>
     <string name="title_activity_splash">Хочу помочь</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -7,53 +7,6 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-    <string name="bottom_menu_news_string">Новости</string>
-    <string name="bottom_menu_search_string">Поиск</string>
-    <string name="bottom_menu_help_string">Помочь</string>
-    <string name="bottom_menu_history_string">История</string>
-    <string name="bottom_menu_profile_string">Профиль</string>
-    <string name="profile">Профиль</string>
-    <string name="data_of_birth">Дата рождения</string>
-    <string name="_01_1980">01 февраля 1980</string>
-    <string name="field_of_activity">Сфера деятельности</string>
-    <string name="push">Получать push-уведомления</string>
-
-    <style name="TitleTextStyleProfile1">
-        <item name="android:textSize">21sp</item>
-        <item name="android:gravity">center</item>
-        <item name="android:textColor">#ffffff</item>
-        <item name="android:textStyle">bold</item>
-    </style>
-
-    <style name="TitleTextStyleProfile2">
-        <item name="fontFamily">sans-serif</item>
-        <item name="android:textStyle">normal</item>
-        <item name="android:textSize">24sp</item>
-        <item name="color">@color/black</item>
-        <item name="android:lineSpacingExtra">8sp</item>
-    </style>
-
-    <style name="TitleTextStyleProfile3">
-        <item name="fontFamily">sans-serif</item>
-        <item name="android:textStyle">normal</item>
-        <item name="android:textSize">12sp</item>
-        <item name="android:lineSpacingExtra">4sp</item>
-        <item name="color">@color/black_38</item>
-    </style>
-
-    <style name="TitleTextStyleProfile4">
-        <item name="android:fontFamily">sans-serif</item>
-        <item name="android:textStyle">normal</item>
-        <item name="android:textSize">16sp</item>
-        <item name="android:textColor">@color/black_87</item>
-    </style>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="your_friends">Ваши друзья</string>
-    <string name="exit_button">Выйти из аккаунта</string>
     <string name="friend_name">Дмитрий Валерьевич</string>
-    <string name="download">Загрузка...</string>
-
+    <string name="download">Загрузка…</string>
 </resources>

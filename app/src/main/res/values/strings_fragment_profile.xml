@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="fragment_profile_toolbar_textview">Профиль</string>
+    <string name="fragment_profile_data_of_birth_text">Дата рождения</string>
+    <string name="fragment_profile_user_data_of_birth">01 февраля 1980</string>
+    <string name="fragment_profile_field_of_activity">Сфера деятельности</string>
+    <string name="fragment_profile_push">Получать push-уведомления</string>
+    <string name="fragment_profile_your_friends">Ваши друзья</string>
+    <string name="fragment_profile_exit_button">Выйти из аккаунта</string>
+</resources>
