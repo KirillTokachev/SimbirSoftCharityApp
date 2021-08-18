@@ -1,7 +1,7 @@
 package com.example.simbirsoftsummerworkshop
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
@@ -19,14 +19,9 @@ class MainActivity : AppCompatActivity() {
         val mainNavHostFragment =
             supportFragmentManager.findFragmentById(R.id.main_nav_container) as NavHostFragment
         mainNavController = mainNavHostFragment.findNavController()
-
     }
 
     override fun onSupportNavigateUp(): Boolean {
         return mainNavController.navigateUp() || super.onSupportNavigateUp()
     }
-
 }
-
-
-

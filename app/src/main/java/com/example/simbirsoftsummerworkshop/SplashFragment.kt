@@ -1,18 +1,18 @@
 package com.example.simbirsoftsummerworkshop
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.example.simbirsoftsummerworkshop.databinding.FragmentSplashBinding
 
-private  const val TIME_SLEEP: Long = 1700
+private const val TIME_SLEEP: Long = 1700
 
 class SplashFragment : Fragment() {
     lateinit var binding: FragmentSplashBinding
 
-    private val background = object: Thread() {
+    private val background = object : Thread() {
         override fun run() {
             try {
                 sleep(TIME_SLEEP)
@@ -32,11 +32,9 @@ class SplashFragment : Fragment() {
         background.start()
         binding = FragmentSplashBinding.inflate(inflater)
         return binding.root
-
     }
 
     companion object {
         fun newInstance() = SplashFragment()
     }
-
 }

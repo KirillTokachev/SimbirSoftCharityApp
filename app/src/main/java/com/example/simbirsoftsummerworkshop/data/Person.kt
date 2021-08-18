@@ -7,4 +7,5 @@ data class Person(
     val dateOfBirth: LocalDate,
     val profession: String,
     val avatarId: Int,
-    val push: Boolean = false)
+    val push: Boolean = false
+)
