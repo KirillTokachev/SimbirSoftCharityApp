@@ -2,11 +2,8 @@
     <string name="app_name">SimbirSoftSummerWorkshop</string>
     <string name="title_activity_splash">Хочу помочь</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-
     <string name="friend_name">Дмитрий Валерьевич</string>
     <string name="download">Загрузка…</string>
 </resources>

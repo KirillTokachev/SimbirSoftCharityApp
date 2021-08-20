@@ -1,16 +1,14 @@
 package com.example.simbirsoftsummerworkshop
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+
 import com.example.simbirsoftsummerworkshop.databinding.FragmentSplashBinding
+import com.example.simbirsoftsummerworkshop.fragments.BaseFragment
 
 private const val TIME_SLEEP: Long = 1700
 
-class SplashFragment : Fragment() {
-    lateinit var binding: FragmentSplashBinding
+class SplashFragment : BaseFragment<FragmentSplashBinding>() {
+
+    override fun getViewBinding() = FragmentSplashBinding.inflate(layoutInflater)
 
     private val background = object : Thread() {
         override fun run() {
@@ -24,17 +22,8 @@ class SplashFragment : Fragment() {
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun setUpViews() {
         background.start()
-        binding = FragmentSplashBinding.inflate(inflater)
-        return binding.root
     }
 
-    companion object {
-        fun newInstance() = SplashFragment()
-    }
 }

@@ -58,6 +58,12 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/profile_layout"
         android:layout_width="match_parent"
@@ -68,7 +74,6 @@
             android:id="@+id/avatar_profile_image_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/fragment_profile_52_dp"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
             android:src="@drawable/image_man"
@@ -87,7 +92,7 @@
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/avatar_profile_image_view"
-            tools:text="Константинов Денис" />
+            tools:text="Константинов Денис"/>
 
         <TextView
             android:id="@+id/data_of_birth_text_view"
@@ -185,9 +190,10 @@
             android:id="@+id/friends_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/fragment_profile_20_dp"
+            android:layout_marginStart="@dimen/fragment_profile_20_dp"
             android:layout_marginTop="@dimen/fragment_profile_16_dp"
-            android:layout_marginRight="@dimen/fragment_profile_20_dp"
+            android:layout_marginBottom="@dimen/fragment_profile_20_dp"
+            android:layout_marginEnd="@dimen/fragment_profile_20_dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/friend_text_view"
             tools:listitem="@layout/friends_item" />
@@ -196,8 +202,10 @@
             android:id="@+id/lower_divider"
             android:layout_width="match_parent"
             android:layout_height="@dimen/fragment_profile_1_dp"
-            android:layout_marginTop="@dimen/fragment_profile_18_dp"
+            android:layout_marginTop="16dp"
             android:background="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/friends_recycler_view" />
 
         <Button
@@ -211,5 +219,7 @@
             app:layout_constraintTop_toBottomOf="@+id/lower_divider" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -14,7 +14,6 @@
         app:showAsAction="always">
     </item>
 
-
     <item android:title="@string/bottom_menu_help_string"
         android:id="@+id/bottom_menu_help"
         app:showAsAction="always">
@@ -23,15 +22,13 @@
     <item android:title="@string/bottom_menu_history_string"
         android:id="@+id/bottom_menu_history"
         android:icon="@drawable/ic_bottom_menu_history"
-        app:showAsAction="always"
-        >
+        app:showAsAction="always">
     </item>
 
     <item android:title="@string/bottom_menu_profile_string"
         android:id="@+id/bottom_menu_profile"
         android:icon="@drawable/ic_bottom_menu_profile"
-        app:showAsAction="always"
-        >
+        app:showAsAction="always">
     </item>
 
 </menu>
