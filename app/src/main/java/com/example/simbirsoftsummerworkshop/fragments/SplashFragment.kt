@@ -1,8 +1,9 @@
-package com.example.simbirsoftsummerworkshop
+package com.example.simbirsoftsummerworkshop.fragments
 
 
+import androidx.navigation.fragment.findNavController
+import com.example.simbirsoftsummerworkshop.R
 import com.example.simbirsoftsummerworkshop.databinding.FragmentSplashBinding
-import com.example.simbirsoftsummerworkshop.fragments.BaseFragment
 
 private const val TIME_SLEEP: Long = 1700
 
@@ -14,8 +15,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
         override fun run() {
             try {
                 sleep(TIME_SLEEP)
-                (activity as MainActivity).mainNavController
-                    .navigate(R.id.action_splashFragment_to_mainFragment)
+                findNavController().navigate(R.id.action_to_mainFragment)
             } catch (e: Exception) {
                 e.printStackTrace()
             }

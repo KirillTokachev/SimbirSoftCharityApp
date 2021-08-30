@@ -4,12 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".SplashFragment">
+    tools:context=".fragments.SplashFragment">
 
         <ImageView
-            android:layout_marginStart="@dimen/fragment_splash_20_dp"
-            android:layout_marginEnd="@dimen/fragment_splash_20_dp"
-            android:id="@+id/logo_image_view"
+            android:id="@+id/image_view_logo"
             android:layout_width="0dp"
             android:layout_height="@dimen/fragment_splash_50_dp"
             android:layout_marginTop="@dimen/fragment_splash_154_dp"
@@ -24,13 +22,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/fragment_splash_83_dp"
             android:theme="@style/ProgressBarTheme"
-            app:layout_constraintBottom_toTopOf="@+id/fragment_splash_text_view"
+            app:layout_constraintBottom_toTopOf="@+id/text_view_download"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/logo_image_view" />
+            app:layout_constraintTop_toBottomOf="@+id/image_view_logo" />
 
         <TextView
-            android:id="@+id/fragment_splash_text_view"
+            android:id="@+id/text_view_download"
             android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -42,7 +40,7 @@
             app:layout_constraintTop_toBottomOf="@+id/progress_bar" />
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/image_view_simbir_logo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/fragment_splash_124_dp"
@@ -51,6 +49,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_splash_text_view" />
+            app:layout_constraintTop_toBottomOf="@+id/text_view_download" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

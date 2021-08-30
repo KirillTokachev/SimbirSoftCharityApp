@@ -35,6 +35,14 @@
         <item name="color">@color/leaf</item>
     </style>
 
+    <style name="SwitchTheme" parent="Theme.AppCompat.Light">
+        <!-- активное состояние (30% прозрачности для фона) -->
+        <item name="colorControlActivated">@android:color/holo_green_light</item>
+        <!-- неактивное состояние ползунка -->
+        <item name="colorSwitchThumbNormal">@android:color/holo_orange_dark</item>
+        <!-- цвет дорожки для неактивного состояния (30% прозрачности) -->
+        <item name="android:colorForeground">@android:color/darker_gray</item>
+    </style>
 
     <style name="text_style_21_sp">
         <item name="android:textSize">21sp</item>

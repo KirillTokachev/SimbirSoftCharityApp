@@ -8,10 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 
 abstract class BaseFragment<VBinding: ViewBinding> : Fragment() {
-
-    protected lateinit var binding: VBinding
+    private lateinit var binding: VBinding
     protected abstract fun getViewBinding(): VBinding
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +34,5 @@ abstract class BaseFragment<VBinding: ViewBinding> : Fragment() {
     private fun init() {
         binding = getViewBinding()
     }
-
 
 }

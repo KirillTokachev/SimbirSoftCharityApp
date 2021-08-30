@@ -4,7 +4,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.simbirsoftsummerworkshop.R
+import kotlinx.android.synthetic.main.friends_item.view.*
 
 class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -12,8 +12,8 @@ class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     var name: TextView? = null
 
     init {
-        avatarImageView = itemView.findViewById(R.id.avatar_profile_image_view)
-        name = itemView.findViewById(R.id.name_friend_text_view)
+        avatarImageView = itemView.text_view_avatar_profile
+        name = itemView.text_view_name_friend
     }
 
 }

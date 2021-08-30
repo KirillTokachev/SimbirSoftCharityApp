@@ -1,8 +1,8 @@
-package com.example.simbirsoftsummerworkshop
+package com.example.simbirsoftsummerworkshop.fragments
 
 
+import com.example.simbirsoftsummerworkshop.R
 import com.example.simbirsoftsummerworkshop.databinding.FragmentMainBinding
-import com.example.simbirsoftsummerworkshop.fragments.BaseFragment
 import kotlinx.android.synthetic.main.fragment_main.*
 
 class MainFragment : BaseFragment<FragmentMainBinding>() {

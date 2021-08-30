@@ -1,11 +1,12 @@
-package com.example.simbirsoftsummerworkshop.data
+package com.example.simbirsoftsummerworkshop.model
 
 import java.time.LocalDate
 
-data class Person(
+data class User(
     val name: String,
     val dateOfBirth: LocalDate,
     val profession: String,
-    val avatarId: Int,
+    val avatar: Int,
     val push: Boolean = false
 )
+
