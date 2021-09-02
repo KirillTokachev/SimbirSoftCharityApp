@@ -151,7 +151,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/text_view_field_description" />
 
-            <androidx.appcompat.widget.SwitchCompat
+                <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/switch_push"
                 android:theme="@style/SwitchTheme"
                 android:layout_width="wrap_content"
