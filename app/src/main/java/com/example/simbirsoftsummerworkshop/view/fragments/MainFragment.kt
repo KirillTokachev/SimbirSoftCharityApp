@@ -1,31 +1,44 @@
-package com.example.simbirsoftsummerworkshop.fragments
+package com.example.simbirsoftsummerworkshop.view.fragments
 
-
-import android.os.Bundle
+import android.util.Log
 import android.view.View
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.NavigationUI.setupWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.simbirsoftsummerworkshop.R
 import com.example.simbirsoftsummerworkshop.databinding.FragmentMainBinding
+import kotlinx.android.synthetic.main.fragment_help.*
 import kotlinx.android.synthetic.main.fragment_main.*
+import kotlinx.android.synthetic.main.fragment_profile.*
 
 class MainFragment : BaseFragment<FragmentMainBinding>() {
     override fun getViewBinding() = FragmentMainBinding.inflate(layoutInflater)
 
     override fun setUpViews() {
         setupNav()
-        bottom_navigation.apply {
-            background = null
-            menu.getItem(2).isEnabled = false
-            selectedItemId = R.id.bottom_menu_profile
-        }
     }
 
     private fun setupNav() {
-        val navController = findNavController()
-        bottom_navigation.setupWithNavController(navController)
+        val navController = (childFragmentManager.findFragmentById(R.id.second_container_view) as? NavHostFragment)?.navController
+        if (navController != null) {
+            setupWithNavController(bottom_navigation, navController)
+        }
 
-        navController.addOnDestinationChangedListener { controller, destination, arguments ->
+        bottom_navigation.apply {
+            background = null
+            menu.getItem(2).isEnabled = false
+            selectedItemId = R.id.helpFragment
+        }
+
+        fb_help.setOnClickListener {
+            navController?.navigate(R.id.helpFragment)
+            bottom_navigation.selectedItemId = R.id.helpFragment
+            Log.d("dest", "${navController?.currentDestination}")
+        }
+
+        navController?.addOnDestinationChangedListener { controller, destination, arguments ->
             when (destination.id) {
                 R.id.mainFragment -> showBottomNav()
                 R.id.cameraFragment -> hideBottomNav()
@@ -35,12 +48,10 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
 
     private fun showBottomNav() {
         bottom_navigation.visibility = View.VISIBLE
-
     }
 
     private fun hideBottomNav() {
         bottom_navigation.visibility = View.GONE
-
     }
 
     companion object {
