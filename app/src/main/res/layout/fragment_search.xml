@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.fragments.onboarding.SearchFragment"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/search_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/leaf">
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/search_view"
+            app:voiceIcon="@drawable/ic_voice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@android:color/white"
+            app:queryHint="Введите название организации"/>
+    </androidx.appcompat.widget.Toolbar>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_layout"
+        app:tabIndicatorAnimationMode="linear"
+        app:tabGravity="center"
+        app:tabMode="scrollable"
+        app:tabIndicatorHeight="2dp"
+        app:tabIndicatorColor="@color/tab_indicator"
+        app:tabIndicatorFullWidth="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/leaf"
+        app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
+        app:tabTextColor="@color/tab_no_selected"
+        app:tabSelectedTextColor="@color/white">
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+</LinearLayout>

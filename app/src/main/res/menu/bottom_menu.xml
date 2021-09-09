@@ -9,13 +9,13 @@
     </item>
 
     <item android:title="@string/bottom_menu_search_string"
-        android:id="@+id/bottom_menu_search"
+        android:id="@+id/searchFragment"
         android:icon="@drawable/ic_bottom_menu_search"
         app:showAsAction="always">
     </item>
 
     <item android:title="@string/bottom_menu_help_string"
-        android:id="@+id/bottom_menu_help"
+        android:id="@+id/helpFragment"
         app:showAsAction="always">
     </item>
 
@@ -26,7 +26,7 @@
     </item>
 
     <item android:title="@string/bottom_menu_profile_string"
-        android:id="@+id/bottom_menu_profile"
+        android:id="@+id/profileFragment"
         android:icon="@drawable/ic_bottom_menu_profile"
         app:showAsAction="always">
     </item>

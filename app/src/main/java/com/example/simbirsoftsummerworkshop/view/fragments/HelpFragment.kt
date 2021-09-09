@@ -1,0 +1,22 @@
+package com.example.simbirsoftsummerworkshop.view.fragments
+
+import android.util.Log
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
+import com.example.simbirsoftsummerworkshop.adapters.HelpAdapter
+import com.example.simbirsoftsummerworkshop.data.Data
+import com.example.simbirsoftsummerworkshop.databinding.FragmentHelpBinding
+import kotlinx.android.synthetic.main.fragment_help.*
+
+class HelpFragment : BaseFragment<FragmentHelpBinding>() {
+
+    override fun getViewBinding() = FragmentHelpBinding.inflate(layoutInflater)
+
+    override fun setUpViews() {
+        recycler_kind_of_help.apply {
+            Log.d("dest" , "${findNavController().currentDestination}")
+            layoutManager = GridLayoutManager(context, 2)
+            adapter = HelpAdapter(Data(resources).getDataHelp())
+        }
+    }
+}

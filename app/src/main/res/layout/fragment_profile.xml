@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.ProfileFragment">
+    tools:context=".view.fragments.ProfileFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar_layout"
@@ -58,18 +58,16 @@
         </androidx.appcompat.widget.Toolbar>
 
         <ImageView
-            android:id="@+id/image_view_avatar_profile"
+            android:id="@+id/image_view_item_avatar_profile"
             app:layout_scrollFlags="scroll|enterAlways"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="250dp"
             android:adjustViewBounds="true"
-            android:scaleType="centerCrop"
-            android:src="@drawable/image_man"/>
+            android:scaleType="centerCrop"/>
 
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
-        android:id="@+id/nested_scroll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
