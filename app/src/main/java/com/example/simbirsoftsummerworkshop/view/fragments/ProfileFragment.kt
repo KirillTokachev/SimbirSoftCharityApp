@@ -23,7 +23,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
             Glide.with(requireContext())
                 .load(R.drawable.image_man)
                 .centerInside()
-                .into(image_view_item_avatar_profile)
+                .into(avatar_profile_image)
 
         setUpUser()
 
@@ -35,14 +35,14 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
                         Glide.with(requireContext())
                             .load(photo)
                             .centerInside()
-                            .into(image_view_item_avatar_profile)
+                            .into(avatar_profile_image)
                     }
                 }
                 KEY_DELETE -> {
                     Glide.with(requireContext())
                         .load(R.drawable.image_man)
                         .centerInside()
-                        .into(image_view_item_avatar_profile)
+                        .into(avatar_profile_image)
                 }
             }
         }
@@ -52,15 +52,15 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
             adapter = profileData?.getPerson()?.let { FriendsAdapter(it.friends) }
         }
 
-        image_view_item_avatar_profile.setOnClickListener{
+        avatar_profile_image.setOnClickListener{
             showDialog()
         }
     }
 
     private fun setUpUser() {
-        text_view_name_profile.text = profileData?.getPerson()?.name
-        text_view_data.text = profileData?.getPerson()?.dateOfBirth?.format(DateTimeFormatter.ofPattern("dd MMMM yyyy"))
-        text_view_field_description.text = profileData?.getPerson()?.profession
+        name_profile_text.text = profileData?.getPerson()?.name
+        data_text.text = profileData?.getPerson()?.dateOfBirth?.format(DateTimeFormatter.ofPattern("dd MMMM yyyy"))
+        field_description_text.text = profileData?.getPerson()?.profession
         switch_push.isChecked = profileData?.getPerson()?.push == true
     }
 

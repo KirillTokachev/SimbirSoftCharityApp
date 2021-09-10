@@ -11,7 +11,6 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.simbirsoftsummerworkshop.R
 import com.example.simbirsoftsummerworkshop.databinding.FragmentCameraBinding
@@ -44,9 +43,7 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>() {
         }
 
         camera_capture_button.setOnClickListener { takePhoto() }
-
         outputDirectory = getOutputDirectory()
-
         cameraExecutor = Executors.newSingleThreadExecutor()
     }
 
@@ -71,38 +68,11 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>() {
                 }
             }
         )
-        val bitmap = viewFinder.bitmap
+        val bitmap = view_finder.bitmap
         if (bitmap != null) {
             showCaptureImage(bitmap)
         }
-
         savePhoto(photoFile)
-    }
-
-    private fun showCaptureImage(bitmap: Bitmap) {
-        viewFinder.visibility = View.GONE
-        camera_capture_button.visibility = View.GONE
-        ivPreview.visibility = View.VISIBLE
-        button_save_photo.visibility = View.VISIBLE
-        button_cancel.visibility = View.VISIBLE
-        ivPreview.setImageBitmap(bitmap)
-
-        button_cancel.setOnClickListener {
-            viewFinder.visibility = View.VISIBLE
-            camera_capture_button.visibility = View.VISIBLE
-            ivPreview.visibility = View.GONE
-            button_save_photo.visibility = View.GONE
-            button_cancel.visibility = View.GONE
-        }
-    }
-
-    private fun savePhoto(file: File) {
-        val msg = "Фото сохранено"
-        button_save_photo.setOnClickListener {
-            viewModel.savePhoto(file)
-            Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
-            findNavController().navigate(R.id.action_to_profileFragment)
-        }
     }
 
     private fun startCamera() {
@@ -116,7 +86,7 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>() {
             preview = Preview.Builder()
                 .build()
                 .also {
-                    it.setSurfaceProvider(viewFinder.surfaceProvider)
+                    it.setSurfaceProvider(view_finder.surfaceProvider)
                 }
 
             imageCapture = ImageCapture.Builder().build()
@@ -131,7 +101,6 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>() {
 
             // Select back camera as a default
             val cameraSelector = CameraSelector.DEFAULT_FRONT_CAMERA
-
             try {
                 // Unbind use cases before rebinding
                 cameraProvider.unbindAll()
@@ -145,6 +114,32 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>() {
             }
 
         }, ContextCompat.getMainExecutor(context))
+    }
+
+    private fun savePhoto(file: File) {
+        val msg = "Фото сохранено"
+        button_save_photo.setOnClickListener {
+            viewModel.savePhoto(file)
+            Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+            findNavController().navigate(R.id.action_to_profileFragment)
+        }
+    }
+
+    private fun showCaptureImage(bitmap: Bitmap) {
+        view_finder.visibility = View.GONE
+        camera_capture_button.visibility = View.GONE
+        iv_preview.visibility = View.VISIBLE
+        button_save_photo.visibility = View.VISIBLE
+        button_cancel.visibility = View.VISIBLE
+        iv_preview.setImageBitmap(bitmap)
+
+        button_cancel.setOnClickListener {
+            view_finder.visibility = View.VISIBLE
+            camera_capture_button.visibility = View.VISIBLE
+            iv_preview.visibility = View.GONE
+            button_save_photo.visibility = View.GONE
+            button_cancel.visibility = View.GONE
+        }
     }
 
     private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {

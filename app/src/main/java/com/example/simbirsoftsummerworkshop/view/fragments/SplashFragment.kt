@@ -2,17 +2,12 @@ package com.example.simbirsoftsummerworkshop.view.fragments
 
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import androidx.core.net.toUri
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.commit
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.navDeepLink
 import androidx.navigation.navOptions
 import com.example.simbirsoftsummerworkshop.R
-import com.example.simbirsoftsummerworkshop.databinding.FragmentSplashBinding
 
 private const val TIME_SLEEP: Long = 1700
 

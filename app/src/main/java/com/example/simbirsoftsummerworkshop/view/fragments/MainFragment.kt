@@ -3,10 +3,7 @@ package com.example.simbirsoftsummerworkshop.view.fragments
 import android.util.Log
 import android.view.View
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.NavigationUI.setupWithNavController
-import androidx.navigation.ui.setupWithNavController
 import com.example.simbirsoftsummerworkshop.R
 import com.example.simbirsoftsummerworkshop.databinding.FragmentMainBinding
 import kotlinx.android.synthetic.main.fragment_help.*
@@ -21,7 +18,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
     }
 
     private fun setupNav() {
-        val navController = (childFragmentManager.findFragmentById(R.id.second_container_view) as? NavHostFragment)?.navController
+        val navController = (childFragmentManager.findFragmentById(R.id.main_container_view) as? NavHostFragment)?.navController
         if (navController != null) {
             setupWithNavController(bottom_navigation, navController)
         }
@@ -52,11 +49,6 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
 
     private fun hideBottomNav() {
         bottom_navigation.visibility = View.GONE
-    }
-
-    companion object {
-        @JvmStatic
-        fun newInstance() = MainFragment()
     }
 
 }

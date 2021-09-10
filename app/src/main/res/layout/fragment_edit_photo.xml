@@ -7,10 +7,10 @@
     tools:context=".view.fragments.EditPhotoFragment">
 
     <LinearLayout
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="@dimen/fragment_24_dp"
+        android:layout_marginTop="@dimen/fragment_32_dp"
         android:layout_gravity="center_horizontal"
-        android:layout_width="310dp"
+        android:layout_width="@dimen/fragment_310_dp"
         android:layout_height="wrap_content">
 
         <ImageView
@@ -25,16 +25,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="@dimen/fragment_24_dp"
             android:text="@string/change_photo"/>
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="@dimen/fragment_24_dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="43dp"
-        android:layout_width="310dp"
+        android:layout_marginTop="@dimen/fragment_43_dp"
+        android:layout_width="@dimen/fragment_310_dp"
         android:layout_height="wrap_content">
 
         <ImageButton
@@ -49,17 +49,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="@dimen/fragment_24_dp"
             android:text="@string/take_a_photo"/>
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginStart="24dp"
-        android:layout_marginBottom="28dp"
+        android:layout_marginStart="@dimen/fragment_24_dp"
+        android:layout_marginBottom="@dimen/fragment_28_dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="43dp"
-        android:layout_width="310dp"
+        android:layout_marginTop="@dimen/fragment_43_dp"
+        android:layout_width="@dimen/fragment_310_dp"
         android:layout_height="wrap_content">
 
         <ImageView
@@ -74,7 +74,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="@dimen/fragment_24_dp"
             android:text="@string/delete_photo"/>
 
     </LinearLayout>

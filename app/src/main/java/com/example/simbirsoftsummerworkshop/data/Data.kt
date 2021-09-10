@@ -8,7 +8,6 @@ import com.github.javafaker.Faker
 import java.time.LocalDate
 
 class Data(resource: Resources) {
-
     private val faker = Faker()
 
     private val friendsList = listOf(

@@ -13,7 +13,7 @@ class HelpFragment : BaseFragment<FragmentHelpBinding>() {
     override fun getViewBinding() = FragmentHelpBinding.inflate(layoutInflater)
 
     override fun setUpViews() {
-        recycler_kind_of_help.apply {
+        recycler_view_help.apply {
             Log.d("dest" , "${findNavController().currentDestination}")
             layoutManager = GridLayoutManager(context, 2)
             adapter = HelpAdapter(Data(resources).getDataHelp())

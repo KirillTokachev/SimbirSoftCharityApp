@@ -1,4 +1,4 @@
-package com.example.simbirsoftsummerworkshop.view.fragments.onboarding
+package com.example.simbirsoftsummerworkshop.view.fragments.tabs
 
 import androidx.viewpager2.widget.ViewPager2
 import com.example.simbirsoftsummerworkshop.adapters.ViewPagerAdapter
@@ -9,7 +9,6 @@ import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.fragment_search.*
 
 class SearchFragment : BaseFragment<FragmentSearchBinding>() {
-
     private lateinit var tabLayout: TabLayout
     private var viewPager: ViewPager2? = null
 

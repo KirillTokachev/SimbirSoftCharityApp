@@ -10,7 +10,6 @@ import kotlinx.android.synthetic.main.help_item.view.*
 import kotlinx.android.synthetic.main.nko_item.view.*
 
 class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
     var avatarImageView: ImageView? = null
     var name: TextView? = null
     var nameEvent: TextView?
@@ -19,12 +18,12 @@ class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     var helpTitleCategory: TextView? = null
 
     init {
-        avatarImageView = itemView.image_view_item_avatar_profile
-        name = itemView.text_view_name_friend
+        avatarImageView = itemView.avatar_profile_image
+        name = itemView.friend_name_text
         nameEvent = itemView.text_view_event_name
-        nameNko = itemView.text_view_nko_name
-        helpImageView = itemView.image_view_help_category
-        helpTitleCategory = itemView.text_view_help_category
+        nameNko = itemView.nko_name_text
+        helpImageView = itemView.help_category_image
+        helpTitleCategory = itemView.help_category_text
     }
 
 }

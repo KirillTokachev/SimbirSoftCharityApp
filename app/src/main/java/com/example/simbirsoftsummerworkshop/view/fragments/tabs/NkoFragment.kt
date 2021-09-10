@@ -1,4 +1,4 @@
-package com.example.simbirsoftsummerworkshop.view.fragments.onboarding
+package com.example.simbirsoftsummerworkshop.view.fragments.tabs
 
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -7,7 +7,7 @@ import com.example.simbirsoftsummerworkshop.data.Data
 import com.example.simbirsoftsummerworkshop.databinding.FragmentNkoBinding
 import com.example.simbirsoftsummerworkshop.view.fragments.BaseFragment
 import kotlinx.android.synthetic.main.fragment_nko.*
-import kotlinx.android.synthetic.main.fragment_nko.recycler_view_nko_search
+import kotlinx.android.synthetic.main.fragment_nko.recycler_view_nko
 
 class NkoFragment : BaseFragment<FragmentNkoBinding>() {
     private var searchTextView: TextView? = null
@@ -15,7 +15,7 @@ class NkoFragment : BaseFragment<FragmentNkoBinding>() {
 
     override fun setUpViews() {
         setUpSearchResult()
-        recycler_view_nko_search.apply {
+        recycler_view_nko.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = NkoAdapter(Data(resources).getNko())
         }
