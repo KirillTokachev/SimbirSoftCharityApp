@@ -21,7 +21,7 @@ class NkoFragment : BaseFragment<FragmentNkoBinding>() {
         }
     }
 
-    private fun setUpSearchResult () {
+    private fun setUpSearchResult() {
         searchTextView = text_view_search_nko_result
         searchTextView?.text = Data(resources).getResult(searchTextView?.text as String)
     }

@@ -14,7 +14,7 @@ class HelpFragment : BaseFragment<FragmentHelpBinding>() {
 
     override fun setUpViews() {
         recycler_view_help.apply {
-            Log.d("dest" , "${findNavController().currentDestination}")
+            Log.d("dest", "${findNavController().currentDestination}")
             layoutManager = GridLayoutManager(context, 2)
             adapter = HelpAdapter(Data(resources).getDataHelp())
         }

@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.simbirsoftsummerworkshop.R
 import com.example.simbirsoftsummerworkshop.data.Event
 
-class EventAdapter(private val events: List<Event>): RecyclerView.Adapter<MyViewHolder>() {
+class EventAdapter(private val events: List<Event>) : RecyclerView.Adapter<MyViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView = LayoutInflater.from(parent.context)
             .inflate(R.layout.events_item, parent, false)

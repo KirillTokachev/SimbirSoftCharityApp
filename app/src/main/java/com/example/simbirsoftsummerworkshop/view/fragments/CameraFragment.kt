@@ -39,7 +39,8 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>() {
             startCamera()
         } else {
             ActivityCompat.requestPermissions(
-                requireActivity(), REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS)
+                requireActivity(), REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS
+            )
         }
 
         camera_capture_button.setOnClickListener { takePhoto() }
@@ -53,18 +54,20 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>() {
         val photoFile = File(
             outputDirectory,
             SimpleDateFormat(FILENAME_FORMAT, Locale.ROOT)
-                .format(System.currentTimeMillis()) + ".jpg")
+                .format(System.currentTimeMillis()) + ".jpg"
+        )
 
         val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
         imageCapture.takePicture(
-            outputOptions, ContextCompat.getMainExecutor(context), object : ImageCapture.OnImageSavedCallback {
+            outputOptions, ContextCompat.getMainExecutor(context),
+            object : ImageCapture.OnImageSavedCallback {
                 override fun onError(exc: ImageCaptureException) {
                     Log.e(TAG, "Photo capture failed: ${exc.message}", exc)
                 }
 
                 override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
-                        val msg = "Фото сохранено"
-                        Log.d(TAG, msg)
+                    val msg = "Фото сохранено"
+                    Log.d(TAG, msg)
                 }
             }
         )
@@ -78,42 +81,47 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>() {
     private fun startCamera() {
         val cameraProviderFuture = context?.let { ProcessCameraProvider.getInstance(it) }
 
-        cameraProviderFuture?.addListener(Runnable {
-            // Used to bind the lifecycle of cameras to the lifecycle owner
-            val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
+        cameraProviderFuture?.addListener(
+            Runnable {
+                // Used to bind the lifecycle of cameras to the lifecycle owner
+                val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
 
-            // Preview
-            preview = Preview.Builder()
-                .build()
-                .also {
-                    it.setSurfaceProvider(view_finder.surfaceProvider)
+                // Preview
+                preview = Preview.Builder()
+                    .build()
+                    .also {
+                        it.setSurfaceProvider(view_finder.surfaceProvider)
+                    }
+
+                imageCapture = ImageCapture.Builder().build()
+
+                val imageAnalyzer = ImageAnalysis.Builder()
+                    .build()
+                    .also {
+                        it.setAnalyzer(
+                            cameraExecutor,
+                            LuminosityAnalyzer { luma ->
+                                Log.d(TAG, "Average luminosity: $luma")
+                            }
+                        )
+                    }
+
+                // Select back camera as a default
+                val cameraSelector = CameraSelector.DEFAULT_FRONT_CAMERA
+                try {
+                    // Unbind use cases before rebinding
+                    cameraProvider.unbindAll()
+
+                    // Bind use cases to camera
+                    cameraProvider.bindToLifecycle(
+                        this, cameraSelector, preview, imageCapture, imageAnalyzer
+                    )
+                } catch (exc: Exception) {
+                    Log.e(TAG, "Use case binding failed", exc)
                 }
-
-            imageCapture = ImageCapture.Builder().build()
-
-            val imageAnalyzer = ImageAnalysis.Builder()
-                .build()
-                .also {
-                    it.setAnalyzer(cameraExecutor, LuminosityAnalyzer { luma ->
-                        Log.d(TAG, "Average luminosity: $luma")
-                    })
-                }
-
-            // Select back camera as a default
-            val cameraSelector = CameraSelector.DEFAULT_FRONT_CAMERA
-            try {
-                // Unbind use cases before rebinding
-                cameraProvider.unbindAll()
-
-                // Bind use cases to camera
-                cameraProvider.bindToLifecycle(
-                    this, cameraSelector, preview, imageCapture, imageAnalyzer)
-
-            } catch(exc: Exception) {
-                Log.e(TAG, "Use case binding failed", exc)
-            }
-
-        }, ContextCompat.getMainExecutor(context))
+            },
+            ContextCompat.getMainExecutor(context)
+        )
     }
 
     private fun savePhoto(file: File) {
@@ -144,19 +152,25 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>() {
 
     private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
         ContextCompat.checkSelfPermission(
-            requireContext(), it) == PackageManager.PERMISSION_GRANTED
+            requireContext(), it
+        ) == PackageManager.PERMISSION_GRANTED
     }
 
     override fun onRequestPermissionsResult(
-        requestCode: Int, permissions: Array<String>, grantResults:
-        IntArray) {
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults:        
+            IntArray
+    ) {
         if (requestCode == REQUEST_CODE_PERMISSIONS) {
             if (allPermissionsGranted()) {
                 startCamera()
             } else {
-                Toast.makeText(requireActivity(),
+                Toast.makeText(
+                    requireActivity(),
                     "Permissions not granted by the user.",
-                    Toast.LENGTH_SHORT).show()
+                    Toast.LENGTH_SHORT
+                ).show()
                 // finish()
             }
         }
@@ -164,7 +178,8 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>() {
 
     private fun getOutputDirectory(): File {
         val mediaDir = activity?.externalMediaDirs?.firstOrNull()?.let {
-            File(it, resources.getString(R.string.app_name)).apply { mkdirs() } }
+            File(it, resources.getString(R.string.app_name)).apply { mkdirs() }
+        }
         return if (mediaDir != null && mediaDir.exists())
             mediaDir else activity?.filesDir!!
     }
@@ -179,9 +194,9 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>() {
 
 private class LuminosityAnalyzer(private val listener: LumaListener) : ImageAnalysis.Analyzer {
     private fun ByteBuffer.toByteArray(): ByteArray {
-        rewind()    // Rewind the buffer to zero
+        rewind() // Rewind the buffer to zero
         val data = ByteArray(remaining())
-        get(data)   // Copy the buffer into a byte array
+        get(data) // Copy the buffer into a byte array
         return data // Return the byte array
     }
 

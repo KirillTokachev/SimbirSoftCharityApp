@@ -9,27 +9,26 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import java.io.File
 
-
 class SharedViewModel : ViewModel() {
-    private val photoFile : MutableLiveData<File> by lazy {
+    private val photoFile: MutableLiveData<File> by lazy {
         MutableLiveData<File>()
     }
     val photoData: LiveData<File> = photoFile
 
-    private val key : MutableLiveData<String> by lazy {
+    private val key: MutableLiveData<String> by lazy {
         MutableLiveData<String>()
     }
     val keyRequest: LiveData<String> = key
 
-    fun savePhoto (file: File) {
+    fun savePhoto(file: File) {
         photoFile.value = file
     }
 
-    fun saveKey (str: String){
+    fun saveKey(str: String) {
         key.value = str
     }
 
-    fun fileToBitmap (file: File) : Bitmap {
+    fun fileToBitmap(file: File): Bitmap {
         val bitmap: Bitmap
         val currentPhotoFile = file.toPath().toString()
         BitmapFactory.decodeFile(currentPhotoFile).also {

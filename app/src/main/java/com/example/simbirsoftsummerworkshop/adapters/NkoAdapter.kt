@@ -9,7 +9,7 @@ import com.example.simbirsoftsummerworkshop.data.CharitableFoundation
 class NkoAdapter(private val nko: List<CharitableFoundation>) : RecyclerView.Adapter<MyViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.nko_item, parent , false)
+            .inflate(R.layout.nko_item, parent, false)
         return MyViewHolder(itemView)
     }
 

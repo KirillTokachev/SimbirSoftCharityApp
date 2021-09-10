@@ -1,6 +1,5 @@
 package com.example.simbirsoftsummerworkshop.view.fragments
 
-
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -38,17 +37,16 @@ class EditPhotoFragment : DialogFragment() {
         setUpButtons()
     }
 
-    private fun setUpButtons () {
+    private fun setUpButtons() {
         photo_button.setOnClickListener { openCamera() }
         delete_button.setOnClickListener {
-            Log.d("dest" , "${findNavController().currentDestination}")
+            Log.d("dest", "${findNavController().currentDestination}")
             viewModel.saveKey(KEY_DELETE)
         }
     }
 
-    private fun openCamera () {
+    private fun openCamera() {
         findNavController().navigate(R.id.action_to_cameraFragment)
         viewModel.saveKey(KEY_CREATE)
     }
-
 }

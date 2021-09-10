@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 
-abstract class BaseFragment<VBinding: ViewBinding> : Fragment() {
+abstract class BaseFragment<VBinding : ViewBinding> : Fragment() {
     private lateinit var binding: VBinding
     protected abstract fun getViewBinding(): VBinding
 
@@ -34,5 +34,4 @@ abstract class BaseFragment<VBinding: ViewBinding> : Fragment() {
     private fun init() {
         binding = getViewBinding()
     }
-
 }

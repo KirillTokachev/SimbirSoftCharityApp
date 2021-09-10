@@ -8,7 +8,6 @@ import androidx.fragment.app.FragmentManager
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
-import com.example.simbirsoftsummerworkshop.R
 import com.example.simbirsoftsummerworkshop.databinding.ActivityMainBinding
 import com.example.simbirsoftsummerworkshop.view.fragments.CameraFragment
 import com.example.simbirsoftsummerworkshop.view.fragments.ProfileFragment
@@ -27,24 +26,25 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.main_nav_container) as NavHostFragment
         mainNavController = mainNavHostFragment.findNavController()
 
-        supportFragmentManager.registerFragmentLifecycleCallbacks(object : FragmentManager.FragmentLifecycleCallbacks() {
-            override fun onFragmentViewCreated(fm: FragmentManager, f: Fragment, v: View, savedInstanceState: Bundle?) {
-                when (f) {
-                    is ProfileFragment -> {
-                        bottom_navigation.visibility = View.VISIBLE
-                        fb_help.visibility = View.VISIBLE
-                        bottom_app_bar.visibility = View.VISIBLE
+        supportFragmentManager.registerFragmentLifecycleCallbacks(
+            object : FragmentManager.FragmentLifecycleCallbacks() {
+                override fun onFragmentViewCreated(fm: FragmentManager, f: Fragment, v: View, savedInstanceState: Bundle?) {
+                    when (f) {
+                        is ProfileFragment -> {
+                            bottom_navigation.visibility = View.VISIBLE
+                            fb_help.visibility = View.VISIBLE
+                            bottom_app_bar.visibility = View.VISIBLE
+                        }
+                        is CameraFragment -> {
+                            bottom_navigation.visibility = View.GONE
+                            fb_help.visibility = View.GONE
+                            bottom_app_bar.visibility = View.GONE
+                        }
                     }
-                    is CameraFragment -> {
-                        bottom_navigation.visibility = View.GONE
-                        fb_help.visibility = View.GONE
-                        bottom_app_bar.visibility = View.GONE
-                    }
-
                 }
-            }
-        }, true)
-
+            },
+            true
+        )
     }
 
     override fun onSupportNavigateUp(): Boolean {

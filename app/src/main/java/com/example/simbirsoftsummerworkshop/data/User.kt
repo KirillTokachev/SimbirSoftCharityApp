@@ -11,4 +11,3 @@ data class User(
     val friends: MutableList<User>,
     val push: Boolean = false
 )
-

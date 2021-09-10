@@ -13,7 +13,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
     private var viewPager: ViewPager2? = null
 
     override fun getViewBinding() = FragmentSearchBinding.inflate(layoutInflater)
-    
+
     override fun setUpViews() {
         setupViewPager()
         setupTabLayout()

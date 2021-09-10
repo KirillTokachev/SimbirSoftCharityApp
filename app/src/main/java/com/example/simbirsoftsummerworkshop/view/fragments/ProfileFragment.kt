@@ -20,10 +20,10 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
     override fun setUpViews() {
         profileData = Data(resources)
 
-            Glide.with(requireContext())
-                .load(R.drawable.image_man)
-                .centerInside()
-                .into(avatar_profile_image)
+        Glide.with(requireContext())
+            .load(R.drawable.image_man)
+            .centerInside()
+            .into(avatar_profile_image)
 
         setUpUser()
 
@@ -52,7 +52,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
             adapter = profileData?.getPerson()?.let { FriendsAdapter(it.friends) }
         }
 
-        avatar_profile_image.setOnClickListener{
+        avatar_profile_image.setOnClickListener {
             showDialog()
         }
     }
@@ -64,16 +64,14 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
         switch_push.isChecked = profileData?.getPerson()?.push == true
     }
 
-    private fun showDialog(){
+    private fun showDialog() {
         EditPhotoFragment().show(
-            childFragmentManager, EditPhotoFragment.TAG)
+            childFragmentManager, EditPhotoFragment.TAG
+        )
     }
 
     companion object {
         const val KEY_DELETE = "Delete"
         const val KEY_CREATE = "Create"
     }
-
 }
-
-

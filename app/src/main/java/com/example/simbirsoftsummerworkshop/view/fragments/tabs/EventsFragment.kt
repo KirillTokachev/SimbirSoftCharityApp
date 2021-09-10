@@ -21,7 +21,7 @@ class EventsFragment : BaseFragment<FragmentEventsBinding>() {
         }
     }
 
-    private fun setUpSearchResult () {
+    private fun setUpSearchResult() {
         searchTextView = search_event_result_text
         searchTextView?.text = Data(resources).getResult(searchTextView?.text as String)
     }

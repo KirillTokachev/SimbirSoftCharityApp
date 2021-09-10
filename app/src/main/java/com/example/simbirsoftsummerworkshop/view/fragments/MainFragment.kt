@@ -50,5 +50,4 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
     private fun hideBottomNav() {
         bottom_navigation.visibility = View.GONE
     }
-
 }

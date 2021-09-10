@@ -25,5 +25,4 @@ class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         helpImageView = itemView.help_category_image
         helpTitleCategory = itemView.help_category_text
     }
-
 }
