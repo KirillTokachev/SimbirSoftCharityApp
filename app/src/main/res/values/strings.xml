@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">SimbirSoftSummerWorkshop</string>
+    <string name="title_activity_splash">Хочу помочь</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="friend_name">Дмитрий Валерьевич</string>
+    <string name="download">Загрузка…</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="change_photo">Выбрать фото</string>
+    <string name="take_a_photo">Сделать снимок</string>
+    <string name="delete_photo">Удалить фото</string>
 </resources>
