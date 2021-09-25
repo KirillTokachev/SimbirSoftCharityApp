@@ -5,7 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.simbirsoftsummerworkshop.R
-import com.example.simbirsoftsummerworkshop.data.Help
+import com.example.simbirsoftsummerworkshop.model.Help
+import com.example.simbirsoftsummerworkshop.utils.MyViewHolder
 
 class HelpAdapter(private val categoriesHelp: List<Help>) : RecyclerView.Adapter<MyViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {

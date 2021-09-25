@@ -27,7 +27,7 @@ class SplashFragment : Fragment(R.layout.fragment_splash) {
                             popExit = R.anim.nav_default_pop_exit_anim
                         }
                         launchSingleTop = true
-                        popUpTo(R.id.main_graph) {
+                        popUpTo(R.id.app_nav_graph) {
                             inclusive = true
                         }
                     }

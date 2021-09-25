@@ -1,4 +1,4 @@
-package com.example.simbirsoftsummerworkshop.view.fragments
+package com.example.simbirsoftsummerworkshop.view.profile
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -14,6 +14,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.simbirsoftsummerworkshop.R
 import com.example.simbirsoftsummerworkshop.databinding.FragmentCameraBinding
+import com.example.simbirsoftsummerworkshop.view.fragments.BaseFragment
 import com.example.simbirsoftsummerworkshop.viewmodel.SharedViewModel
 import kotlinx.android.synthetic.main.fragment_camera.*
 import java.io.File
@@ -129,7 +130,7 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>() {
         button_save_photo.setOnClickListener {
             viewModel.savePhoto(file)
             Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
-            findNavController().navigate(R.id.action_to_profileFragment)
+            findNavController().navigate(R.id.action_cameraFragment_to_profileFragment)
         }
     }
 

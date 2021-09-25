@@ -1,4 +1,4 @@
-package com.example.simbirsoftsummerworkshop.view.fragments.tabs
+package com.example.simbirsoftsummerworkshop.view.search
 
 import androidx.viewpager2.widget.ViewPager2
 import com.example.simbirsoftsummerworkshop.adapters.ViewPagerAdapter
@@ -36,4 +36,6 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
         val adapter = ViewPagerAdapter(childFragmentManager, lifecycle)
         viewPager?.adapter = adapter
     }
+
+
 }

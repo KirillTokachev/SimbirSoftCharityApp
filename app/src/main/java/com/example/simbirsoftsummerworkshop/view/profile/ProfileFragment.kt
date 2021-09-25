@@ -1,4 +1,4 @@
-package com.example.simbirsoftsummerworkshop.view.fragments
+package com.example.simbirsoftsummerworkshop.view.profile
 
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -7,6 +7,8 @@ import com.example.simbirsoftsummerworkshop.R
 import com.example.simbirsoftsummerworkshop.adapters.FriendsAdapter
 import com.example.simbirsoftsummerworkshop.data.Data
 import com.example.simbirsoftsummerworkshop.databinding.FragmentProfileBinding
+import com.example.simbirsoftsummerworkshop.utils.Constants
+import com.example.simbirsoftsummerworkshop.view.fragments.BaseFragment
 import com.example.simbirsoftsummerworkshop.viewmodel.SharedViewModel
 import kotlinx.android.synthetic.main.fragment_profile.*
 import java.time.format.DateTimeFormatter
@@ -18,7 +20,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
     override fun getViewBinding() = FragmentProfileBinding.inflate(layoutInflater)
 
     override fun setUpViews() {
-        profileData = Data(resources)
+        profileData = Data()
 
         Glide.with(requireContext())
             .load(R.drawable.image_man)
@@ -29,7 +31,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
 
         viewModel.keyRequest.observe(viewLifecycleOwner) {
             when (it) {
-                KEY_CREATE -> {
+                Constants.CREATE -> {
                     viewModel.photoData.observe(viewLifecycleOwner) { it ->
                         val photo = viewModel.fileToBitmap(it)
                         Glide.with(requireContext())
@@ -38,18 +40,24 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
                             .into(avatar_profile_image)
                     }
                 }
-                KEY_DELETE -> {
+                Constants.DELETE -> {
                     Glide.with(requireContext())
-                        .load(R.drawable.image_man)
-                        .centerInside()
-                        .into(avatar_profile_image)
+                        .clear(avatar_profile_image)
+                }
+                Constants.UPLOAD -> {
+                    viewModel.uriPhoto.observe(viewLifecycleOwner) { uri ->
+                        Glide.with(requireContext())
+                            .load(uri)
+                            .centerInside()
+                            .into(avatar_profile_image)
+                    }
                 }
             }
         }
 
         recycler_view_friends.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = profileData?.getPerson()?.let { FriendsAdapter(it.friends) }
+            adapter = profileData?.getPerson()?.let { FriendsAdapter(it.friends)}
         }
 
         avatar_profile_image.setOnClickListener {
@@ -73,5 +81,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
     companion object {
         const val KEY_DELETE = "Delete"
         const val KEY_CREATE = "Create"
+        const val KEY_UPLOAD = "Upload"
     }
 }

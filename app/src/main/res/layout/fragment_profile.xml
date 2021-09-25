@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".view.fragments.ProfileFragment">
+    tools:context=".view.profile.ProfileFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar_layout"
@@ -18,24 +18,15 @@
             android:theme="@style/AppTheme"
             app:layout_scrollFlags="scroll|enterAlways">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
                 <TextView
                     android:id="@+id/title_toolbar_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:layout_marginStart="@dimen/fragment_120_dp"
-                    android:layout_marginEnd="@dimen/fragment_99_dp"
+                    android:layout_gravity="center_horizontal"
                     android:text="@string/fragment_profile_toolbar_textview"
                     android:textColor="@color/white"
-                    android:theme="@style/text_style_24_sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/image_button_edit_profile"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:theme="@style/text_style_24_sp" />
 
                 <ImageButton
                     android:id="@+id/image_button_edit_profile"
@@ -43,17 +34,12 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginEnd="@dimen/fragment_30_dp"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="22dp"
                     android:background="@android:color/transparent"
                     android:contextClickable="true"
                     android:scaleType="centerInside"
-                    android:src="@drawable/edit"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/title_toolbar_text"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    android:src="@drawable/edit" />
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -149,18 +135,17 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/field_description_text" />
 
-                <androidx.appcompat.widget.SwitchCompat
+            <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/switch_push"
-                android:theme="@style/SwitchTheme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/fragment_55_dp"
-                android:layout_marginTop="@dimen/fragment_181_dp"
-                android:layout_marginBottom="@dimen/fragment_14_dp"
+                android:layout_marginEnd="26dp"
+                android:layout_marginBottom="15dp"
                 android:checked="true"
+                android:gravity="end"
+                android:theme="@style/SwitchTheme"
                 app:layout_constraintBottom_toTopOf="@+id/upper_divider"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/push_text"
                 tools:ignore="UseSwitchCompatOrMaterialXml" />
 
             <View

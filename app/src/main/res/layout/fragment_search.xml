@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.fragments.tabs.SearchFragment"
+    tools:context=".view.search.SearchFragment"
     android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
@@ -43,7 +43,6 @@
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/pager"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/fragment_0_dp"
-        android:layout_weight="1"/>
+        android:layout_height="match_parent"/>
 
 </LinearLayout>

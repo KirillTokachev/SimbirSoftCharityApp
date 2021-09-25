@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".view.fragments.HelpFragment">
+    tools:context=".view.help.HelpFragment">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_bar_layout"
@@ -27,7 +27,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
-                        android:text="@string/fragment_profile_toolbar_textview"
+                        android:text="Помочь"
                         android:textColor="@color/white"
                         android:theme="@style/text_style_24_sp"
                         app:layout_constraintBottom_toBottomOf="parent"

@@ -1,12 +1,12 @@
 package com.example.simbirsoftsummerworkshop.data
 
-import android.content.res.Resources
-import android.graphics.BitmapFactory
 import com.example.simbirsoftsummerworkshop.R
+import com.example.simbirsoftsummerworkshop.model.*
 import com.github.javafaker.Faker
 import java.time.LocalDate
 
-class Data(resource: Resources) {
+class Data {
+
     private val faker = Faker()
 
     private val friendsList = listOf(
@@ -14,21 +14,21 @@ class Data(resource: Resources) {
             "Дмитрий Валерьевич",
             LocalDate.of(1992, 3, 13),
             "Хирург",
-            BitmapFactory.decodeResource(resource, R.drawable.avatar),
+            R.drawable.avatar_2,
             mutableListOf()
         ),
         User(
             "Евгений Александров",
             LocalDate.of(1991, 12, 12),
             "Терапевт",
-            BitmapFactory.decodeResource(resource, R.drawable.avatar_1),
+            R.drawable.avatar_1,
             mutableListOf()
         ),
         User(
             "Виктор Кузницов",
             LocalDate.of(1988, 5, 7),
             "Плотник",
-            BitmapFactory.decodeResource(resource, R.drawable.avatar_2),
+            R.drawable.avatar_2,
             mutableListOf()
         )
     )
@@ -37,17 +37,17 @@ class Data(resource: Resources) {
         "Константинов Денис",
         LocalDate.of(1980, 2, 1),
         "Хирургия, трамвотология",
-        BitmapFactory.decodeResource(resource, R.drawable.image_man),
+        R.drawable.image_man,
         friendsList as MutableList<User>,
         true
     )
 
     private val helps = listOf(
-        Help("Дети", BitmapFactory.decodeResource(resource, R.drawable.child)),
-        Help("Взрослые", BitmapFactory.decodeResource(resource, R.drawable.adults)),
-        Help("Пожилые", BitmapFactory.decodeResource(resource, R.drawable.elderly)),
-        Help("Животные", BitmapFactory.decodeResource(resource, R.drawable.animals)),
-        Help("Мероприятия", BitmapFactory.decodeResource(resource, R.drawable.events))
+        Help("Дети", R.drawable.child),
+        Help("Взрослые", R.drawable.adults),
+        Help("Пожилые", R.drawable.elderly),
+        Help("Животные", R.drawable.animals),
+        Help("Мероприятия", R.drawable.events)
     )
 
     private val events = listOf(
@@ -58,17 +58,24 @@ class Data(resource: Resources) {
         Event(name = faker.book().title())
     )
 
-    private val nko = listOf(
-        CharitableFoundation(name = faker.company().industry()),
-        CharitableFoundation(name = faker.company().industry()),
-        CharitableFoundation(name = faker.company().industry()),
-        CharitableFoundation(name = faker.company().industry()),
-        CharitableFoundation(name = faker.company().industry())
+    private val newsList = listOf(
+        News("Спонсоры отремонтируют школу-интернат",
+            "Дубовская школа-интернат для детей с ограниченными возможностями здоровья стала первой в области …",
+            R.drawable.news_1,
+            org.joda.time.LocalDate(), "kids", 0),
+        News("Конкурс по вокальному пению в детском доме №6",
+            "Дубовская школа-интернат для детей с ограниченными возможностями здоровья стала первой в области …",
+            R.drawable.news_2,
+            org.joda.time.LocalDate(), "kids", 1)
     )
 
-    fun getNko(): List<CharitableFoundation> {
-        return nko
-    }
+    private val categoryList = mutableListOf(
+        Category("kids", true),
+        Category("adult", false),
+        Category("elderly", false),
+        Category("animals", false),
+        Category("events", false)
+    )
 
     fun getEvents(): List<Event> {
         return events
@@ -82,8 +89,17 @@ class Data(resource: Resources) {
         return helps
     }
 
+    fun getNews(): List<News> {
+        return newsList
+    }
+
+    fun getCategory() : List<Category> {
+        return categoryList
+    }
+
     fun getResult(text: String): String {
         return "Ключевые слова: мастер-класс, помощь\n" +
             "Результаты поиска: 109 мероприятий"
     }
+
 }

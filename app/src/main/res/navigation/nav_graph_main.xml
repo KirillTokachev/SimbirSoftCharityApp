@@ -7,37 +7,14 @@
 
     <fragment
         android:id="@+id/helpFragment"
-        android:name="com.example.simbirsoftsummerworkshop.view.fragments.HelpFragment"
+        android:name="com.example.simbirsoftsummerworkshop.view.help.HelpFragment"
         android:label="fragment_help"
         tools:layout="@layout/fragment_help" />
-    <fragment
-        android:id="@+id/profileFragment"
-        android:name="com.example.simbirsoftsummerworkshop.view.fragments.ProfileFragment"
-        android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" >
-        <action
-            android:id="@+id/action_to_cameraFragment"
-            app:destination="@id/cameraFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/searchFragment"
-        android:name="com.example.simbirsoftsummerworkshop.view.fragments.tabs.SearchFragment"
-        android:label="fragment_search"
-        tools:layout="@layout/fragment_search" />
-    <fragment
-        android:id="@+id/cameraFragment"
-        android:name="com.example.simbirsoftsummerworkshop.view.fragments.CameraFragment"
-        android:label="fragment_camera"
-        tools:layout="@layout/fragment_camera" >
-        <action
-            android:id="@+id/action_to_profileFragment"
-            app:destination="@id/profileFragment"
-            app:popUpTo="@id/nav_graph_main.xml"
-            app:popUpToInclusive="true" />
-    </fragment>
-    <fragment
-        android:id="@+id/editPhotoFragment"
-        android:name="com.example.simbirsoftsummerworkshop.view.fragments.EditPhotoFragment"
-        android:label="fragment_edit_photo"
-        tools:layout="@layout/fragment_edit_photo" />
+
+    <include app:graph="@navigation/nav_graph_news" />
+
+    <include app:graph="@navigation/nav_graph_profile" />
+
+    <include app:graph="@navigation/nav_graph_search" />
+
 </navigation>

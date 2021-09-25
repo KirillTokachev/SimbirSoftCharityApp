@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/light_grey"
-    tools:context=".view.fragments.tabs.EventsFragment">
+    tools:context=".view.search.SearchResultFragment">
 
 
     <TextView
@@ -33,7 +33,7 @@
         app:layout_constraintTop_toBottomOf="@+id/search_event_result_text" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_nko"
+        android:id="@+id/recycler_view_result"
         android:layout_width="@dimen/fragment_0_dp"
         android:layout_height="wrap_content"
         tools:listitem="@layout/events_item"
@@ -41,14 +41,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/upper_separator" />
-
-    <View
-        android:id="@+id/lower_separator"
-        android:layout_width="@dimen/fragment_0_dp"
-        android:layout_height="@dimen/fragment_1_dp"
-        android:background="@color/cool_grey"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recycler_view_nko"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

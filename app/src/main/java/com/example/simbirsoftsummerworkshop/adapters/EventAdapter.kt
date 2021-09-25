@@ -4,7 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.simbirsoftsummerworkshop.R
-import com.example.simbirsoftsummerworkshop.data.Event
+import com.example.simbirsoftsummerworkshop.model.Event
+import com.example.simbirsoftsummerworkshop.utils.MyViewHolder
 
 class EventAdapter(private val events: List<Event>) : RecyclerView.Adapter<MyViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -20,4 +21,5 @@ class EventAdapter(private val events: List<Event>) : RecyclerView.Adapter<MyVie
     override fun getItemCount(): Int {
         return events.size
     }
+
 }
