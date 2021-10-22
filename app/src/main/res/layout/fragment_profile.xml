@@ -28,18 +28,21 @@
                     android:textColor="@color/white"
                     android:theme="@style/text_style_24_sp" />
 
-                <ImageButton
-                    android:id="@+id/image_button_edit_profile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_gravity="end"
-                    android:layout_marginEnd="22dp"
-                    android:background="@android:color/transparent"
-                    android:contextClickable="true"
-                    android:scaleType="centerInside"
-                    android:src="@drawable/edit" />
+            <ImageButton
+                android:id="@+id/image_button_edit_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="end"
+                android:layout_marginEnd="@dimen/fragment_22_dp"
+                android:background="@android:color/transparent"
+                android:contextClickable="true"
+                android:minWidth="@dimen/fragment_48_dp"
+                android:minHeight="@dimen/fragment_48_dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/edit"
+                tools:ignore="SpeakableTextPresentCheck" />
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -139,8 +142,8 @@
                 android:id="@+id/switch_push"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="26dp"
-                android:layout_marginBottom="15dp"
+                android:layout_marginEnd="@dimen/fragment_26_dp"
+                android:layout_marginBottom="@dimen/fragment_15_dp"
                 android:checked="true"
                 android:gravity="end"
                 android:theme="@style/SwitchTheme"

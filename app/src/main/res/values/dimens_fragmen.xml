@@ -38,7 +38,26 @@
     <dimen name="fragment_40_dp">40dp</dimen>
     <dimen name="fragment_54_dp">54dp</dimen>
     <dimen name="fragment_250_dp">250dp</dimen>
+    <dimen name="fragment_17_dp">17dp</dimen>
+    <dimen name="fragment_23_dp">23dp</dimen>
+    <dimen name="fragment_15_dp">15dp</dimen>
+    <dimen name="fragment_11_dp">11dp</dimen>
+    <dimen name="fragment_38_dp">38dp</dimen>
+    <dimen name="fragment_42_dp">42dp</dimen>
+    <dimen name="fragment_6_dp">6dp</dimen>
+    <dimen name="fragment_19_dp">19dp</dimen>
+    <dimen name="fragment_70_dp">70dp</dimen>
+    <dimen name="fragment_76_dp">76dp</dimen>
+    <dimen name="fragment_7_dp">7dp</dimen>
+    <dimen name="fragment_9_dp">9dp</dimen>
+    <dimen name="fragment_90_dp">90dp</dimen>
+    <dimen name="fragment_5_dp">5dp</dimen>
+    <dimen name="fragment_22_dp">22dp</dimen>
+    <dimen name="fragment_26_dp">26dp</dimen>
+    <dimen name="fragment_39_dp">39dp</dimen>
 
+
+    // Text size
     <dimen name="fragment_16_sp">16sp</dimen>
     <dimen name="fragment_6_sp">6sp</dimen>
     <dimen name="fragment_14_sp">14sp</dimen>

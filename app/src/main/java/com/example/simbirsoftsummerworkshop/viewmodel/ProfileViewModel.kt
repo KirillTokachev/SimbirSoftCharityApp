@@ -1,33 +1,53 @@
 package com.example.simbirsoftsummerworkshop.viewmodel
 
+import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Matrix
 import android.media.ExifInterface
 import android.net.Uri
+import android.widget.TextView
+import androidx.appcompat.widget.SwitchCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.simbirsoftsummerworkshop.utils.Constants
+import com.example.simbirsoftsummerworkshop.model.Datas
+import com.example.simbirsoftsummerworkshop.model.DatasServise
+import com.example.simbirsoftsummerworkshop.utils.ChangePhotoEnum
+import com.example.simbirsoftsummerworkshop.utils.Orientation
 import java.io.File
 
-class SharedViewModel : ViewModel() {
+class ProfileViewModel(
+    private val service: DatasServise
+) : ViewModel() {
     private val photoFile: MutableLiveData<File> by lazy {
         MutableLiveData<File>()
     }
     val photoData: LiveData<File> = photoFile
 
-    private val key: MutableLiveData<Constants> by lazy {
-        MutableLiveData<Constants>()
+    private val key: MutableLiveData<ChangePhotoEnum> by lazy {
+        MutableLiveData<ChangePhotoEnum>()
     }
-    val keyRequest: LiveData<Constants> = key
+    val keyRequest: LiveData<ChangePhotoEnum> = key
 
     private val uriFile: MutableLiveData<Uri> by lazy {
         MutableLiveData<Uri>()
     }
     val uriPhoto: LiveData<Uri> = uriFile
 
-    fun saveUri (uri: Uri) {
+    private val _users = MutableLiveData<List<Datas.User>>()
+    val users: LiveData<List<Datas.User>> = _users
+
+    @SuppressLint("NewApi")
+    fun setUpUser(name: TextView, date: TextView, profession: TextView, push: SwitchCompat) {
+        name.text = service.getInstance().getPerson().name
+        date.text = service.getInstance()
+            .getPerson().dateOfBirth.format(org.threeten.bp.format.DateTimeFormatter.ISO_LOCAL_DATE)
+        profession.text = service.getInstance().getPerson().profession
+        push.isChecked = service.getInstance().getPerson().push
+    }
+
+    fun saveUri(uri: Uri) {
         uriFile.value = uri
     }
 
@@ -35,10 +55,11 @@ class SharedViewModel : ViewModel() {
         photoFile.value = file
     }
 
-    fun saveKey(constants: Constants) {
-        key.value = constants
+    fun saveKey(changePhotoEnum: ChangePhotoEnum) {
+        key.value = changePhotoEnum
     }
 
+    @SuppressLint("NewApi")
     fun fileToBitmap(file: File): Bitmap {
         val bitmap: Bitmap
         val currentPhotoFile = file.toPath().toString()
@@ -51,16 +72,16 @@ class SharedViewModel : ViewModel() {
             matrix.postRotate(
                 when (orientation) {
                     ExifInterface.ORIENTATION_ROTATE_90 -> {
-                        ORIENTATION_90
+                        Orientation.ORIENTATION_90.grades
                     }
                     ExifInterface.ORIENTATION_ROTATE_180 -> {
-                        ORIENTATION_180
+                        Orientation.ORIENTATION_180.grades
                     }
                     ExifInterface.ORIENTATION_ROTATE_270 -> {
-                        ORIENTATION_270
+                        Orientation.ORIENTATION_270.grades
                     }
                     else -> {
-                        ORIENTATION_0
+                        Orientation.ORIENTATION_0.grades
                     }
                 }
             )
@@ -69,12 +90,5 @@ class SharedViewModel : ViewModel() {
             )
         }
         return bitmap
-    }
-
-    companion object {
-        private const val ORIENTATION_90 = 90f
-        private const val ORIENTATION_180  = 180f
-        private const val ORIENTATION_270 = 270f
-        private const val ORIENTATION_0 = 0f
     }
 }

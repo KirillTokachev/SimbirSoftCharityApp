@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_news"
+    app:startDestination="@id/newsFragment">
+
+    <fragment
+        android:id="@+id/newsFragment"
+        android:name="com.example.simbirsoftsummerworkshop.view.news.NewsFragment"
+        android:label="fragment_news"
+        tools:layout="@layout/fragment_news" >
+
+        <action
+            android:id="@+id/action_newsFragment_to_filterFragment"
+            app:destination="@id/filterFragment" />
+
+        <action android:id="@+id/action_to_nav_graph_detail"
+            app:destination="@+id/nav_graph_detail"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/filterFragment"
+        android:name="com.example.simbirsoftsummerworkshop.view.news.FilterFragment"
+        android:label="fragment_filter"
+        tools:layout="@layout/fragment_filter" >
+
+        <action
+            android:id="@+id/action_to_newsFragment"
+            app:destination="@id/newsFragment" />
+
+    </fragment>
+
+</navigation>

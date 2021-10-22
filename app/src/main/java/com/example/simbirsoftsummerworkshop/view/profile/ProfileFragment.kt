@@ -1,26 +1,27 @@
 package com.example.simbirsoftsummerworkshop.view.profile
 
+import android.annotation.SuppressLint
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.simbirsoftsummerworkshop.R
-import com.example.simbirsoftsummerworkshop.adapters.FriendsAdapter
-import com.example.simbirsoftsummerworkshop.data.Data
+import com.example.simbirsoftsummerworkshop.adapters.BaseAdapter
 import com.example.simbirsoftsummerworkshop.databinding.FragmentProfileBinding
-import com.example.simbirsoftsummerworkshop.utils.Constants
+import com.example.simbirsoftsummerworkshop.model.DatasServise
+import com.example.simbirsoftsummerworkshop.utils.ChangePhotoEnum
+import com.example.simbirsoftsummerworkshop.utils.factory
 import com.example.simbirsoftsummerworkshop.view.fragments.BaseFragment
-import com.example.simbirsoftsummerworkshop.viewmodel.SharedViewModel
+import com.example.simbirsoftsummerworkshop.viewmodel.ProfileViewModel
 import kotlinx.android.synthetic.main.fragment_profile.*
-import java.time.format.DateTimeFormatter
 
 class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
-    private var profileData: Data? = null
-    private val viewModel: SharedViewModel by activityViewModels()
+    private var datasServise: DatasServise? = null
+    private val viewModel: ProfileViewModel by activityViewModels { factory() }
 
     override fun getViewBinding() = FragmentProfileBinding.inflate(layoutInflater)
 
     override fun setUpViews() {
-        profileData = Data()
+        datasServise = DatasServise().getInstance()
 
         Glide.with(requireContext())
             .load(R.drawable.image_man)
@@ -30,34 +31,34 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
         setUpUser()
 
         viewModel.keyRequest.observe(viewLifecycleOwner) {
-            when (it) {
-                Constants.CREATE -> {
-                    viewModel.photoData.observe(viewLifecycleOwner) { it ->
-                        val photo = viewModel.fileToBitmap(it)
-                        Glide.with(requireContext())
-                            .load(photo)
-                            .centerInside()
-                            .into(avatar_profile_image)
+            if (it != null) {
+                when (it) {
+                    ChangePhotoEnum.CREATE -> {
+                        viewModel.photoData.observe(viewLifecycleOwner) { file ->
+                            val photo = viewModel.fileToBitmap(file)
+                            Glide.with(requireContext())
+                                .load(photo)
+                                .centerInside()
+                                .into(avatar_profile_image)
+                        }
                     }
-                }
-                Constants.DELETE -> {
-                    Glide.with(requireContext())
-                        .clear(avatar_profile_image)
-                }
-                Constants.UPLOAD -> {
-                    viewModel.uriPhoto.observe(viewLifecycleOwner) { uri ->
+                    ChangePhotoEnum.DELETE -> {
                         Glide.with(requireContext())
-                            .load(uri)
-                            .centerInside()
-                            .into(avatar_profile_image)
+                            .clear(avatar_profile_image)
                     }
+                    ChangePhotoEnum.UPLOAD -> {
+                        viewModel.uriPhoto.observe(viewLifecycleOwner) { uri ->
+                            Glide.with(requireContext())
+                                .load(uri)
+                                .centerInside()
+                                .into(avatar_profile_image)
+                        }
+                    }
+                    else -> throw IllegalStateException()
                 }
+            } else {
+                throw NullPointerException()
             }
-        }
-
-        recycler_view_friends.apply {
-            layoutManager = LinearLayoutManager(context)
-            adapter = profileData?.getPerson()?.let { FriendsAdapter(it.friends)}
         }
 
         avatar_profile_image.setOnClickListener {
@@ -65,22 +66,19 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
         }
     }
 
+    @SuppressLint("NewApi")
     private fun setUpUser() {
-        name_profile_text.text = profileData?.getPerson()?.name
-        data_text.text = profileData?.getPerson()?.dateOfBirth?.format(DateTimeFormatter.ofPattern("dd MMMM yyyy"))
-        field_description_text.text = profileData?.getPerson()?.profession
-        switch_push.isChecked = profileData?.getPerson()?.push == true
+        viewModel.setUpUser(name_profile_text, data_text, field_description_text, switch_push)
+
+        recycler_view_friends.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = datasServise?.getPerson()?.let { BaseAdapter(it.friends) }
+        }
     }
 
     private fun showDialog() {
         EditPhotoFragment().show(
             childFragmentManager, EditPhotoFragment.TAG
         )
-    }
-
-    companion object {
-        const val KEY_DELETE = "Delete"
-        const val KEY_CREATE = "Create"
-        const val KEY_UPLOAD = "Upload"
     }
 }

@@ -1,6 +1,7 @@
 package com.example.simbirsoftsummerworkshop.view.search
 
 import androidx.viewpager2.widget.ViewPager2
+import com.example.simbirsoftsummerworkshop.R
 import com.example.simbirsoftsummerworkshop.adapters.ViewPagerAdapter
 import com.example.simbirsoftsummerworkshop.databinding.FragmentSearchBinding
 import com.example.simbirsoftsummerworkshop.view.fragments.BaseFragment
@@ -24,8 +25,8 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
         viewPager?.let {
             TabLayoutMediator(tabLayout, it) { tab, position ->
                 when (position) {
-                    0 -> tab.text = "По мероприятиям"
-                    1 -> tab.text = "По НКО"
+                    0 -> tab.text = activity?.getString(R.string.events)
+                    1 -> tab.text = activity?.getString(R.string.charity)
                 }
             }.attach()
         }
@@ -36,6 +37,4 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
         val adapter = ViewPagerAdapter(childFragmentManager, lifecycle)
         viewPager?.adapter = adapter
     }
-
-
 }

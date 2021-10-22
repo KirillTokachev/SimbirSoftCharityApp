@@ -15,7 +15,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.simbirsoftsummerworkshop.R
 import com.example.simbirsoftsummerworkshop.databinding.FragmentCameraBinding
 import com.example.simbirsoftsummerworkshop.view.fragments.BaseFragment
-import com.example.simbirsoftsummerworkshop.viewmodel.SharedViewModel
+import com.example.simbirsoftsummerworkshop.viewmodel.ProfileViewModel
 import kotlinx.android.synthetic.main.fragment_camera.*
 import java.io.File
 import java.nio.ByteBuffer
@@ -27,9 +27,17 @@ import java.util.concurrent.Executors
 typealias LumaListener = (luma: Double) -> Unit
 
 class CameraFragment : BaseFragment<FragmentCameraBinding>() {
+    companion object {
+        private const val TAG = "CameraX"
+        private const val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS"
+        private const val SAVE_PHOTO_MESSAGE = "Фото сохранено"
+        private const val REQUEST_CODE_PERMISSIONS = 10
+        private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
+    }
+
     private var imageCapture: ImageCapture? = null
     private var preview: Preview? = null
-    private val viewModel: SharedViewModel by activityViewModels()
+    private val viewModel: ProfileViewModel by activityViewModels()
     private lateinit var outputDirectory: File
     private lateinit var cameraExecutor: ExecutorService
 
@@ -67,7 +75,7 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>() {
                 }
 
                 override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
-                    val msg = "Фото сохранено"
+                    val msg = SAVE_PHOTO_MESSAGE
                     Log.d(TAG, msg)
                 }
             }
@@ -83,7 +91,7 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>() {
         val cameraProviderFuture = context?.let { ProcessCameraProvider.getInstance(it) }
 
         cameraProviderFuture?.addListener(
-            Runnable {
+            {
                 // Used to bind the lifecycle of cameras to the lifecycle owner
                 val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
 
@@ -126,7 +134,7 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>() {
     }
 
     private fun savePhoto(file: File) {
-        val msg = "Фото сохранено"
+        val msg = SAVE_PHOTO_MESSAGE
         button_save_photo.setOnClickListener {
             viewModel.savePhoto(file)
             Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
@@ -160,7 +168,7 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>() {
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<String>,
-        grantResults:        
+        grantResults:
             IntArray
     ) {
         if (requestCode == REQUEST_CODE_PERMISSIONS) {
@@ -183,13 +191,6 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>() {
         }
         return if (mediaDir != null && mediaDir.exists())
             mediaDir else activity?.filesDir!!
-    }
-
-    companion object {
-        private const val TAG = "CameraX"
-        private const val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS"
-        private const val REQUEST_CODE_PERMISSIONS = 10
-        private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
     }
 }
 
