@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="fragment_profile_120_dp">120dp</dimen>
+    <dimen name="fragment_profile_99_dp">99dp</dimen>
+    <dimen name="fragment_profile_30_dp">30dp</dimen>
+    <dimen name="fragment_profile_100_dp">100dp</dimen>
+    <dimen name="fragment_profile_40_dp">40dp</dimen>
+    <dimen name="fragment_profile_52_dp">52dp</dimen>
+    <dimen name="fragment_profile_20_dp">20dp</dimen>
+    <dimen name="fragment_profile_16_dp">16dp</dimen>
+    <dimen name="fragment_profile_10_dp">10dp</dimen>
+    <dimen name="fragment_profile_28_dp">28dp</dimen>
+    <dimen name="fragment_profile_55_dp">52dp</dimen>
+    <dimen name="fragment_profile_181_dp">181dp</dimen>
+    <dimen name="fragment_profile_14_dp">14dp</dimen>
+    <dimen name="fragment_profile_1_dp">1dp</dimen>
+    <dimen name="fragment_profile_18_dp">18dp</dimen>
+</resources>
