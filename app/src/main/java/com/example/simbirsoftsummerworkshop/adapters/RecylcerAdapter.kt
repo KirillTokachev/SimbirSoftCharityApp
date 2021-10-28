@@ -10,7 +10,7 @@ import com.example.simbirsoftsummerworkshop.databinding.*
 import com.example.simbirsoftsummerworkshop.model.*
 import com.example.simbirsoftsummerworkshop.utils.DiffCallback
 
-class BaseAdapter<T>(itemLIst: List<T>) : RecyclerView.Adapter<BaseViewHolder>() {
+class RecylcerAdapter<T>(itemLIst: List<T>) : RecyclerView.Adapter<ViewHolders>() {
     companion object {
         private const val INVALID_VIEW_TYPE_TEXT = "Invalid ViewType Provided"
         private const val INVALID_POSITION_TEXT = "Invalid position"
@@ -26,35 +26,35 @@ class BaseAdapter<T>(itemLIst: List<T>) : RecyclerView.Adapter<BaseViewHolder>()
 
     var itemClickListener: ((view: View, item: Datas, position: Int) -> Unit)? = null
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolders {
         return when (viewType) {
-            R.layout.events_item -> BaseViewHolder.EventViewHolder(
+            R.layout.events_item -> ViewHolders.EventViewHolder(
                 EventsItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
             )
-            R.layout.filter_item -> BaseViewHolder.FilterViewHolder(
+            R.layout.filter_item -> ViewHolders.FilterViewHolder(
                 FilterItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
             )
-            R.layout.friends_item -> BaseViewHolder.FriendsViewHolder(
+            R.layout.friends_item -> ViewHolders.FriendsViewHolder(
                 FriendsItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
             )
-            R.layout.help_item -> BaseViewHolder.HelpViewHolder(
+            R.layout.help_item -> ViewHolders.HelpViewHolder(
                 HelpItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
             )
-            R.layout.news_item -> BaseViewHolder.NewsViewHolder(
+            R.layout.news_item -> ViewHolders.NewsViewHolder(
                 NewsItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
             )
             else -> throw IllegalArgumentException(INVALID_VIEW_TYPE_TEXT)
         }
     }
 
-    override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
-        holder.itemClickListener = itemClickListener
-        when (holder) {
-            is BaseViewHolder.EventViewHolder -> holder.bind(items[position] as Datas.Event)
-            is BaseViewHolder.FilterViewHolder -> holder.bind(items[position] as Datas.FilterCategory)
-            is BaseViewHolder.FriendsViewHolder -> holder.bind(items[position] as Datas.User)
-            is BaseViewHolder.HelpViewHolder -> holder.bind(items[position] as Datas.HelpCategory)
-            is BaseViewHolder.NewsViewHolder -> holder.bind(items[position] as Datas.News)
+    override fun onBindViewHolder(holders: ViewHolders, position: Int) {
+        holders.itemClickListener = itemClickListener
+        when (holders) {
+            is ViewHolders.EventViewHolder -> holders.bind(items[position] as Datas.Event)
+            is ViewHolders.FilterViewHolder -> holders.bind(items[position] as Datas.FilterCategory)
+            is ViewHolders.FriendsViewHolder -> holders.bind(items[position] as Datas.User)
+            is ViewHolders.HelpViewHolder -> holders.bind(items[position] as Datas.HelpCategory)
+            is ViewHolders.NewsViewHolder -> holders.bind(items[position] as Datas.News)
         }
     }
 

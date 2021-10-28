@@ -4,10 +4,10 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.simbirsoftsummerworkshop.R
-import com.example.simbirsoftsummerworkshop.adapters.BaseAdapter
+import com.example.simbirsoftsummerworkshop.adapters.RecylcerAdapter
 import com.example.simbirsoftsummerworkshop.databinding.FragmentFilterBinding
 import com.example.simbirsoftsummerworkshop.model.Datas
-import com.example.simbirsoftsummerworkshop.model.DatasServise
+import com.example.simbirsoftsummerworkshop.model.DataServise
 import com.example.simbirsoftsummerworkshop.utils.factory
 import com.example.simbirsoftsummerworkshop.view.fragments.BaseFragment
 import com.example.simbirsoftsummerworkshop.viewmodel.NewsViewModel
@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.fragment_filter.*
 
 class FilterFragment : BaseFragment<FragmentFilterBinding>() {
     private val viewModel: NewsViewModel by activityViewModels { factory() }
-    private var listCategory = DatasServise().getCategory()
+    private var listCategory = DataServise.getCategory()
 
     override fun getViewBinding() = FragmentFilterBinding.inflate(layoutInflater)
 
@@ -23,7 +23,7 @@ class FilterFragment : BaseFragment<FragmentFilterBinding>() {
         setUpButton()
         recycler_view_filter.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = BaseAdapter(listCategory)
+            adapter = RecylcerAdapter(listCategory)
         }
     }
 

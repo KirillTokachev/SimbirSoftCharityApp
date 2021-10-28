@@ -3,12 +3,10 @@ package com.example.simbirsoftsummerworkshop.model
 import androidx.annotation.DrawableRes
 import org.threeten.bp.LocalDate
 
-private const val DEFAULT = "default"
-
 sealed class Datas {
     data class FilterCategory(
         val name: String,
-        var push: Boolean = false
+        var push: Boolean
     ) : Datas()
 
     data class Event(
@@ -16,8 +14,8 @@ sealed class Datas {
     ) : Datas()
 
     data class HelpCategory(
-        val name: String = DEFAULT,
-        @DrawableRes val icon: Int = 0
+        val name: String,
+        val icon: String
     ) : Datas()
 
     data class News(

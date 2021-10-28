@@ -4,10 +4,10 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.simbirsoftsummerworkshop.R
-import com.example.simbirsoftsummerworkshop.adapters.BaseAdapter
+import com.example.simbirsoftsummerworkshop.adapters.RecylcerAdapter
 import com.example.simbirsoftsummerworkshop.adapters.JsonAdapter
 import com.example.simbirsoftsummerworkshop.databinding.FragmentNewsBinding
-import com.example.simbirsoftsummerworkshop.model.DatasServise
+import com.example.simbirsoftsummerworkshop.model.DataServise
 import com.example.simbirsoftsummerworkshop.utils.factory
 import com.example.simbirsoftsummerworkshop.view.fragments.BaseFragment
 import com.example.simbirsoftsummerworkshop.viewmodel.NewsViewModel
@@ -24,9 +24,9 @@ class NewsFragment : BaseFragment<FragmentNewsBinding>() {
     }
 
     private fun setupNewsLIst() {
-        if (DatasServise().getInstance().getNews().isEmpty()) {
+        if (DataServise.getNews().isEmpty()) {
             val newsList = JsonAdapter().getNews(requireContext())
-            val baseAdapter = BaseAdapter(newsList)
+            val baseAdapter = RecylcerAdapter(newsList)
             recycler_view_news.apply {
                 layoutManager = LinearLayoutManager(context)
                 adapter = baseAdapter
@@ -42,7 +42,7 @@ class NewsFragment : BaseFragment<FragmentNewsBinding>() {
 
     private fun setUpSortedNewsLIst() {
         viewModel.news.observe(viewLifecycleOwner) { news ->
-            val baseAdapter = BaseAdapter(news)
+            val baseAdapter = RecylcerAdapter(news)
             recycler_view_news.apply {
                 layoutManager = LinearLayoutManager(context)
                 adapter = baseAdapter

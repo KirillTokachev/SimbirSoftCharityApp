@@ -278,7 +278,7 @@
  + [Ещё немного антипаттернов](https://www.notion.so/Java-Kotlin-fdd36663b9e4452b9c605107761278b4) **(\*\*\*)**
 
  **5. Kotlin koans**
- + [Kotlin koans](https://www.jetbrains.com/help/education/learner-start-guide.html?section=Kotlin%20Koans)
+ + [Kotlin koans](https://www.jetbrains.com/helpCategory/education/learner-start-guide.html?section=Kotlin%20Koans)
  
 ### Практическое задание
 **Важно!**

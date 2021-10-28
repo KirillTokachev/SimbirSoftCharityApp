@@ -5,9 +5,9 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.simbirsoftsummerworkshop.R
-import com.example.simbirsoftsummerworkshop.adapters.BaseAdapter
+import com.example.simbirsoftsummerworkshop.adapters.RecylcerAdapter
 import com.example.simbirsoftsummerworkshop.databinding.FragmentProfileBinding
-import com.example.simbirsoftsummerworkshop.model.DatasServise
+import com.example.simbirsoftsummerworkshop.model.DataServise
 import com.example.simbirsoftsummerworkshop.utils.ChangePhotoEnum
 import com.example.simbirsoftsummerworkshop.utils.factory
 import com.example.simbirsoftsummerworkshop.view.fragments.BaseFragment
@@ -15,13 +15,11 @@ import com.example.simbirsoftsummerworkshop.viewmodel.ProfileViewModel
 import kotlinx.android.synthetic.main.fragment_profile.*
 
 class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
-    private var datasServise: DatasServise? = null
     private val viewModel: ProfileViewModel by activityViewModels { factory() }
 
     override fun getViewBinding() = FragmentProfileBinding.inflate(layoutInflater)
 
     override fun setUpViews() {
-        datasServise = DatasServise().getInstance()
 
         Glide.with(requireContext())
             .load(R.drawable.image_man)
@@ -72,7 +70,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
 
         recycler_view_friends.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = datasServise?.getPerson()?.let { BaseAdapter(it.friends) }
+            adapter = RecylcerAdapter(DataServise.initUser().friends)
         }
     }
 

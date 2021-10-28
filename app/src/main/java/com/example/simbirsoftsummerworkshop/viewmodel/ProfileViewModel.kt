@@ -12,13 +12,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.simbirsoftsummerworkshop.model.Datas
-import com.example.simbirsoftsummerworkshop.model.DatasServise
+import com.example.simbirsoftsummerworkshop.model.DataServise
 import com.example.simbirsoftsummerworkshop.utils.ChangePhotoEnum
 import com.example.simbirsoftsummerworkshop.utils.Orientation
 import java.io.File
 
 class ProfileViewModel(
-    private val service: DatasServise
+    private val service: DataServise
 ) : ViewModel() {
     private val photoFile: MutableLiveData<File> by lazy {
         MutableLiveData<File>()
@@ -40,11 +40,11 @@ class ProfileViewModel(
 
     @SuppressLint("NewApi")
     fun setUpUser(name: TextView, date: TextView, profession: TextView, push: SwitchCompat) {
-        name.text = service.getInstance().getPerson().name
-        date.text = service.getInstance()
-            .getPerson().dateOfBirth.format(org.threeten.bp.format.DateTimeFormatter.ISO_LOCAL_DATE)
-        profession.text = service.getInstance().getPerson().profession
-        push.isChecked = service.getInstance().getPerson().push
+        name.text = service.initUser().name
+        date.text = service
+            .initUser().dateOfBirth.format(org.threeten.bp.format.DateTimeFormatter.ISO_LOCAL_DATE)
+        profession.text = service.initUser().profession
+        push.isChecked = service.initUser().push
     }
 
     fun saveUri(uri: Uri) {

@@ -49,7 +49,7 @@ dependencies {
     def fragment_version = "1.3.6"
     def nav_version = "2.3.5"
     def glide_version = "4.12.0"
-    def lifecycle_version = "2.2.0"
+    def lifecycle_version = "2.4.0"
 
     // Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
@@ -76,7 +76,6 @@ dependencies {
     implementation 'com.github.javafaker:javafaker:1.0.2'
 
     // joda-time-android
-    implementation 'net.danlew:android.joda:2.10.9.1'
     implementation 'com.jakewharton.threetenabp:threetenabp:1.3.1'
 
     //Moshi
@@ -84,14 +83,14 @@ dependencies {
     kapt 'com.squareup.moshi:moshi-kotlin-codegen:1.12.0'
 
 
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.3.1"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.4.0"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
 
     implementation 'androidx.viewpager2:viewpager2:1.0.0'
     implementation "androidx.fragment:fragment-ktx:$fragment_version"
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.annotation:annotation:1.2.0'
-    implementation 'androidx.core:core-ktx:1.6.0'
+    implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.3.1'
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.1'

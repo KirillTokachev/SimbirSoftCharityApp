@@ -6,9 +6,8 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.example.simbirsoftsummerworkshop.databinding.ActivityMainBinding
-import com.example.simbirsoftsummerworkshop.model.DatasServise
+import com.example.simbirsoftsummerworkshop.model.DataServise
 import com.jakewharton.threetenabp.AndroidThreeTen
-import kotlinx.android.synthetic.main.fragment_main.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -17,7 +16,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         AndroidThreeTen.init(this)
-        DatasServise.newInstance()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
