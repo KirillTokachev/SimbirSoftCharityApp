@@ -1,14 +1,11 @@
 package com.example.simbirsoftsummerworkshop.view.fragments
 
-import android.util.Log
 import android.view.View
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI.setupWithNavController
 import com.example.simbirsoftsummerworkshop.R
 import com.example.simbirsoftsummerworkshop.databinding.FragmentMainBinding
-import kotlinx.android.synthetic.main.fragment_help.*
 import kotlinx.android.synthetic.main.fragment_main.*
-import kotlinx.android.synthetic.main.fragment_profile.*
 
 class MainFragment : BaseFragment<FragmentMainBinding>() {
     override fun getViewBinding() = FragmentMainBinding.inflate(layoutInflater)
@@ -18,7 +15,8 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
     }
 
     private fun setupNav() {
-        val navController = (childFragmentManager.findFragmentById(R.id.main_container_view) as? NavHostFragment)?.navController
+        val navController =
+            (childFragmentManager.findFragmentById(R.id.main_container_view) as? NavHostFragment)?.navController
         if (navController != null) {
             setupWithNavController(bottom_navigation, navController)
         }
@@ -32,7 +30,6 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
         fb_help.setOnClickListener {
             navController?.navigate(R.id.helpFragment)
             bottom_navigation.selectedItemId = R.id.helpFragment
-            Log.d("dest", "${navController?.currentDestination}")
         }
 
         navController?.addOnDestinationChangedListener { controller, destination, arguments ->
@@ -44,10 +41,14 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
     }
 
     private fun showBottomNav() {
+        bottom_app_bar.visibility = View.VISIBLE
         bottom_navigation.visibility = View.VISIBLE
+        fb_help.visibility = View.VISIBLE
     }
 
     private fun hideBottomNav() {
+        bottom_app_bar.visibility = View.GONE
         bottom_navigation.visibility = View.GONE
+        fb_help.visibility = View.GONE
     }
 }

@@ -1,6 +1,6 @@
 package com.example.simbirsoftsummerworkshop.utils
 
-enum class Constants {
+enum class ChangePhotoEnum {
     DELETE,
     CREATE,
     UPLOAD

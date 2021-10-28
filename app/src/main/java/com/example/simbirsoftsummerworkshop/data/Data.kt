@@ -5,7 +5,13 @@ import com.example.simbirsoftsummerworkshop.model.*
 import com.github.javafaker.Faker
 import java.time.LocalDate
 
+
 class Data {
+
+    companion object {
+        const val KEY_WORD = "Ключевые слова: мастер-класс, помощь\n" +
+                "Результаты поиска: 109 мероприятий"
+    }
 
     private val faker = Faker()
 
@@ -33,12 +39,12 @@ class Data {
         )
     )
 
-    private val person: User = User(
+    private val user: User = User(
         "Константинов Денис",
         LocalDate.of(1980, 2, 1),
         "Хирургия, трамвотология",
         R.drawable.image_man,
-        friendsList as MutableList<User>,
+        friendsList,
         true
     )
 
@@ -58,18 +64,7 @@ class Data {
         Event(name = faker.book().title())
     )
 
-    private val newsList = listOf(
-        News("Спонсоры отремонтируют школу-интернат",
-            "Дубовская школа-интернат для детей с ограниченными возможностями здоровья стала первой в области …",
-            R.drawable.news_1,
-            org.joda.time.LocalDate(), "kids", 0),
-        News("Конкурс по вокальному пению в детском доме №6",
-            "Дубовская школа-интернат для детей с ограниченными возможностями здоровья стала первой в области …",
-            R.drawable.news_2,
-            org.joda.time.LocalDate(), "kids", 1)
-    )
-
-    private val categoryList = mutableListOf(
+    private val categoryList = listOf(
         Category("kids", true),
         Category("adult", false),
         Category("elderly", false),
@@ -77,29 +72,16 @@ class Data {
         Category("events", false)
     )
 
-    fun getEvents(): List<Event> {
-        return events
-    }
+    fun getEvents() = events
 
-    fun getPerson(): User {
-        return person
-    }
+    fun initUser() = user
 
-    fun getDataHelp(): List<Help> {
-        return helps
-    }
+    fun getDataHelp() = helps
 
-    fun getNews(): List<News> {
-        return newsList
-    }
-
-    fun getCategory() : List<Category> {
-        return categoryList
-    }
+    fun getCategory() = categoryList
 
     fun getResult(text: String): String {
-        return "Ключевые слова: мастер-класс, помощь\n" +
-            "Результаты поиска: 109 мероприятий"
+        return KEY_WORD
     }
 
 }

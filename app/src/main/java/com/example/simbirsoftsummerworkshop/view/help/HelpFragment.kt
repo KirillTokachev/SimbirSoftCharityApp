@@ -9,6 +9,8 @@ import com.example.simbirsoftsummerworkshop.databinding.FragmentHelpBinding
 import com.example.simbirsoftsummerworkshop.view.fragments.BaseFragment
 import kotlinx.android.synthetic.main.fragment_help.*
 
+private const val SPAN_COUNT = 2
+
 class HelpFragment : BaseFragment<FragmentHelpBinding>() {
 
     override fun getViewBinding() = FragmentHelpBinding.inflate(layoutInflater)
@@ -16,7 +18,7 @@ class HelpFragment : BaseFragment<FragmentHelpBinding>() {
     override fun setUpViews() {
         recycler_view_help.apply {
             Log.d("dest", "${findNavController().currentDestination}")
-            layoutManager = GridLayoutManager(context, 2)
+            layoutManager = GridLayoutManager(context, SPAN_COUNT)
             adapter = HelpAdapter(Data().getDataHelp())
         }
     }

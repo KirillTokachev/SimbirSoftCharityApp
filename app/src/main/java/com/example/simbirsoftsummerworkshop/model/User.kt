@@ -7,6 +7,6 @@ data class User(
     val dateOfBirth: LocalDate,
     val profession: String,
     var avatar: Int,
-    val friends: MutableList<User>,
+    val friends: List<User>,
     val push: Boolean = false
 )

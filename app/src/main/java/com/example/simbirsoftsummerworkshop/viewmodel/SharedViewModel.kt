@@ -8,7 +8,8 @@ import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.simbirsoftsummerworkshop.utils.Constants
+import com.example.simbirsoftsummerworkshop.utils.ChangePhotoEnum
+import com.example.simbirsoftsummerworkshop.utils.Orientation
 import java.io.File
 
 class SharedViewModel : ViewModel() {
@@ -17,17 +18,17 @@ class SharedViewModel : ViewModel() {
     }
     val photoData: LiveData<File> = photoFile
 
-    private val key: MutableLiveData<Constants> by lazy {
-        MutableLiveData<Constants>()
+    private val key: MutableLiveData<ChangePhotoEnum> by lazy {
+        MutableLiveData<ChangePhotoEnum>()
     }
-    val keyRequest: LiveData<Constants> = key
+    val keyRequest: LiveData<ChangePhotoEnum> = key
 
     private val uriFile: MutableLiveData<Uri> by lazy {
         MutableLiveData<Uri>()
     }
     val uriPhoto: LiveData<Uri> = uriFile
 
-    fun saveUri (uri: Uri) {
+    fun saveUri(uri: Uri) {
         uriFile.value = uri
     }
 
@@ -35,8 +36,8 @@ class SharedViewModel : ViewModel() {
         photoFile.value = file
     }
 
-    fun saveKey(constants: Constants) {
-        key.value = constants
+    fun saveKey(changePhotoEnum: ChangePhotoEnum) {
+        key.value = changePhotoEnum
     }
 
     fun fileToBitmap(file: File): Bitmap {
@@ -51,16 +52,16 @@ class SharedViewModel : ViewModel() {
             matrix.postRotate(
                 when (orientation) {
                     ExifInterface.ORIENTATION_ROTATE_90 -> {
-                        ORIENTATION_90
+                        Orientation.ORIENTATION_90.grades
                     }
                     ExifInterface.ORIENTATION_ROTATE_180 -> {
-                        ORIENTATION_180
+                        Orientation.ORIENTATION_180.grades
                     }
                     ExifInterface.ORIENTATION_ROTATE_270 -> {
-                        ORIENTATION_270
+                        Orientation.ORIENTATION_270.grades
                     }
                     else -> {
-                        ORIENTATION_0
+                        Orientation.ORIENTATION_0.grades
                     }
                 }
             )
@@ -69,12 +70,5 @@ class SharedViewModel : ViewModel() {
             )
         }
         return bitmap
-    }
-
-    companion object {
-        private const val ORIENTATION_90 = 90f
-        private const val ORIENTATION_180  = 180f
-        private const val ORIENTATION_270 = 270f
-        private const val ORIENTATION_0 = 0f
     }
 }

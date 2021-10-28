@@ -27,6 +27,14 @@ import java.util.concurrent.Executors
 typealias LumaListener = (luma: Double) -> Unit
 
 class CameraFragment : BaseFragment<FragmentCameraBinding>() {
+    companion object {
+        private const val TAG = "CameraX"
+        private const val SAVE_PHOTO_MESSAGE = "Фото сохранено"
+        private const val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS"
+        private const val REQUEST_CODE_PERMISSIONS = 10
+        private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
+    }
+
     private var imageCapture: ImageCapture? = null
     private var preview: Preview? = null
     private val viewModel: SharedViewModel by activityViewModels()
@@ -67,7 +75,7 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>() {
                 }
 
                 override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
-                    val msg = "Фото сохранено"
+                    val msg = SAVE_PHOTO_MESSAGE
                     Log.d(TAG, msg)
                 }
             }
@@ -185,12 +193,6 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>() {
             mediaDir else activity?.filesDir!!
     }
 
-    companion object {
-        private const val TAG = "CameraX"
-        private const val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS"
-        private const val REQUEST_CODE_PERMISSIONS = 10
-        private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
-    }
 }
 
 private class LuminosityAnalyzer(private val listener: LumaListener) : ImageAnalysis.Analyzer {
