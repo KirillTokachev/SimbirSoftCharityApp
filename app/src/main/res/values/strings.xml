@@ -11,4 +11,6 @@
     <string name="change_photo">Выбрать фото</string>
     <string name="take_a_photo">Сделать снимок</string>
     <string name="delete_photo">Удалить фото</string>
+    <string name="events">По мероприятиям</string>
+    <string name="charity">По НКО</string>
 </resources>

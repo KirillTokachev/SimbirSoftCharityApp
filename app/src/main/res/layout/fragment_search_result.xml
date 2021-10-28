@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_grey"
+    tools:context=".view.search.SearchResultFragment">
+
+    <TextView
+        android:id="@+id/search_event_result_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/fragment_20_dp"
+        android:layout_marginTop="@dimen/fragment_20_dp"
+        android:fontFamily="sans-serif"
+        android:lineSpacingExtra="@dimen/fragment_6_sp"
+        android:textColor="@color/black"
+        android:textSize="@dimen/fragment_14_sp"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/upper_separator"
+        android:layout_width="@dimen/fragment_0_dp"
+        android:layout_height="@dimen/fragment_1_dp"
+        android:layout_marginTop="@dimen/fragment_20_dp"
+        android:background="@color/cool_grey"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search_event_result_text" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_result"
+        android:layout_width="@dimen/fragment_0_dp"
+        android:layout_height="wrap_content"
+        tools:listitem="@layout/events_item"
+        android:background="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/upper_separator" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

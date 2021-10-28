@@ -6,7 +6,7 @@ data class User(
     val name: String,
     val dateOfBirth: LocalDate,
     val profession: String,
-    val avatar: Int,
+    var avatar: Int,
+    val friends: List<User>,
     val push: Boolean = false
 )
-
