@@ -68,7 +68,7 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>() {
 
         val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
         imageCapture.takePicture(
-            outputOptions, ContextCompat.getMainExecutor(context),
+            outputOptions, ContextCompat.getMainExecutor(requireContext()),
             object : ImageCapture.OnImageSavedCallback {
                 override fun onError(exc: ImageCaptureException) {
                     Log.e(TAG, "Photo capture failed: ${exc.message}", exc)
@@ -129,7 +129,7 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>() {
                     Log.e(TAG, "Use case binding failed", exc)
                 }
             },
-            ContextCompat.getMainExecutor(context)
+            ContextCompat.getMainExecutor(requireContext())
         )
     }
 

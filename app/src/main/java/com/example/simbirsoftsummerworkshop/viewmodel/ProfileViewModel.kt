@@ -18,7 +18,7 @@ import com.example.simbirsoftsummerworkshop.utils.Orientation
 import java.io.File
 
 class ProfileViewModel(
-    private val service: DataServise
+    /*private val service: DataServise*/
 ) : ViewModel() {
     private val photoFile: MutableLiveData<File> by lazy {
         MutableLiveData<File>()
@@ -40,11 +40,11 @@ class ProfileViewModel(
 
     @SuppressLint("NewApi")
     fun setUpUser(name: TextView, date: TextView, profession: TextView, push: SwitchCompat) {
-        name.text = service.initUser().name
-        date.text = service
+        name.text = DataServise.initUser().name
+        date.text = DataServise
             .initUser().dateOfBirth.format(org.threeten.bp.format.DateTimeFormatter.ISO_LOCAL_DATE)
-        profession.text = service.initUser().profession
-        push.isChecked = service.initUser().push
+        profession.text = DataServise.initUser().profession
+        push.isChecked = DataServise.initUser().push
     }
 
     fun saveUri(uri: Uri) {

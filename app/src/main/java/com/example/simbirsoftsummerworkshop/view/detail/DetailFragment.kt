@@ -2,16 +2,14 @@ package com.example.simbirsoftsummerworkshop.view.detail
 
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import com.example.simbirsoftsummerworkshop.R
 import com.example.simbirsoftsummerworkshop.databinding.FragmentDetailNewsBinding
 import com.example.simbirsoftsummerworkshop.utils.Util.getTime
-import com.example.simbirsoftsummerworkshop.utils.factory
 import com.example.simbirsoftsummerworkshop.view.fragments.BaseFragment
 import com.example.simbirsoftsummerworkshop.viewmodel.NewsViewModel
 import kotlinx.android.synthetic.main.fragment_detail_news.*
 
 class DetailFragment : BaseFragment<FragmentDetailNewsBinding>() {
-    private val viewModel: NewsViewModel by activityViewModels { factory() }
+    private val viewModel: NewsViewModel by activityViewModels()
 
     override fun getViewBinding() = FragmentDetailNewsBinding.inflate(layoutInflater)
 

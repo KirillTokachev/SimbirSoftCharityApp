@@ -10,7 +10,7 @@ import com.example.simbirsoftsummerworkshop.databinding.*
 import com.example.simbirsoftsummerworkshop.model.*
 import com.example.simbirsoftsummerworkshop.utils.DiffCallback
 
-class RecylcerAdapter<T>(itemLIst: List<T>) : RecyclerView.Adapter<ViewHolders>() {
+class RecyclerAdapter<T>(itemLIst: List<T>) : RecyclerView.Adapter<ViewHolders>() {
     companion object {
         private const val INVALID_VIEW_TYPE_TEXT = "Invalid ViewType Provided"
         private const val INVALID_POSITION_TEXT = "Invalid position"

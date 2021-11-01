@@ -2,7 +2,7 @@ package com.example.simbirsoftsummerworkshop.view.search
 
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.simbirsoftsummerworkshop.adapters.RecylcerAdapter
+import com.example.simbirsoftsummerworkshop.adapters.RecyclerAdapter
 import com.example.simbirsoftsummerworkshop.databinding.FragmentSearchResultBinding
 import com.example.simbirsoftsummerworkshop.model.DataServise
 import com.example.simbirsoftsummerworkshop.view.fragments.BaseFragment
@@ -16,7 +16,7 @@ class SearchResultFragment : BaseFragment<FragmentSearchResultBinding>() {
         setUpSearchResult()
         recycler_view_result.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = RecylcerAdapter(DataServise.getEvents())
+            adapter = RecyclerAdapter(DataServise.getEvents())
         }
     }
 
@@ -28,7 +28,7 @@ class SearchResultFragment : BaseFragment<FragmentSearchResultBinding>() {
     override fun onPause() {
         super.onPause()
         recycler_view_result.apply {
-            adapter = RecylcerAdapter(DataServise.getEvents())
+            adapter = RecyclerAdapter(DataServise.getEvents())
         }
     }
 }

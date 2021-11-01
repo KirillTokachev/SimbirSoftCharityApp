@@ -21,13 +21,13 @@ class JsonAdapter {
     fun getNews(context: Context): List<Datas.News> {
         val jsonNews = context.assets.readFile(NEWS_PATH)
         val news = newsAdapter.fromJson(jsonNews)!!
-        return news.toMutableList()
+        return news.toList()
     }
 
     fun getCategory(context: Context): List<Datas.HelpCategory> {
         val jsonCategory = context.assets.readFile(CATEGORY_PATH)
         val category = categoryAdapter.fromJson(jsonCategory)!!
-        return category.toMutableList()
+        return category.toList()
     }
 
     private fun AssetManager.readFile(fileName: String): String =
