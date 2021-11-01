@@ -7,6 +7,10 @@ import com.example.simbirsoftsummerworkshop.R
 import com.example.simbirsoftsummerworkshop.databinding.FragmentMainBinding
 import kotlinx.android.synthetic.main.fragment_main.*
 
+
+private const val GONE = View.GONE
+private const val VISIBLE = View.VISIBLE
+
 class MainFragment : BaseFragment<FragmentMainBinding>() {
     override fun getViewBinding() = FragmentMainBinding.inflate(layoutInflater)
 
@@ -34,22 +38,25 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
 
         navController?.addOnDestinationChangedListener { controller, destination, arguments ->
             when (destination.id) {
-                R.id.cameraFragment -> hideBottomNav()
-                R.id.detailFragment -> hideBottomNav()
-                else -> showBottomNav()
+                R.id.cameraFragment -> setupBottomNavVisible(GONE)
+                R.id.detailFragment -> setupBottomNavVisible(GONE)
+                else -> setupBottomNavVisible(VISIBLE)
             }
         }
     }
 
-    private fun showBottomNav() {
-        bottom_app_bar.visibility = View.VISIBLE
-        bottom_navigation.visibility = View.VISIBLE
-        fb_help.visibility = View.VISIBLE
-    }
-
-    private fun hideBottomNav() {
-        bottom_app_bar.visibility = View.GONE
-        bottom_navigation.visibility = View.GONE
-        fb_help.visibility = View.GONE
+    private fun setupBottomNavVisible(visibility: Int) {
+        when (visibility) {
+            VISIBLE -> {
+                bottom_app_bar.visibility = visibility
+                bottom_navigation.visibility = visibility
+                fb_help.visibility = visibility
+            }
+            GONE -> {
+                bottom_app_bar.visibility = visibility
+                bottom_navigation.visibility = visibility
+                fb_help.visibility = visibility
+            }
+        }
     }
 }
