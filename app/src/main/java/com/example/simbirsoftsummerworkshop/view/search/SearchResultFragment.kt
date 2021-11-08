@@ -5,10 +5,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.simbirsoftsummerworkshop.adapters.RecyclerAdapter
 import com.example.simbirsoftsummerworkshop.databinding.FragmentSearchResultBinding
 import com.example.simbirsoftsummerworkshop.model.DataServise
-import com.example.simbirsoftsummerworkshop.model.Datas
 import com.example.simbirsoftsummerworkshop.view.fragments.BaseFragment
 import kotlinx.android.synthetic.main.fragment_search_result.*
-import kotlinx.coroutines.*
 
 class SearchResultFragment : BaseFragment<FragmentSearchResultBinding>() {
     private var searchTextView: TextView? = null
