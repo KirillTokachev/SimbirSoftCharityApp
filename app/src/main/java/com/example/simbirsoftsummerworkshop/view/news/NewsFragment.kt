@@ -1,5 +1,10 @@
 package com.example.simbirsoftsummerworkshop.view.news
 
+
+
+import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,6 +16,7 @@ import com.example.simbirsoftsummerworkshop.model.DataServise
 import com.example.simbirsoftsummerworkshop.view.fragments.BaseFragment
 import com.example.simbirsoftsummerworkshop.viewmodel.NewsViewModel
 import kotlinx.android.synthetic.main.fragment_news.*
+import kotlinx.coroutines.delay
 
 class NewsFragment : BaseFragment<FragmentNewsBinding>() {
     private val viewModel: NewsViewModel by activityViewModels()
@@ -20,6 +26,12 @@ class NewsFragment : BaseFragment<FragmentNewsBinding>() {
     override fun setUpViews() {
         setupNewsLIst()
         setUpButton()
+        setupNews()
+    }
+
+
+    private fun setupNews() {
+        setupNewsLIst()
     }
 
     private fun setupNewsLIst() {
