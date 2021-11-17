@@ -82,29 +82,32 @@ object DataServise {
 
     private var newsList = listOf<Datas.News>()
 
-    private val filterCategoriesList: List<Datas.FilterCategory> by lazy {
-        listOf(
-            Datas.FilterCategory("Дети", false),
-            Datas.FilterCategory("Взрослые", false),
-            Datas.FilterCategory("Пожилые", false),
-            Datas.FilterCategory("Животные", false),
-            Datas.FilterCategory("Мероприятия", false)
-        )
+
+    private val filterCategoriesList = listOf(
+        Datas.FilterCategory("Дети", false),
+        Datas.FilterCategory("Взрослые", false),
+        Datas.FilterCategory("Пожилые", false),
+        Datas.FilterCategory("Животные", false),
+        Datas.FilterCategory("Мероприятия", false)
+    )
+
+    fun loadCategories(): List<Datas.FilterCategory> {
+        return filterCategoriesList
     }
 
-
-    @JvmName("getEvents1")
-    fun getEvents() = events
-
-    fun initUser() = user
-
-    fun getNews() = newsList
-
-    fun getCategory() = filterCategoriesList
-
-    fun getResult(): String {
-        return KEY_WORD
+    fun saveNews(news: List<Datas.News>) {
+        newsList = news
     }
+
+    fun loadNews(): List<Datas.News> {
+        return newsList
+    }
+
+    fun loadEvent() = events
+
+    fun loadUser() = user
+
+    fun loadResult() = KEY_WORD
 
     fun sortCategory(categoryList: MutableList<Datas.FilterCategory>): MutableList<Datas.FilterCategory> {
         val sortCategoryList = categoryList.filter { it.push } as MutableList
@@ -128,13 +131,8 @@ object DataServise {
 
     private fun filterNews(filteredNewsList: MutableList<String>): MutableList<Datas.News> {
         val resultList =
-            getNews().filter { it.helpCategory == filteredNewsList }
+            newsList.filter { it.helpCategory == filteredNewsList }
         return resultList as MutableList
     }
 
-    fun saveNews(news: List<Datas.News>): List<Datas.News> {
-        this.newsList = news
-        Log.d("TEST", "news = $news")
-        return news
-    }
 }
