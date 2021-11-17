@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.simbirsoftsummerworkshop.R
 import com.example.simbirsoftsummerworkshop.databinding.FragmentEditPhotoBinding
 import com.example.simbirsoftsummerworkshop.utils.ChangePhotoEnum
-import com.example.simbirsoftsummerworkshop.viewmodel.ProfileViewModel
+import com.example.simbirsoftsummerworkshop.utils.factory
 import kotlinx.android.synthetic.main.fragment_edit_photo.*
 
 class EditPhotoFragment : DialogFragment() {
@@ -20,7 +20,7 @@ class EditPhotoFragment : DialogFragment() {
     }
 
     private lateinit var binding: FragmentEditPhotoBinding
-    private val viewModel: ProfileViewModel by activityViewModels()
+    private val viewModel: ProfileViewModel by activityViewModels { factory() }
     private val getAction = registerForActivityResult(ActivityResultContracts.GetContent()) {
         viewModel.saveUri(it)
         viewModel.saveKey(ChangePhotoEnum.UPLOAD)

@@ -14,8 +14,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.simbirsoftsummerworkshop.R
 import com.example.simbirsoftsummerworkshop.databinding.FragmentCameraBinding
+import com.example.simbirsoftsummerworkshop.utils.factory
 import com.example.simbirsoftsummerworkshop.view.fragments.BaseFragment
-import com.example.simbirsoftsummerworkshop.viewmodel.ProfileViewModel
 import kotlinx.android.synthetic.main.fragment_camera.*
 import java.io.File
 import java.nio.ByteBuffer
@@ -37,7 +37,7 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>() {
 
     private var imageCapture: ImageCapture? = null
     private var preview: Preview? = null
-    private val viewModel: ProfileViewModel by activityViewModels()
+    private val viewModel: ProfileViewModel by activityViewModels { factory() }
     private lateinit var outputDirectory: File
     private lateinit var cameraExecutor: ExecutorService
 

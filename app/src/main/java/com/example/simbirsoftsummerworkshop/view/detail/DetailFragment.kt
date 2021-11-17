@@ -5,7 +5,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.simbirsoftsummerworkshop.databinding.FragmentDetailNewsBinding
 import com.example.simbirsoftsummerworkshop.utils.Util.getTime
 import com.example.simbirsoftsummerworkshop.view.fragments.BaseFragment
-import com.example.simbirsoftsummerworkshop.viewmodel.NewsViewModel
+import com.example.simbirsoftsummerworkshop.view.news.NewsViewModel
 import kotlinx.android.synthetic.main.fragment_detail_news.*
 
 class DetailFragment : BaseFragment<FragmentDetailNewsBinding>() {

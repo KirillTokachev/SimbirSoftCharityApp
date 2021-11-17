@@ -1,4 +1,4 @@
-package com.example.simbirsoftsummerworkshop.viewmodel
+package com.example.simbirsoftsummerworkshop.view.profile
 
 import android.annotation.SuppressLint
 import android.graphics.Bitmap
@@ -11,15 +11,23 @@ import androidx.appcompat.widget.SwitchCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.simbirsoftsummerworkshop.model.Datas
-import com.example.simbirsoftsummerworkshop.model.DataServise
+import com.example.simbirsoftsummerworkshop.repository.UserRepository
+import com.example.simbirsoftsummerworkshop.repository.UsersListener
+import com.example.simbirsoftsummerworkshop.tasks.PendingResult
+import com.example.simbirsoftsummerworkshop.tasks.Result
+import com.example.simbirsoftsummerworkshop.tasks.SuccessResult
 import com.example.simbirsoftsummerworkshop.utils.ChangePhotoEnum
 import com.example.simbirsoftsummerworkshop.utils.Orientation
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.io.File
 
-class ProfileViewModel(
-    /*private val service: DataServise*/
-) : ViewModel() {
+typealias LiveResult<T> = LiveData<Result<T>>
+typealias MutableLiveResult<T> = MutableLiveData<Result<T>>
+
+class ProfileViewModel(private val repository: UserRepository) : ViewModel() {
     private val photoFile: MutableLiveData<File> by lazy {
         MutableLiveData<File>()
     }
@@ -35,16 +43,32 @@ class ProfileViewModel(
     }
     val uriPhoto: LiveData<Uri> = uriFile
 
-    private val _users = MutableLiveData<List<Datas.User>>()
-    val users: LiveData<List<Datas.User>> = _users
+    private val _userFriends = MutableLiveResult<List<Datas.User>>(PendingResult())
+
+    val usersFriends: LiveResult<List<Datas.User>> = _userFriends
+
+    private val friendsListener: UsersListener = {
+        _userFriends.postValue(SuccessResult(it))
+    }
+
+    init {
+        viewModelScope.launch {
+            delay(500)
+            repository.addListenerFriendsList(friendsListener)
+        }
+    }
 
     @SuppressLint("NewApi")
     fun setUpUser(name: TextView, date: TextView, profession: TextView, push: SwitchCompat) {
-        name.text = DataServise.initUser().name
-        date.text = DataServise
-            .initUser().dateOfBirth.format(org.threeten.bp.format.DateTimeFormatter.ISO_LOCAL_DATE)
-        profession.text = DataServise.initUser().profession
-        push.isChecked = DataServise.initUser().push
+        name.text = repository.loadUserData().name
+        date.text =
+            repository.loadUserData().dateOfBirth.format(org.threeten.bp.format.DateTimeFormatter.ISO_LOCAL_DATE)
+        profession.text = repository.loadUserData().profession
+        push.isChecked = repository.loadUserData().push
+    }
+
+    fun loadFriends(): List<Datas.User> {
+        return repository.loadUsers()
     }
 
     fun saveUri(uri: Uri) {
