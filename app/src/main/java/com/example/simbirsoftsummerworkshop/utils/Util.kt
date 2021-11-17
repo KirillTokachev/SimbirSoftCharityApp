@@ -10,18 +10,21 @@ object Util {
         dataEnd.dayOfYear - LocalDate.now().dayOfYear
 
     fun getTime(news: Datas.News): String {
-        return if (relevanceDate(news.dateEnd)) {
-            "Осталось ${isRelevanceDate(news.dateEnd)} дней " +
-                    "(${
-                        news.dateStart.format(
-                            DateTimeFormatter.ofPattern(
-                                "dd.MM"
+        return when (relevanceDate(news.dateEnd)) {
+            true -> {
+                "Осталось ${isRelevanceDate(news.dateEnd)} дней " +
+                        "(${
+                            news.dateStart.format(
+                                DateTimeFormatter.ofPattern(
+                                    "dd.MM"
+                                )
                             )
-                        )
-                    }) - " + news.dateEnd.format(DateTimeFormatter.ofPattern("dd.MM"))
-        } else {
-            "${mounts[news.dateEnd.monthValue - 1]} " +
-                    news.dateEnd.format(DateTimeFormatter.ofPattern("dd, yyyy"))
+                        }) - " + news.dateEnd.format(DateTimeFormatter.ofPattern("dd.MM"))
+            }
+            false -> {
+                "${mounts[news.dateEnd.monthValue - 1]} " +
+                        news.dateEnd.format(DateTimeFormatter.ofPattern("dd, yyyy"))
+            }
         }
     }
 

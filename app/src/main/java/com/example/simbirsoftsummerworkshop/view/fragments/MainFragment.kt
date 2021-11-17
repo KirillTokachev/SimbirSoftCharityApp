@@ -7,7 +7,6 @@ import com.example.simbirsoftsummerworkshop.R
 import com.example.simbirsoftsummerworkshop.databinding.FragmentMainBinding
 import kotlinx.android.synthetic.main.fragment_main.*
 
-
 private const val GONE = View.GONE
 private const val VISIBLE = View.VISIBLE
 
@@ -46,17 +45,8 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
     }
 
     private fun setupBottomNavVisible(visibility: Int) {
-        when (visibility) {
-            VISIBLE -> {
-                bottom_app_bar.visibility = visibility
-                bottom_navigation.visibility = visibility
-                fb_help.visibility = visibility
-            }
-            GONE -> {
-                bottom_app_bar.visibility = visibility
-                bottom_navigation.visibility = visibility
-                fb_help.visibility = visibility
-            }
-        }
+        bottom_app_bar.visibility = visibility
+        bottom_navigation.visibility = visibility
+        fb_help.visibility = visibility
     }
 }

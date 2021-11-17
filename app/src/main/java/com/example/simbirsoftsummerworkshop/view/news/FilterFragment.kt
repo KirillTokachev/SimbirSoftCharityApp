@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.fragment_filter.*
 
 class FilterFragment : BaseFragment<FragmentFilterBinding>() {
     private val viewModel: NewsViewModel by activityViewModels()
-    private var listCategory = DataServise.getCategory()
+    private var listCategory = DataServise.loadCategories()
 
     override fun getViewBinding() = FragmentFilterBinding.inflate(layoutInflater)
 

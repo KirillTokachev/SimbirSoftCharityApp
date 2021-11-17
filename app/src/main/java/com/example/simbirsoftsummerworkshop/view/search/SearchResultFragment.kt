@@ -16,19 +16,19 @@ class SearchResultFragment : BaseFragment<FragmentSearchResultBinding>() {
         setUpSearchResult()
         recycler_view_result.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = RecyclerAdapter(DataServise.getEvents())
+            adapter = RecyclerAdapter(DataServise.loadEvent())
         }
     }
 
     private fun setUpSearchResult() {
         searchTextView = search_event_result_text
-        searchTextView?.text = DataServise.getResult()
+        searchTextView?.text = DataServise.loadResult()
     }
 
     override fun onPause() {
         super.onPause()
         recycler_view_result.apply {
-            adapter = RecyclerAdapter(DataServise.getEvents())
+            adapter = RecyclerAdapter(DataServise.loadEvent())
         }
     }
 }

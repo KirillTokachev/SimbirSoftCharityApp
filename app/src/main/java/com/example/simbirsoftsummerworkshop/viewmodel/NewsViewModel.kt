@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.example.simbirsoftsummerworkshop.model.Datas
 import com.example.simbirsoftsummerworkshop.model.DataServise
 
-class NewsViewModel(/*private val service: DataServise*/) : ViewModel() {
+class NewsViewModel : ViewModel() {
     private val _category: MutableLiveData<List<Datas.FilterCategory>> by lazy {
         MutableLiveData<List<Datas.FilterCategory>>()
     }
@@ -31,9 +31,9 @@ class NewsViewModel(/*private val service: DataServise*/) : ViewModel() {
         return categorySort
     }
 
-    fun saveNews(newList: List<Datas.News>) {
-        val saveList = DataServise.saveNews(newList)
-        _listNews.value = saveList
+    fun saveNews(news: List<Datas.News>) {
+        DataServise.saveNews(news)
+        _listNews.value = DataServise.loadNews()
     }
 
     fun sortNews(categoryList: MutableList<Datas.FilterCategory>): MutableList<Datas.News> {

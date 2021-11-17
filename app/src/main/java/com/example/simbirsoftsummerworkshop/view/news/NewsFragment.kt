@@ -28,19 +28,22 @@ class NewsFragment : BaseFragment<FragmentNewsBinding>() {
     }
 
     private fun setupNewsLIst() {
-        if (DataServise.getNews().isEmpty()) {
-            val newsList = JsonAdapter().getNews(requireContext())
-            val baseAdapter = RecyclerAdapter(newsList)
-            recycler_view_news.apply {
-                layoutManager = LinearLayoutManager(context)
-                adapter = baseAdapter
-                baseAdapter.itemClickListener = { view, item, position ->
-                    findNavController().navigate(R.id.action_to_nav_graph_detail)
-                    viewModel.saveAndInitDetailNews(newsList[position])
+        when (DataServise.loadNews().isEmpty()) {
+            true -> {
+                val newsList = JsonAdapter().getNews(requireContext())
+                val baseAdapter = RecyclerAdapter(newsList)
+                recycler_view_news.apply {
+                    layoutManager = LinearLayoutManager(context)
+                    adapter = baseAdapter
+                    baseAdapter.itemClickListener = { view, item, position ->
+                        findNavController().navigate(R.id.action_to_nav_graph_detail)
+                        viewModel.saveAndInitDetailNews(newsList[position])
+                    }
                 }
             }
-        } else {
-            setUpSortedNewsLIst()
+            else -> {
+                setUpSortedNewsLIst()
+            }
         }
     }
 

@@ -69,7 +69,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
 
         recycler_view_friends.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = RecyclerAdapter(DataServise.initUser().friends)
+            adapter = RecyclerAdapter(DataServise.loadUser().friends)
         }
     }
 

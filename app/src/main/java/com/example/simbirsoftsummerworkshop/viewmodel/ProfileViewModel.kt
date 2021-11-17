@@ -17,9 +17,7 @@ import com.example.simbirsoftsummerworkshop.utils.ChangePhotoEnum
 import com.example.simbirsoftsummerworkshop.utils.Orientation
 import java.io.File
 
-class ProfileViewModel(
-    /*private val service: DataServise*/
-) : ViewModel() {
+class ProfileViewModel : ViewModel() {
     private val photoFile: MutableLiveData<File> by lazy {
         MutableLiveData<File>()
     }
@@ -40,11 +38,11 @@ class ProfileViewModel(
 
     @SuppressLint("NewApi")
     fun setUpUser(name: TextView, date: TextView, profession: TextView, push: SwitchCompat) {
-        name.text = DataServise.initUser().name
+        name.text = DataServise.loadUser().name
         date.text = DataServise
-            .initUser().dateOfBirth.format(org.threeten.bp.format.DateTimeFormatter.ISO_LOCAL_DATE)
-        profession.text = DataServise.initUser().profession
-        push.isChecked = DataServise.initUser().push
+            .loadUser().dateOfBirth.format(org.threeten.bp.format.DateTimeFormatter.ISO_LOCAL_DATE)
+        profession.text = DataServise.loadUser().profession
+        push.isChecked = DataServise.loadUser().push
     }
 
     fun saveUri(uri: Uri) {

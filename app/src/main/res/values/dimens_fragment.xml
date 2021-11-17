@@ -56,7 +56,6 @@
     <dimen name="fragment_26_dp">26dp</dimen>
     <dimen name="fragment_39_dp">39dp</dimen>
 
-
     // Text size
     <dimen name="fragment_16_sp">16sp</dimen>
     <dimen name="fragment_6_sp">6sp</dimen>

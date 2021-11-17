@@ -44,10 +44,9 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>() {
     override fun getViewBinding() = FragmentCameraBinding.inflate(layoutInflater)
 
     override fun setUpViews() {
-        if (allPermissionsGranted()) {
-            startCamera()
-        } else {
-            ActivityCompat.requestPermissions(
+        when (allPermissionsGranted()) {
+            true -> startCamera()
+            false -> ActivityCompat.requestPermissions(
                 requireActivity(), REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS
             )
         }
@@ -169,7 +168,7 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>() {
         requestCode: Int,
         permissions: Array<String>,
         grantResults:
-            IntArray
+        IntArray
     ) {
         if (requestCode == REQUEST_CODE_PERMISSIONS) {
             if (allPermissionsGranted()) {
@@ -180,7 +179,6 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>() {
                     "Permissions not granted by the user.",
                     Toast.LENGTH_SHORT
                 ).show()
-                // finish()
             }
         }
     }
