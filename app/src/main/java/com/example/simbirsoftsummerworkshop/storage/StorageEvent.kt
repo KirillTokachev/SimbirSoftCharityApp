@@ -23,7 +23,7 @@ class StorageEvent : EventRepository {
         }
     }
 
-    fun getResult(): String = KEY_WORD
+    fun loadResult() = KEY_WORD
 
     private fun loadEvents(): List<Datas.Event> = events
 

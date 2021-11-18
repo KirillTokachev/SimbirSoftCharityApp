@@ -22,7 +22,7 @@ class SearchResultFragment : BaseFragment<FragmentSearchResultBinding>() {
 
     private fun setUpSearchResult() {
         searchTextView = search_event_result_text
-        searchTextView?.text = StorageEvent().getResult()
+        searchTextView?.text = StorageEvent().loadResult()
     }
 
     override fun onPause() {

@@ -14,7 +14,7 @@ import com.example.simbirsoftsummerworkshop.tasks.SuccessResult
 import kotlinx.android.synthetic.main.fragment_help.*
 
 abstract class BaseFragment<VBinding : ViewBinding> : Fragment() {
-    private lateinit var binding: VBinding
+    lateinit var binding: VBinding
     protected abstract fun getViewBinding(): VBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,12 +42,12 @@ abstract class BaseFragment<VBinding : ViewBinding> : Fragment() {
     }
 
     fun <T> renderingResult(
-        root: View, result: Result<T>,
+        root: ViewGroup, result: Result<T>,
         onPending: () -> Unit,
         onFailure: (Exception) -> Unit,
         onSuccess: (T) -> Unit
     ) {
-        (root as ViewGroup).children.forEach { it.visibility = View.GONE }
+        (root).children.forEach { it.visibility = View.VISIBLE }
         when (result) {
             is PendingResult -> onPending()
             is FailureResult -> onFailure(result.error)

@@ -20,11 +20,9 @@ import kotlinx.coroutines.*
 
 class NewsFragment : BaseFragment<FragmentNewsBinding>() {
     private val viewModel: NewsViewModel by activityViewModels { factory() }
-    /*private var newsList = listOf<Datas.News>()*/
 
     override fun getViewBinding() = FragmentNewsBinding.inflate(layoutInflater)
 
-    @DelicateCoroutinesApi
     override fun setUpViews() {
         setUpButton()
         setupNewsLIst()
@@ -32,63 +30,65 @@ class NewsFragment : BaseFragment<FragmentNewsBinding>() {
     }
 
     private fun setupNewsLIst() {
-        if (StorageNews().loadNews().isEmpty()) {
-            StorageNews().setNews(JsonAdapter(requireContext()).getNews())
-            viewModel.news.observe(viewLifecycleOwner) { result ->
-                when (result) {
-                    is PendingResult -> {
-                        progress_bar_news.visibility = View.VISIBLE
-                        recycler_view_news.visibility = View.GONE
-                    }
-                    is FailureResult -> {
-                        progress_bar_news.visibility = View.GONE
-                        recycler_view_news.visibility = View.GONE
-                    }
-                    is SuccessResult -> {
-                        progress_bar_news.visibility = View.GONE
-                        recycler_view_news.visibility = View.VISIBLE
-                        val baseAdapter = RecyclerAdapter(result.data)
-                        recycler_view_news.apply {
-                            layoutManager = LinearLayoutManager(context)
-                            adapter = baseAdapter
-                            baseAdapter.itemClickListener = { view, item, position ->
-                                findNavController().navigate(R.id.action_to_nav_graph_detail)
-                                viewModel.saveAndInitDetailNews(result.data[position])
+        when (StorageNews().loadNews().isEmpty()) {
+            true -> {
+                StorageNews().setNews(JsonAdapter(requireContext()).getNews())
+                viewModel.news.observe(viewLifecycleOwner) { result ->
+                    renderingResult(
+                        root = binding.root,
+                        result = result,
+                        onSuccess = {
+                            progress_bar_news.visibility = View.GONE
+                            val baseAdapter = RecyclerAdapter(it)
+                            recycler_view_news.apply {
+                                layoutManager = LinearLayoutManager(context)
+                                adapter = baseAdapter
+                                baseAdapter.itemClickListener = { view, item, position ->
+                                    findNavController().navigate(R.id.action_to_nav_graph_detail)
+                                    viewModel.saveAndInitDetailNews(it[position])
+                                }
                             }
+                        },
+                        onPending = {
+                            bnv.visibility = View.GONE
+                            recycler_view_news.visibility = View.GONE
+                        },
+                        onFailure = {
+                            progress_bar_news.visibility = View.GONE
+                            bnv.visibility = View.GONE
+                            recycler_view_news.visibility = View.GONE
                         }
-
-                    }
+                    )
                 }
             }
-        } else {
-            setUpSortedNewsLIst()
-        }
-    }
-
-    private fun setUpSortedNewsLIst() {
-        StorageNews().setNews(StorageNews().loadNews())
-        viewModel.news.observe(viewLifecycleOwner) { result ->
-            when (result) {
-                is PendingResult -> {
-                    progress_bar_news.visibility = View.VISIBLE
-                    recycler_view_news.visibility = View.GONE
-                }
-                is FailureResult -> {
-                    progress_bar_news.visibility = View.GONE
-                    recycler_view_news.visibility = View.GONE
-                }
-                is SuccessResult -> {
-                    progress_bar_news.visibility = View.GONE
-                    recycler_view_news.visibility = View.VISIBLE
-                    val baseAdapter = RecyclerAdapter(result.data)
-                    recycler_view_news.apply {
-                        layoutManager = LinearLayoutManager(context)
-                        adapter = baseAdapter
-                        baseAdapter.itemClickListener = { view, item, position ->
-                            findNavController().navigate(R.id.action_to_nav_graph_detail)
-                            viewModel.saveAndInitDetailNews(result.data[position])
+            false -> {
+                StorageNews().setNews(StorageNews().loadNews())
+                viewModel.news.observe(viewLifecycleOwner) { result ->
+                    renderingResult(
+                        root = binding.root,
+                        result = result,
+                        onSuccess = {
+                            progress_bar_news.visibility = View.GONE
+                            val baseAdapter = RecyclerAdapter(it)
+                            recycler_view_news.apply {
+                                layoutManager = LinearLayoutManager(context)
+                                adapter = baseAdapter
+                                baseAdapter.itemClickListener = { view, item, position ->
+                                    findNavController().navigate(R.id.action_to_nav_graph_detail)
+                                    viewModel.saveAndInitDetailNews(it[position])
+                                }
+                            }
+                        },
+                        onPending = {
+                            bnv.visibility = View.GONE
+                            recycler_view_news.visibility = View.GONE
+                        },
+                        onFailure = {
+                            progress_bar_news.visibility = View.GONE
+                            bnv.visibility = View.GONE
+                            recycler_view_news.visibility = View.GONE
                         }
-                    }
+                    )
                 }
             }
         }

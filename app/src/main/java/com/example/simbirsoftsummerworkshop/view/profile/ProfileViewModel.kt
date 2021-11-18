@@ -1,6 +1,5 @@
 package com.example.simbirsoftsummerworkshop.view.profile
 
-import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Matrix
@@ -58,7 +57,6 @@ class ProfileViewModel(private val repository: UserRepository) : ViewModel() {
         }
     }
 
-    @SuppressLint("NewApi")
     fun setUpUser(name: TextView, date: TextView, profession: TextView, push: SwitchCompat) {
         name.text = repository.loadUserData().name
         date.text =
@@ -83,7 +81,6 @@ class ProfileViewModel(private val repository: UserRepository) : ViewModel() {
         key.value = changePhotoEnum
     }
 
-    @SuppressLint("NewApi")
     fun fileToBitmap(file: File): Bitmap {
         val bitmap: Bitmap
         val currentPhotoFile = file.toPath().toString()
