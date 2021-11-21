@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:title="Помочь \n вещами"
+        android:icon="@drawable/ic_shirt"
+        app:showAsAction="always">
+    </item>
+
+    <item android:title="Помочь /n вещами"
+        android:icon="@drawable/ic_hands"
+        app:showAsAction="always">
+    </item>
+
+    <item android:title="Помочь /n вещами"
+        android:icon="@drawable/ic_tools"
+        app:showAsAction="always">
+    </item>
+
+    <item android:title="Помочь /n вещами"
+        android:icon="@drawable/ic_coins"
+        app:showAsAction="always">
+    </item>
+
+</menu>
