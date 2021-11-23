@@ -2,16 +2,11 @@ package com.example.simbirsoftsummerworkshop.adapters
 
 import android.content.Context
 import android.content.res.AssetManager
-import android.os.AsyncTask
+
 import com.example.simbirsoftsummerworkshop.model.Datas
-import com.example.simbirsoftsummerworkshop.tasks.Result
-import com.example.simbirsoftsummerworkshop.tasks.SimpleTask
-import com.example.simbirsoftsummerworkshop.tasks.Task
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import kotlinx.coroutines.*
-import java.util.concurrent.Callable
 
 private const val NEWS_PATH = "news.json"
 private const val CATEGORY_PATH = "category.json"

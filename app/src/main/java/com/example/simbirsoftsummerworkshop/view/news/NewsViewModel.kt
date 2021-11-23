@@ -2,28 +2,20 @@ package com.example.simbirsoftsummerworkshop.view.news
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import com.example.simbirsoftsummerworkshop.dispatchers.Dispatcher
 import com.example.simbirsoftsummerworkshop.model.Datas
 import com.example.simbirsoftsummerworkshop.repository.NewsListener
 import com.example.simbirsoftsummerworkshop.repository.NewsRepository
-import com.example.simbirsoftsummerworkshop.storage.StorageNews
 import com.example.simbirsoftsummerworkshop.tasks.PendingResult
-import com.example.simbirsoftsummerworkshop.tasks.Result
 import com.example.simbirsoftsummerworkshop.tasks.SuccessResult
-import com.example.simbirsoftsummerworkshop.tasks.takeSuccess
-import com.example.simbirsoftsummerworkshop.utils.Util.filterList
-import com.example.simbirsoftsummerworkshop.utils.Util.sortCategory
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-
-typealias LiveResult<T> = LiveData<Result<T>>
-typealias MutableLiveResult<T> = MutableLiveData<Result<T>>
+import com.example.simbirsoftsummerworkshop.view.fragments.BaseViewModel
+import com.example.simbirsoftsummerworkshop.view.fragments.LiveResult
+import com.example.simbirsoftsummerworkshop.view.fragments.MutableLiveResult
 
 class NewsViewModel(
-    private val repository: NewsRepository
-) : ViewModel() {
-
+    private val repository: NewsRepository,
+    dispatcher: Dispatcher
+) : BaseViewModel(dispatcher) {
     private val _listNews = MutableLiveResult<List<Datas.News>>(PendingResult())
 
     val news: LiveResult<List<Datas.News>> = _listNews
@@ -31,10 +23,9 @@ class NewsViewModel(
     private val _category: MutableLiveData<List<Datas.FilterCategory>> by lazy {
         MutableLiveData<List<Datas.FilterCategory>>()
     }
-    val category: LiveData<List<Datas.FilterCategory>> = _category
 
     private val newsListener: NewsListener = {
-        _listNews.postValue(SuccessResult(repository.loadNews()))
+        _listNews.postValue(SuccessResult(it))
     }
 
     private val _detailNews = MutableLiveData<Datas.News>()
@@ -43,22 +34,28 @@ class NewsViewModel(
 
 
     init {
-        viewModelScope.launch {
-            delay(2000)
-            repository.addListener(newsListener)
-        }
+        repository.addListener(newsListener)
+        load()
     }
 
-    /*fun listOf(list: List<Datas.News>): Result<List<Datas.News>> {
-        return
-    }*/
+    private fun load() {
+        repository.loadNews().into(_listNews)
+    }
 
     fun saveNews(newsList: List<Datas.News>) {
         _listNews.postValue(SuccessResult(newsList))
     }
 
+    fun initNews(news: List<Datas.News>) {
+        repository.saveNews(news)
+    }
+
+    fun isEmptyNews(): List<Datas.News> {
+        return repository.isEmptyNews()
+    }
+
     fun sortNews(categoryList: List<Datas.FilterCategory>): List<Datas.News> {
-        val news = filterList(categoryList)
+        val news = repository.sortFilter(categoryList)
         saveNews(news)
         return news
     }
@@ -69,7 +66,7 @@ class NewsViewModel(
     }
 
     fun saveAndInitCategory(categoryList: List<Datas.FilterCategory>): List<Datas.FilterCategory> {
-        val categorySort = sortCategory(categoryList)
+        val categorySort = repository.categoryFilter(categoryList)
         _category.value = categorySort
         return categorySort
     }

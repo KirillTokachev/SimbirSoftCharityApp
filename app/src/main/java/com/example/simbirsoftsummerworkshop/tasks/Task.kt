@@ -1,15 +1,17 @@
 package com.example.simbirsoftsummerworkshop.tasks
 
-typealias Callback <T> = (T) -> Unit
+import com.example.simbirsoftsummerworkshop.dispatchers.Dispatcher
+
+typealias TaskListener<T> = (FinalResult<T>) -> Unit
+
+class CancelException(
+    originalException: Exception? = null
+) : Exception(originalException)
 
 interface Task<T> {
-
-    fun onSuccess(callback: Callback<T>): Task<T>
-
-    fun onFailure(callback: Callback<Throwable>): Task<T>
+    fun enqueue(dispatcher: Dispatcher, listener: TaskListener<T>)
 
     fun cancel()
 
     fun await(): T
-
 }

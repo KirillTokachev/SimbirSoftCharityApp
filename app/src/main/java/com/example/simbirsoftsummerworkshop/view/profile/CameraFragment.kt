@@ -3,8 +3,11 @@ package com.example.simbirsoftsummerworkshop.view.profile
 import android.Manifest
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.camera.core.*
 import androidx.camera.lifecycle.ProcessCameraProvider
@@ -14,7 +17,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.simbirsoftsummerworkshop.R
 import com.example.simbirsoftsummerworkshop.databinding.FragmentCameraBinding
-import com.example.simbirsoftsummerworkshop.utils.factory
+import com.example.simbirsoftsummerworkshop.factories.factory
 import com.example.simbirsoftsummerworkshop.view.fragments.BaseFragment
 import kotlinx.android.synthetic.main.fragment_camera.*
 import java.io.File
@@ -26,7 +29,7 @@ import java.util.concurrent.Executors
 
 typealias LumaListener = (luma: Double) -> Unit
 
-class CameraFragment : BaseFragment<FragmentCameraBinding>() {
+class CameraFragment : BaseFragment() {
     companion object {
         private const val TAG = "CameraX"
         private const val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS"
@@ -35,15 +38,29 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>() {
         private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
     }
 
+    private var _binding: FragmentCameraBinding? = null
+    private val binding get() = _binding!!
     private var imageCapture: ImageCapture? = null
     private var preview: Preview? = null
     private val viewModel: ProfileViewModel by activityViewModels { factory() }
     private lateinit var outputDirectory: File
     private lateinit var cameraExecutor: ExecutorService
 
-    override fun getViewBinding() = FragmentCameraBinding.inflate(layoutInflater)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentCameraBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
-    override fun setUpViews() {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setUpViews()
+    }
+
+    private fun setUpViews() {
         if (allPermissionsGranted()) {
             startCamera()
         } else {
@@ -169,7 +186,7 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>() {
         requestCode: Int,
         permissions: Array<String>,
         grantResults:
-            IntArray
+        IntArray
     ) {
         if (requestCode == REQUEST_CODE_PERMISSIONS) {
             if (allPermissionsGranted()) {

@@ -4,12 +4,10 @@ import com.example.simbirsoftsummerworkshop.model.Datas
 
 typealias CategoryListener = (List<Datas.FilterCategory>) -> Unit
 
-interface FilterCategoryRepository {
-
+interface FilterCategoryRepository : Repository {
     fun loadCategory(): List<Datas.FilterCategory>
 
     fun addListener(listener: CategoryListener)
 
     fun removeListener(listener: CategoryListener)
-
 }

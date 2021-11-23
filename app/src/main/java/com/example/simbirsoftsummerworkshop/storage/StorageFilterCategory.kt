@@ -33,5 +33,4 @@ class StorageFilterCategory : FilterCategoryRepository {
     override fun removeListener(listener: CategoryListener) {
         listeners -= listener
     }
-
 }

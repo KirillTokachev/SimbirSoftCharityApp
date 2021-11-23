@@ -8,7 +8,6 @@ import com.example.simbirsoftsummerworkshop.view.search.SearchResultFragment
 
 class ViewPagerAdapter(fm: FragmentManager, lifecycle: Lifecycle) :
     FragmentStateAdapter(fm, lifecycle) {
-
     override fun getItemCount(): Int = 2
 
     override fun createFragment(position: Int): Fragment {

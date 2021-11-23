@@ -1,7 +1,5 @@
 package com.example.simbirsoftsummerworkshop.tasks
 
-import com.example.simbirsoftsummerworkshop.model.Datas
-
 typealias Mapper<Input, Output> = (Input) -> Output
 
 sealed class Result<T> {
@@ -15,16 +13,15 @@ sealed class Result<T> {
     }
 }
 
+sealed class FinalResult<T> : Result<T>()
+
 class SuccessResult<T>(
     val data: T
-) : Result<T>()
+) : FinalResult<T>()
 
 class FailureResult<T>(
     val error: Exception
-) : Result<T>()
+) : FinalResult<T>()
 
-class PendingResult<T> : Result<T>()
+class PendingResult<T> : FinalResult<T>()
 
-fun <T> Result<T>?.takeSuccess(): T? {
-    return if (this is SuccessResult) this.data else null
-}

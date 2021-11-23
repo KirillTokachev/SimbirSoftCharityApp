@@ -1,6 +1,9 @@
 package com.example.simbirsoftsummerworkshop.view.fragments
 
+import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI.setupWithNavController
 import com.example.simbirsoftsummerworkshop.R
@@ -11,10 +14,22 @@ import kotlinx.android.synthetic.main.fragment_main.*
 private const val GONE = View.GONE
 private const val VISIBLE = View.VISIBLE
 
-class MainFragment : BaseFragment<FragmentMainBinding>() {
-    override fun getViewBinding() = FragmentMainBinding.inflate(layoutInflater)
+class MainFragment : BaseFragment() {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        val binding = FragmentMainBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
-    override fun setUpViews() {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setUpViews()
+    }
+
+    private fun setUpViews() {
         setupNav()
     }
 

@@ -1,6 +1,9 @@
 package com.example.simbirsoftsummerworkshop.view.news
 
+import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -8,31 +11,39 @@ import com.example.simbirsoftsummerworkshop.R
 import com.example.simbirsoftsummerworkshop.adapters.JsonAdapter
 import com.example.simbirsoftsummerworkshop.adapters.RecyclerAdapter
 import com.example.simbirsoftsummerworkshop.databinding.FragmentNewsBinding
-import com.example.simbirsoftsummerworkshop.model.Datas
-import com.example.simbirsoftsummerworkshop.storage.StorageNews
-import com.example.simbirsoftsummerworkshop.tasks.FailureResult
-import com.example.simbirsoftsummerworkshop.tasks.PendingResult
-import com.example.simbirsoftsummerworkshop.tasks.SuccessResult
-import com.example.simbirsoftsummerworkshop.utils.factory
+import com.example.simbirsoftsummerworkshop.factories.factory
 import com.example.simbirsoftsummerworkshop.view.fragments.BaseFragment
 import kotlinx.android.synthetic.main.fragment_news.*
-import kotlinx.coroutines.*
 
-class NewsFragment : BaseFragment<FragmentNewsBinding>() {
+class NewsFragment : BaseFragment() {
+    private var _binding: FragmentNewsBinding? = null
+    private val binding get() = _binding!!
     private val viewModel: NewsViewModel by activityViewModels { factory() }
 
-    override fun getViewBinding() = FragmentNewsBinding.inflate(layoutInflater)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentNewsBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
-    override fun setUpViews() {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setUpViews()
+    }
+
+    private fun setUpViews() {
         setUpButton()
         setupNewsLIst()
 
     }
 
     private fun setupNewsLIst() {
-        when (StorageNews().loadNews().isEmpty()) {
+        when (viewModel.isEmptyNews().isNullOrEmpty()) {
             true -> {
-                StorageNews().setNews(JsonAdapter(requireContext()).getNews())
+                viewModel.initNews(JsonAdapter(requireContext()).getNews())
                 viewModel.news.observe(viewLifecycleOwner) { result ->
                     renderingResult(
                         root = binding.root,
@@ -62,7 +73,7 @@ class NewsFragment : BaseFragment<FragmentNewsBinding>() {
                 }
             }
             false -> {
-                StorageNews().setNews(StorageNews().loadNews())
+                viewModel.initNews(JsonAdapter(requireContext()).getNews())
                 viewModel.news.observe(viewLifecycleOwner) { result ->
                     renderingResult(
                         root = binding.root,

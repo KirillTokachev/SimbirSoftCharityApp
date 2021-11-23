@@ -10,21 +10,16 @@ import androidx.appcompat.widget.SwitchCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.example.simbirsoftsummerworkshop.model.Datas
 import com.example.simbirsoftsummerworkshop.repository.UserRepository
 import com.example.simbirsoftsummerworkshop.repository.UsersListener
 import com.example.simbirsoftsummerworkshop.tasks.PendingResult
-import com.example.simbirsoftsummerworkshop.tasks.Result
 import com.example.simbirsoftsummerworkshop.tasks.SuccessResult
 import com.example.simbirsoftsummerworkshop.utils.ChangePhotoEnum
 import com.example.simbirsoftsummerworkshop.utils.Orientation
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import com.example.simbirsoftsummerworkshop.view.fragments.LiveResult
+import com.example.simbirsoftsummerworkshop.view.fragments.MutableLiveResult
 import java.io.File
-
-typealias LiveResult<T> = LiveData<Result<T>>
-typealias MutableLiveResult<T> = MutableLiveData<Result<T>>
 
 class ProfileViewModel(private val repository: UserRepository) : ViewModel() {
     private val photoFile: MutableLiveData<File> by lazy {
@@ -51,10 +46,7 @@ class ProfileViewModel(private val repository: UserRepository) : ViewModel() {
     }
 
     init {
-        viewModelScope.launch {
-            delay(500)
-            repository.addListenerFriendsList(friendsListener)
-        }
+        repository.addListenerFriendsList(friendsListener)
     }
 
     fun setUpUser(name: TextView, date: TextView, profession: TextView, push: SwitchCompat) {

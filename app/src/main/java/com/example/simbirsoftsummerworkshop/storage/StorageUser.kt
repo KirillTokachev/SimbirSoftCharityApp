@@ -99,5 +99,4 @@ class StorageUser : UserRepository {
     override fun removeUserListener(listener: UserListener) {
         userListener -= listener
     }
-
 }

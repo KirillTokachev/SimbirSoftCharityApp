@@ -10,8 +10,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.simbirsoftsummerworkshop.R
 import com.example.simbirsoftsummerworkshop.databinding.FragmentEditPhotoBinding
+import com.example.simbirsoftsummerworkshop.factories.factory
 import com.example.simbirsoftsummerworkshop.utils.ChangePhotoEnum
-import com.example.simbirsoftsummerworkshop.utils.factory
 import kotlinx.android.synthetic.main.fragment_edit_photo.*
 
 class EditPhotoFragment : DialogFragment() {

@@ -1,5 +1,9 @@
 package com.example.simbirsoftsummerworkshop.view.detail
 
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.simbirsoftsummerworkshop.databinding.FragmentDetailNewsBinding
@@ -8,12 +12,24 @@ import com.example.simbirsoftsummerworkshop.view.fragments.BaseFragment
 import com.example.simbirsoftsummerworkshop.view.news.NewsViewModel
 import kotlinx.android.synthetic.main.fragment_detail_news.*
 
-class DetailFragment : BaseFragment<FragmentDetailNewsBinding>() {
+class DetailFragment : BaseFragment() {
     private val viewModel: NewsViewModel by activityViewModels()
 
-    override fun getViewBinding() = FragmentDetailNewsBinding.inflate(layoutInflater)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val binding = FragmentDetailNewsBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
-    override fun setUpViews() {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setUpViews()
+    }
+
+    private fun setUpViews() {
         setUpButton()
         setUpDetail()
     }

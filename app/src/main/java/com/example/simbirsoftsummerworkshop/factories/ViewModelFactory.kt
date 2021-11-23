@@ -1,4 +1,4 @@
-package com.example.simbirsoftsummerworkshop.utils
+package com.example.simbirsoftsummerworkshop.factories
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
@@ -16,10 +16,10 @@ class ViewModelFactory constructor(private val app: App) :
                 ProfileViewModel(app.storageUser)
             }
             NewsViewModel::class.java -> {
-                NewsViewModel(app.storageNews)
+                NewsViewModel(app.storageNews, app.dispatcher)
             }
             HelpFragmentViewModel::class.java -> {
-                HelpFragmentViewModel(app.storageHelpCategory)
+                HelpFragmentViewModel(app.storageHelpCategory, app.dispatcher)
             }
             else -> {
                 throw IllegalArgumentException("Unknown view model class")
