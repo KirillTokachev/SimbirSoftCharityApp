@@ -13,12 +13,11 @@ import com.example.simbirsoftsummerworkshop.view.fragments.MutableLiveResult
 
 class HelpFragmentViewModel(
     private val helpRepository: HelpRepository,
-    dispatcher: Dispatcher
+    dispatcher: Dispatcher,
 ) : BaseViewModel(dispatcher) {
 
     private val _currentHelp = MutableLiveResult<List<Datas.HelpCategory>>(PendingResult())
     val currentHelp: LiveResult<List<Datas.HelpCategory>> = _currentHelp
-
 
     private val helpListener: HelpListener = {
         _currentHelp.postValue(SuccessResult(it))

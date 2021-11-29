@@ -26,10 +26,8 @@ class StorageNews(
 
     private val listeners = mutableSetOf<NewsListener>()
 
-    fun isNewsEmpty() = newsList
-
     override fun loadNews(): Task<List<Datas.News>> = taskFactory.async {
-        threadUtils.sleep(1000)
+        threadUtils.sleep(5000)
         return@async loadNewsList()
     }
 
