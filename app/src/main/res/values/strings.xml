@@ -11,7 +11,7 @@
     <string name="change_photo">Выбрать фото</string>
     <string name="take_a_photo">Сделать снимок</string>
     <string name="delete_photo">Удалить фото</string>
-    <string name="enter_help_category">Выберети категорию помощи</string>
+    <string name="enter_help_category">Выберите категорию помощи</string>
     <string name = "link_email"> <u>Напишите нам</u> </string>
     <string name = "link_site"> <u>Перейти на сайт организаии</u> </string>
     <string name="events">По мероприятиям</string>

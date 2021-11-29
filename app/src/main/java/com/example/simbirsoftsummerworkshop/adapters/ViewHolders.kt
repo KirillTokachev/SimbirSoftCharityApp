@@ -1,9 +1,7 @@
 package com.example.simbirsoftsummerworkshop.adapters
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.View
-import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.example.simbirsoftsummerworkshop.R

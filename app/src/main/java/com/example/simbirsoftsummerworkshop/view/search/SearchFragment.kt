@@ -1,5 +1,9 @@
 package com.example.simbirsoftsummerworkshop.view.search
 
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.viewpager2.widget.ViewPager2
 import com.example.simbirsoftsummerworkshop.R
 import com.example.simbirsoftsummerworkshop.adapters.ViewPagerAdapter
@@ -9,13 +13,25 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.fragment_search.*
 
-class SearchFragment : BaseFragment<FragmentSearchBinding>() {
+class SearchFragment : BaseFragment() {
     private lateinit var tabLayout: TabLayout
     private var viewPager: ViewPager2? = null
 
-    override fun getViewBinding() = FragmentSearchBinding.inflate(layoutInflater)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val binding = FragmentSearchBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
-    override fun setUpViews() {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setUpViews()
+    }
+
+    private fun setUpViews() {
         setupViewPager()
         setupTabLayout()
     }

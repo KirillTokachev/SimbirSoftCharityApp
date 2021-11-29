@@ -1,6 +1,5 @@
-package com.example.simbirsoftsummerworkshop.viewmodel
+package com.example.simbirsoftsummerworkshop.view.profile
 
-import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Matrix
@@ -12,12 +11,17 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.simbirsoftsummerworkshop.model.Datas
-import com.example.simbirsoftsummerworkshop.model.DataServise
+import com.example.simbirsoftsummerworkshop.repository.UserRepository
+import com.example.simbirsoftsummerworkshop.repository.UsersListener
+import com.example.simbirsoftsummerworkshop.tasks.PendingResult
+import com.example.simbirsoftsummerworkshop.tasks.SuccessResult
 import com.example.simbirsoftsummerworkshop.utils.ChangePhotoEnum
 import com.example.simbirsoftsummerworkshop.utils.Orientation
+import com.example.simbirsoftsummerworkshop.view.fragments.LiveResult
+import com.example.simbirsoftsummerworkshop.view.fragments.MutableLiveResult
 import java.io.File
 
-class ProfileViewModel : ViewModel() {
+class ProfileViewModel(private val repository: UserRepository) : ViewModel() {
     private val photoFile: MutableLiveData<File> by lazy {
         MutableLiveData<File>()
     }
@@ -33,16 +37,28 @@ class ProfileViewModel : ViewModel() {
     }
     val uriPhoto: LiveData<Uri> = uriFile
 
-    private val _users = MutableLiveData<List<Datas.User>>()
-    val users: LiveData<List<Datas.User>> = _users
+    private val _userFriends = MutableLiveResult<List<Datas.User>>(PendingResult())
 
-    @SuppressLint("NewApi")
+    val usersFriends: LiveResult<List<Datas.User>> = _userFriends
+
+    private val friendsListener: UsersListener = {
+        _userFriends.postValue(SuccessResult(it))
+    }
+
+    init {
+        repository.addListenerFriendsList(friendsListener)
+    }
+
     fun setUpUser(name: TextView, date: TextView, profession: TextView, push: SwitchCompat) {
-        name.text = DataServise.loadUser().name
-        date.text = DataServise
-            .loadUser().dateOfBirth.format(org.threeten.bp.format.DateTimeFormatter.ISO_LOCAL_DATE)
-        profession.text = DataServise.loadUser().profession
-        push.isChecked = DataServise.loadUser().push
+        name.text = repository.loadUserData().name
+        date.text =
+            repository.loadUserData().dateOfBirth.format(org.threeten.bp.format.DateTimeFormatter.ISO_LOCAL_DATE)
+        profession.text = repository.loadUserData().profession
+        push.isChecked = repository.loadUserData().push
+    }
+
+    fun loadFriends(): List<Datas.User> {
+        return repository.loadUsers()
     }
 
     fun saveUri(uri: Uri) {
@@ -57,7 +73,6 @@ class ProfileViewModel : ViewModel() {
         key.value = changePhotoEnum
     }
 
-    @SuppressLint("NewApi")
     fun fileToBitmap(file: File): Bitmap {
         val bitmap: Bitmap
         val currentPhotoFile = file.toPath().toString()
