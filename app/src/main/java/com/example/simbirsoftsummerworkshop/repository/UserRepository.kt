@@ -2,7 +2,7 @@ package com.example.simbirsoftsummerworkshop.repository
 
 import com.example.simbirsoftsummerworkshop.model.Datas
 
-typealias UsersListener = (List<Datas.User>) -> Unit
+typealias personsListener = (List<Datas.User>) -> Unit
 typealias UserListener = (Datas.User) -> Unit
 
 interface UserRepository : Repository {
@@ -10,11 +10,19 @@ interface UserRepository : Repository {
 
     fun loadUsers(): List<Datas.User>
 
-    fun addListenerFriendsList(listener: UsersListener)
+    override fun addListener(listener: Listener) {
+        installListenerFriendsList(listener)
+    }
 
-    fun removeFriendsListener(listener: UsersListener)
+    override fun removeListener(listener: Listener) {
+        deleteFriendsListener(listener)
+    }
 
-    fun addUserListener(listener: UserListener)
+    fun installListenerFriendsList(listener: personsListener)
 
-    fun removeUserListener(listener: UserListener)
+    fun deleteFriendsListener(listener: personsListener)
+
+    fun installUserListener(listener: UserListener)
+
+    fun deleteUserListener(listener: UserListener)
 }

@@ -7,7 +7,15 @@ typealias CategoryListener = (List<Datas.FilterCategory>) -> Unit
 interface FilterCategoryRepository : Repository {
     fun loadCategory(): List<Datas.FilterCategory>
 
-    fun addListener(listener: CategoryListener)
+    override fun addListener(listener: Listener) {
+        installListener(listener)
+    }
 
-    fun removeListener(listener: CategoryListener)
+    override fun removeListener(listener: Listener) {
+        deleteListener(listener)
+    }
+
+    fun installListener(listener: CategoryListener)
+
+    fun deleteListener(listener: CategoryListener)
 }

@@ -19,8 +19,8 @@ class JsonIntentService(
     private val context: Context
 ) : IntentService("BackgroundIntentService") {
     companion object {
-        const val ACTION = "LOAD_FILES"
-        const val EXTRA_KEY_OUT = "EXTRA_OUT"
+        const val ACTION = "Load_news_from_json_file"
+        const val EXTRA_KEY_OUT = "Extra_Out"
         const val finished = "finished"
     }
 

@@ -12,7 +12,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.simbirsoftsummerworkshop.model.Datas
 import com.example.simbirsoftsummerworkshop.repository.UserRepository
-import com.example.simbirsoftsummerworkshop.repository.UsersListener
+import com.example.simbirsoftsummerworkshop.repository.personsListener
 import com.example.simbirsoftsummerworkshop.tasks.PendingResult
 import com.example.simbirsoftsummerworkshop.tasks.SuccessResult
 import com.example.simbirsoftsummerworkshop.utils.ChangePhotoEnum
@@ -41,12 +41,12 @@ class ProfileViewModel(private val repository: UserRepository) : ViewModel() {
 
     val usersFriends: LiveResult<List<Datas.User>> = _userFriends
 
-    private val friendsListener: UsersListener = {
+    private val friendsListener: personsListener = {
         _userFriends.postValue(SuccessResult(it))
     }
 
     init {
-        repository.addListenerFriendsList(friendsListener)
+        repository.installListenerFriendsList(friendsListener)
     }
 
     fun setUpUser(name: TextView, date: TextView, profession: TextView, push: SwitchCompat) {

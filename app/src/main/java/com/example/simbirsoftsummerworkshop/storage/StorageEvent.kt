@@ -5,9 +5,6 @@ import com.example.simbirsoftsummerworkshop.repository.EventListener
 import com.example.simbirsoftsummerworkshop.repository.EventRepository
 import com.github.javafaker.Faker
 
-private const val KEY_WORD =
-    "Ключевые слова: мастер-класс, помощь\n" + "Результаты поиска: 109 мероприятий"
-
 class StorageEvent : EventRepository {
     companion object {
         private val faker = Faker()
@@ -21,24 +18,26 @@ class StorageEvent : EventRepository {
                 Datas.Event(name = faker.book().title())
             )
         }
+
+        private val KEY_WORD =
+            "Ключевые слова: мастер-класс, помощь\n" + "Результаты поиска: ${events.size} мероприятий"
     }
 
-    fun loadResult() = KEY_WORD
-
-    private fun loadEvents(): List<Datas.Event> = events
+    fun getSearchResultTitle() = KEY_WORD
 
     private val listeners = mutableSetOf<EventListener>()
 
     override fun loadEvent(): List<Datas.Event> {
-        return loadEvents()
+        return events
     }
 
-    override fun addListener(listener: EventListener) {
+    override fun installListener(listener: EventListener) {
         listeners += listener
-        listener(loadEvents())
+        listener(events)
     }
 
-    override fun removeListener(listener: EventListener) {
+    override fun deleteListener(listener: EventListener) {
         listeners -= listener
     }
+
 }

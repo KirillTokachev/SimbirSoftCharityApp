@@ -10,9 +10,17 @@ interface NewsRepository : Repository {
 
     fun saveNews(news: List<Datas.News>)
 
-    fun addListener(listener: NewsListener)
+    override fun addListener(listener: Listener) {
+        installListener(listener)
+    }
 
-    fun removeListener(listener: NewsListener)
+    override fun removeListener(listener: Listener) {
+        deleteListener(listener)
+    }
+
+    fun installListener(listener: NewsListener)
+
+    fun deleteListener(listener: NewsListener)
 
     fun sortFilter(categoryList: List<Datas.FilterCategory>): List<Datas.News>
 

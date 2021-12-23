@@ -39,7 +39,7 @@ class SearchResultFragment : Fragment() {
 
     private fun setUpSearchResult() {
         searchTextView = search_event_result_text
-        searchTextView?.text = StorageEvent().loadResult()
+        searchTextView?.text = StorageEvent().getSearchResultTitle()
     }
 
     override fun onPause() {

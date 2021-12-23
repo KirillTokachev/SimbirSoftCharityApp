@@ -8,9 +8,17 @@ typealias HelpListener = (List<Datas.HelpCategory>) -> Unit
 interface HelpRepository : Repository {
     fun loadHelpList(): Task<List<Datas.HelpCategory>>
 
-    fun addListener(listener: HelpListener)
+    override fun addListener(listener: Listener) {
+        installListener(listener)
+    }
 
-    fun removeListener(listener: HelpListener)
+    override fun removeListener(listener: Listener) {
+        deleteListener(listener)
+    }
+
+    fun installListener(listener: HelpListener)
+
+    fun deleteListener(listener: HelpListener)
 
     fun helpInit(help: List<Datas.HelpCategory>)
 }

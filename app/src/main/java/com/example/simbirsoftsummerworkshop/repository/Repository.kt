@@ -1,3 +1,9 @@
 package com.example.simbirsoftsummerworkshop.repository
 
-interface Repository
+typealias Listener = (List<Any>) -> Unit
+
+interface Repository {
+    fun addListener(listener: Listener)
+
+    fun removeListener(listener: Listener)
+}

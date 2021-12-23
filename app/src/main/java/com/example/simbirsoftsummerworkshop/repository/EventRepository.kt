@@ -7,7 +7,15 @@ typealias EventListener = (List<Datas.Event>) -> Unit
 interface EventRepository : Repository {
     fun loadEvent(): List<Datas.Event>
 
-    fun addListener(listener: EventListener)
+    override fun addListener(listener: Listener) {
+        installListener(listener)
+    }
 
-    fun removeListener(listener: EventListener)
+    override fun removeListener(listener: Listener) {
+        deleteListener(listener)
+    }
+
+    fun installListener(listener: EventListener)
+
+    fun deleteListener(listener: EventListener)
 }
