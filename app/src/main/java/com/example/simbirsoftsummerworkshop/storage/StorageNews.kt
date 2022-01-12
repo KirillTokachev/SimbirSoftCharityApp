@@ -22,24 +22,22 @@ class StorageNews(
 
     private fun getNews() = newsList
 
-    private fun loadNewsList(): List<Datas.News> = newsList
-
     private val listeners = mutableSetOf<NewsListener>()
 
     override fun loadNews(): Task<List<Datas.News>> = taskFactory.async {
         threadUtils.sleep(5000)
-        return@async loadNewsList()
+        return@async newsList
     }
 
     override fun saveNews(news: List<Datas.News>) {
         setNews(news)
     }
 
-    override fun addListener(listener: NewsListener) {
+    override fun installListener(listener: NewsListener) {
         listeners += listener
     }
 
-    override fun removeListener(listener: NewsListener) {
+    override fun deleteListener(listener: NewsListener) {
         listeners -= listener
     }
 

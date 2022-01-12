@@ -24,13 +24,13 @@ class HelpFragmentViewModel(
     }
 
     init {
-        helpRepository.addListener(helpListener)
+        helpRepository.installListener(helpListener)
         load()
     }
 
     override fun onCleared() {
         super.onCleared()
-        helpRepository.removeListener(helpListener)
+        helpRepository.deleteListener(helpListener)
     }
 
     private fun load() {
@@ -38,6 +38,6 @@ class HelpFragmentViewModel(
     }
 
     fun saveHelpCategory(help: List<Datas.HelpCategory>) {
-        helpRepository.helpInit(help)
+        helpRepository.saveData(help)
     }
 }

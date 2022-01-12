@@ -5,14 +5,14 @@ import com.example.simbirsoftsummerworkshop.tasks.Task
 
 typealias NewsListener = (List<Datas.News>) -> Unit
 
-interface NewsRepository : Repository {
+interface NewsRepository{
     fun loadNews(): Task<List<Datas.News>>
 
     fun saveNews(news: List<Datas.News>)
 
-    fun addListener(listener: NewsListener)
+    fun installListener(listener: NewsListener)
 
-    fun removeListener(listener: NewsListener)
+    fun deleteListener(listener: NewsListener)
 
     fun sortFilter(categoryList: List<Datas.FilterCategory>): List<Datas.News>
 

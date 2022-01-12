@@ -10,6 +10,8 @@ class SynchronizedTask<T>(
 ) : Task<T> {
     @Volatile
     private var cancelled = false
+
+    @Volatile
     private var executed = false
     private var listenerCalled = AtomicBoolean(false)
 

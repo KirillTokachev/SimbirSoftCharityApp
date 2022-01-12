@@ -1,7 +1,5 @@
 package com.example.simbirsoftsummerworkshop.view.news
 
-import android.content.Intent
-import android.content.IntentFilter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,19 +12,13 @@ import com.example.simbirsoftsummerworkshop.adapters.JsonAdapter
 import com.example.simbirsoftsummerworkshop.adapters.RecyclerAdapter
 import com.example.simbirsoftsummerworkshop.databinding.FragmentNewsBinding
 import com.example.simbirsoftsummerworkshop.factories.factory
-import com.example.simbirsoftsummerworkshop.json_helper.JsonAsync
-import com.example.simbirsoftsummerworkshop.json_helper.JsonIntentService
 import com.example.simbirsoftsummerworkshop.view.fragments.BaseFragment
 import kotlinx.android.synthetic.main.fragment_news.*
-import kotlinx.android.synthetic.main.fragment_news.view.*
 
 class NewsFragment : BaseFragment() {
     private var _binding: FragmentNewsBinding? = null
     private val binding get() = _binding!!
     private val viewModel: NewsViewModel by activityViewModels { factory() }
-
-    /*lateinit var broadcastReceiver: JsonIntentService.MyBroadcastReceiver
-    var isLoaded = false*/
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,16 +32,17 @@ class NewsFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         /* if (savedInstanceState == null) {
 
             // Async
-            *//*JsonAsync(view.context, this).execute()*//*
+            val jsonAsync = JsonAsync(view.context, this).execute()*//*
 
             //Executor
-            *//*JsonHelperExecutor().submit(view.context, view.news_recycler, view.progressBarNews)*//*
+            JsonHelperExecutor().submit(view.context, view.recycler_view_news, view.progressBarNews)*//*
 
             // IntentService
-            *//*JsonIntentService().start(view.context)*//*
+            JsonIntentService().start(view.context)*//*
         }*/
 
         /*broadcastReceiver =
@@ -60,6 +53,24 @@ class NewsFragment : BaseFragment() {
 
         setUpViews()
     }
+
+    // OnPause, OnResume, OnDestroy
+    /*override fun onPause() {
+        super.onPause()
+        jsonAsync(view?.context, this).cancel()
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        jsonAsync(view?.context, this).execute()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        jsonAsync(view?.context, this).cancel()
+        context?.unregisterReceiver(broadcastReceiver)
+    }*/
 
     private fun setUpViews() {
         setUpButton()

@@ -19,25 +19,24 @@ class StorageHelpCategory(
         helpCategory = help
     }
 
-    private fun loadHelpCategory(): List<Datas.HelpCategory> = helpCategory
-
     private val listeners = mutableSetOf<HelpListener>()
 
     override fun loadHelpList(): Task<List<Datas.HelpCategory>> = taskFactory.async {
         threadUtils.sleep(1000)
-        return@async loadHelpCategory()
+        return@async helpCategory
     }
 
 
-    override fun addListener(listener: HelpListener) {
+    override fun installListener(listener: HelpListener) {
         listeners += listener
     }
 
-    override fun removeListener(listener: HelpListener) {
+    override fun deleteListener(listener: HelpListener) {
         listeners -= listener
     }
 
-    override fun helpInit(help: List<Datas.HelpCategory>) {
-        return saveHelpCategory(help)
+    override fun saveData(help: List<Datas.HelpCategory>) {
+        saveHelpCategory(help)
     }
+
 }

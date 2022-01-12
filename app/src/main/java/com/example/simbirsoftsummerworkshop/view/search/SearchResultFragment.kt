@@ -19,7 +19,7 @@ class SearchResultFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val binding = FragmentSearchResultBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -39,7 +39,7 @@ class SearchResultFragment : Fragment() {
 
     private fun setUpSearchResult() {
         searchTextView = search_event_result_text
-        searchTextView?.text = StorageEvent().loadResult()
+        searchTextView?.text = StorageEvent().getSearchResultTitle()
     }
 
     override fun onPause() {

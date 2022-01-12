@@ -1,5 +1,5 @@
 package com.example.simbirsoftsummerworkshop.dispatchers
 
-interface Dispatcher {
+fun interface Dispatcher {
     fun dispatch(block: () -> Unit)
 }

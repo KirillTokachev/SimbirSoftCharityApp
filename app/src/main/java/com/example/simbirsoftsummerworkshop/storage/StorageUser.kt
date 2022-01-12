@@ -4,7 +4,7 @@ import com.example.simbirsoftsummerworkshop.R
 import com.example.simbirsoftsummerworkshop.model.Datas
 import com.example.simbirsoftsummerworkshop.repository.UserListener
 import com.example.simbirsoftsummerworkshop.repository.UserRepository
-import com.example.simbirsoftsummerworkshop.repository.UsersListener
+import com.example.simbirsoftsummerworkshop.repository.personsListener
 import org.threeten.bp.LocalDate
 
 class StorageUser : UserRepository {
@@ -68,7 +68,7 @@ class StorageUser : UserRepository {
         }
     }
 
-    private val listenerFriends = mutableSetOf<UsersListener>()
+    private val listenerFriends = mutableSetOf<personsListener>()
 
     private val userListener = mutableSetOf<UserListener>()
 
@@ -82,21 +82,21 @@ class StorageUser : UserRepository {
         return loadFriends()
     }
 
-    override fun addListenerFriendsList(listener: UsersListener) {
+    override fun installListenerFriendsList(listener: personsListener) {
         listenerFriends += listener
         listener(loadFriends())
     }
 
-    override fun removeFriendsListener(listener: UsersListener) {
+    override fun deleteFriendsListener(listener: personsListener) {
         listenerFriends -= listener
     }
 
-    override fun addUserListener(listener: UserListener) {
+    override fun installUserListener(listener: UserListener) {
         userListener += listener
         listener(loadUserData())
     }
 
-    override fun removeUserListener(listener: UserListener) {
+    override fun deleteUserListener(listener: UserListener) {
         userListener -= listener
     }
 }

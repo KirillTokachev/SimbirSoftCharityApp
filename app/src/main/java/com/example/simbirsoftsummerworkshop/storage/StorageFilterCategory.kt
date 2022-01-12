@@ -19,18 +19,16 @@ class StorageFilterCategory : FilterCategoryRepository {
 
     private val listeners = mutableSetOf<CategoryListener>()
 
-    private fun loadCategories(): List<Datas.FilterCategory> = filterCategoriesList
-
     override fun loadCategory(): List<Datas.FilterCategory> {
-        return loadCategories()
+        return filterCategoriesList
     }
 
-    override fun addListener(listener: CategoryListener) {
+    override fun installListener(listener: CategoryListener) {
         listeners += listener
-        listener(loadCategories())
+        listener(filterCategoriesList)
     }
 
-    override fun removeListener(listener: CategoryListener) {
+    override fun deleteListener(listener: CategoryListener) {
         listeners -= listener
     }
 }

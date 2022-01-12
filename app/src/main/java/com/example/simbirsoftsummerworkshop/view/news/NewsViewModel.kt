@@ -34,7 +34,7 @@ class NewsViewModel(
 
 
     init {
-        repository.addListener(newsListener)
+        repository.installListener(newsListener)
         load()
     }
 

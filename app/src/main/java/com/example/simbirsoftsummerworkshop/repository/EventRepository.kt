@@ -4,10 +4,10 @@ import com.example.simbirsoftsummerworkshop.model.Datas
 
 typealias EventListener = (List<Datas.Event>) -> Unit
 
-interface EventRepository : Repository {
+interface EventRepository {
     fun loadEvent(): List<Datas.Event>
 
-    fun addListener(listener: EventListener)
+    fun installListener(listener: EventListener)
 
-    fun removeListener(listener: EventListener)
+    fun deleteListener(listener: EventListener)
 }

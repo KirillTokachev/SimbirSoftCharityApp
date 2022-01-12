@@ -13,13 +13,13 @@ class JsonAsync(
     var callback: JsonCallBack<List<Datas.News>>?,
     private val taskFactory: TaskFactory,
     private val threadUtils: ThreadUtils
-) :
-    AsyncTask<Void, Int, List<Datas.News>>() {
+) : AsyncTask<Void, Int, List<Datas.News>>() {
     private var exception: Exception? = null
 
     override fun doInBackground(vararg params: Void?): List<Datas.News> {
         lateinit var events: List<Datas.News>
         try {
+            Thread.sleep(5000)
             events = JsonAdapter(context).getNews()
         } catch (e: Exception) {
             exception = e
@@ -29,10 +29,9 @@ class JsonAsync(
 
     override fun onPostExecute(result: List<Datas.News>?) {
         StorageNews(taskFactory, threadUtils).saveNews(result!!)
-        if (callback != null) {
-            if (exception == null) {
-                callback!!.onSuccess(result)
-            } else callback!!.onFailure(exception!!)
+        when (callback != null && exception == null) {
+            true -> callback!!.onSuccess(result)
+            else -> callback!!.onFailure(exception!!)
         }
     }
 
