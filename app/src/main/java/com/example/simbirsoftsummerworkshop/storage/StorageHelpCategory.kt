@@ -5,7 +5,6 @@ import com.example.simbirsoftsummerworkshop.factories.TaskFactory
 import com.example.simbirsoftsummerworkshop.model.Datas
 import com.example.simbirsoftsummerworkshop.repository.HelpListener
 import com.example.simbirsoftsummerworkshop.repository.HelpRepository
-import com.example.simbirsoftsummerworkshop.repository.Listener
 import com.example.simbirsoftsummerworkshop.tasks.Task
 
 class StorageHelpCategory(
@@ -36,8 +35,8 @@ class StorageHelpCategory(
         listeners -= listener
     }
 
-    override fun helpInit(help: List<Datas.HelpCategory>) {
-        return saveHelpCategory(help)
+    override fun saveData(help: List<Datas.HelpCategory>) {
+        saveHelpCategory(help)
     }
 
 }

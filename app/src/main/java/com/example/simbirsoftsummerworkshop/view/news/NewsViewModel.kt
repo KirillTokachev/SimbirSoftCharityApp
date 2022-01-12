@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.simbirsoftsummerworkshop.dispatchers.Dispatcher
 import com.example.simbirsoftsummerworkshop.model.Datas
-import com.example.simbirsoftsummerworkshop.repository.Listener
 import com.example.simbirsoftsummerworkshop.repository.NewsListener
 import com.example.simbirsoftsummerworkshop.repository.NewsRepository
 import com.example.simbirsoftsummerworkshop.tasks.PendingResult
@@ -35,7 +34,7 @@ class NewsViewModel(
 
 
     init {
-        repository.addListener(newsListener as Listener)
+        repository.installListener(newsListener)
         load()
     }
 

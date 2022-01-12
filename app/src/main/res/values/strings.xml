@@ -36,4 +36,9 @@
     <string name="text_view_auth_text">Или авторизуйтесь через приложение</string>
     <string name="how_to_password"> <u>Забыли пароль?</u> </string>
     <string name="registration"><u>Регистрация</u> </string>
+    <string name="authorization">Авторизация</string>
+    <string name="auth_title_text">Для участия в мероприятиях войдите в приложение через социальые сети</string>
+    <string name="auth_in_app">Или авторизуйтесь через приложение</string>
+    <string name="e_mail_text">E-mail</string>
+    <string name="password_text">Пароль</string>
 </resources>

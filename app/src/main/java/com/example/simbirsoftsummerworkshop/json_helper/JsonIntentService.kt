@@ -16,12 +16,12 @@ import com.example.simbirsoftsummerworkshop.storage.StorageNews
 class JsonIntentService(
     private val taskFactory: TaskFactory,
     private val threadUtils: ThreadUtils,
-    private val context: Context
+    context: Context
 ) : IntentService("BackgroundIntentService") {
     companion object {
         const val ACTION = "Load_news_from_json_file"
         const val EXTRA_KEY_OUT = "Extra_Out"
-        const val finished = "finished"
+        const val FINISHED = "finished"
     }
 
     private val adapter = RecyclerAdapter(JsonAdapter(context).getNews())
@@ -39,7 +39,7 @@ class JsonIntentService(
         val response = Intent()
         response.action = ACTION
         response.addCategory(Intent.CATEGORY_DEFAULT)
-        response.putExtra(EXTRA_KEY_OUT, finished)
+        response.putExtra(EXTRA_KEY_OUT, FINISHED)
         sendBroadcast(response)
     }
 
