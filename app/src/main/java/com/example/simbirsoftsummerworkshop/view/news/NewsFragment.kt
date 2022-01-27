@@ -24,7 +24,7 @@ class NewsFragment : BaseFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentNewsBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -32,50 +32,12 @@ class NewsFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-        /* if (savedInstanceState == null) {
-
-            // Async
-            val jsonAsync = JsonAsync(view.context, this).execute()*//*
-
-            //Executor
-            JsonHelperExecutor().submit(view.context, view.recycler_view_news, view.progressBarNews)*//*
-
-            // IntentService
-            JsonIntentService().start(view.context)*//*
-        }*/
-
-        /*broadcastReceiver =
-            JsonIntentService.MyBroadcastReceiver(view.recycler_view_news, view.progress_bar_news)
-        val intentFilter = IntentFilter(JsonIntentService.ACTION)
-        intentFilter.addCategory(Intent.CATEGORY_DEFAULT)
-        context?.registerReceiver(broadcastReceiver, intentFilter)*/
-
         setUpViews()
     }
-
-    // OnPause, OnResume, OnDestroy
-    /*override fun onPause() {
-        super.onPause()
-        jsonAsync(view?.context, this).cancel()
-
-    }
-
-    override fun onResume() {
-        super.onResume()
-        jsonAsync(view?.context, this).execute()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        jsonAsync(view?.context, this).cancel()
-        context?.unregisterReceiver(broadcastReceiver)
-    }*/
 
     private fun setUpViews() {
         setUpButton()
         setupNewsLIst()
-
     }
 
     private fun setupNewsLIst() {

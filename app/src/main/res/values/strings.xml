@@ -36,4 +36,11 @@
     <string name="text_view_auth_text">Или авторизуйтесь через приложение</string>
     <string name="how_to_password"> <u>Забыли пароль?</u> </string>
     <string name="registration"><u>Регистрация</u> </string>
+    <string name="authorization">Авторизация</string>
+    <string name="email">E-mail</string>
+    <string name="password_auth">Пароль</string>
+    <string name="search">Search</string>
+    <string name="search_clue_text1">Напишите в строке поиска название мероприятия или ключевые слова.</string>
+    <string name="text_view_1">Например,</string>
+    <string name="text_view_2">мастер-класс, помощь</string>
 </resources>

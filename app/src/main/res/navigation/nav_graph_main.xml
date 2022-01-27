@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph_main.xml"
-    app:startDestination="@id/helpFragment">
+    app:startDestination="@id/authorizationFragment">
 
     <fragment
         android:id="@+id/helpFragment"
@@ -18,5 +18,14 @@
     <include app:graph="@navigation/nav_graph_search" />
 
     <include app:graph="@navigation/nav_graph_detail" />
+    <fragment
+        android:id="@+id/authorizationFragment"
+        android:name="com.example.simbirsoftsummerworkshop.view.authorization.AuthorizationFragment"
+        android:label="fragment_authorization"
+        tools:layout="@layout/fragment_authorization" >
+        <action
+            android:id="@+id/action_authorizationFragment_to_helpFragment"
+            app:destination="@id/helpFragment" />
+    </fragment>
 
 </navigation>

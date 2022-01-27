@@ -16,4 +16,5 @@ class App : Application() {
     val storageHelpCategory = StorageHelpCategory(taskFactory, threadUtils)
     val storageNews = StorageNews(taskFactory, threadUtils)
     val storageUser = StorageUser()
+    val storageEvent = StorageEvent()
 }

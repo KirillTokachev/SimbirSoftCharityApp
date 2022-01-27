@@ -4,7 +4,6 @@ import com.example.simbirsoftsummerworkshop.dispatchers.Dispatcher
 import com.example.simbirsoftsummerworkshop.model.Datas
 import com.example.simbirsoftsummerworkshop.repository.HelpListener
 import com.example.simbirsoftsummerworkshop.repository.HelpRepository
-import com.example.simbirsoftsummerworkshop.repository.Listener
 import com.example.simbirsoftsummerworkshop.tasks.PendingResult
 import com.example.simbirsoftsummerworkshop.tasks.SuccessResult
 import com.example.simbirsoftsummerworkshop.view.fragments.BaseViewModel
@@ -25,13 +24,13 @@ class HelpFragmentViewModel(
     }
 
     init {
-        helpRepository.addListener(helpListener as Listener)
+        helpRepository.addListener(helpListener)
         load()
     }
 
     override fun onCleared() {
         super.onCleared()
-        helpRepository.removeListener(helpListener as Listener)
+        helpRepository.removeListener(helpListener)
     }
 
     private fun load() {

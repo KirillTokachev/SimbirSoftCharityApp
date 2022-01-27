@@ -3,41 +3,42 @@ package com.example.simbirsoftsummerworkshop.storage
 import com.example.simbirsoftsummerworkshop.model.Datas
 import com.example.simbirsoftsummerworkshop.repository.EventListener
 import com.example.simbirsoftsummerworkshop.repository.EventRepository
-import com.github.javafaker.Faker
 
 class StorageEvent : EventRepository {
-    companion object {
-        private val faker = Faker()
 
-        private val events: List<Datas.Event> by lazy {
-            listOf(
-                Datas.Event(name = faker.book().title()),
-                Datas.Event(name = faker.book().title()),
-                Datas.Event(name = faker.book().title()),
-                Datas.Event(name = faker.book().title()),
-                Datas.Event(name = faker.book().title())
-            )
-        }
+    private var _events = listOf<Datas.Event>()
+    private var _searchEvent = listOf<Datas.Event>()
 
-        private val KEY_WORD =
-            "Ключевые слова: мастер-класс, помощь\n" + "Результаты поиска: ${events.size} мероприятий"
+    override fun getSearchResultTitle(): String {
+        return "Ключевые слова: мастер-класс, помощь\nРезультаты поиска: ${_events.size} мероприятий"
     }
 
-    fun getSearchResultTitle() = KEY_WORD
+    override fun clearEvents() {
+        _events.toMutableList().clear()
+        _searchEvent.toMutableList().clear()
+    }
 
     private val listeners = mutableSetOf<EventListener>()
 
     override fun loadEvent(): List<Datas.Event> {
-        return events
+        return _events
     }
 
-    override fun installListener(listener: EventListener) {
+    override fun loadSearchEvent(): List<Datas.Event> {
+        return _searchEvent
+    }
+
+    override fun saveSearchEvent(events: List<Datas.Event>) {
+        _searchEvent = events
+    }
+
+    override fun saveEvent(events: List<Datas.Event>) {
+        _events = events
+    }
+
+    override fun addListener(listener: EventListener) {
         listeners += listener
-        listener(events)
-    }
-
-    override fun deleteListener(listener: EventListener) {
-        listeners -= listener
+        listener(_events)
     }
 
 }

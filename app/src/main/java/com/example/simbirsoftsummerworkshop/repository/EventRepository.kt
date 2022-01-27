@@ -4,18 +4,19 @@ import com.example.simbirsoftsummerworkshop.model.Datas
 
 typealias EventListener = (List<Datas.Event>) -> Unit
 
-interface EventRepository : Repository {
+interface EventRepository {
     fun loadEvent(): List<Datas.Event>
 
-    override fun addListener(listener: Listener) {
-        installListener(listener)
-    }
+    fun loadSearchEvent(): List<Datas.Event>
 
-    override fun removeListener(listener: Listener) {
-        deleteListener(listener)
-    }
+    fun saveSearchEvent(events: List<Datas.Event>)
 
-    fun installListener(listener: EventListener)
+    fun addListener(listener: EventListener)
 
-    fun deleteListener(listener: EventListener)
+    fun saveEvent(events: List<Datas.Event>)
+
+    fun getSearchResultTitle(): String
+
+    fun clearEvents()
+
 }

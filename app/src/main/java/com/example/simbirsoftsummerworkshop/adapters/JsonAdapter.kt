@@ -31,6 +31,16 @@ class JsonAdapter(var context: Context) {
         return category.toList()
     }
 
+    fun getEvents(): List<Datas.Event> {
+        val events = mutableListOf<Datas.Event>()
+        val jsonNews = context.assets.readFile(NEWS_PATH)
+        val news = newsAdapter.fromJson(jsonNews)!!.forEach {
+            val event = Datas.Event(it.name)
+            events.add(event)
+        }
+        return events
+    }
+
     private fun AssetManager.readFile(fileName: String): String =
         open(fileName).bufferedReader().use { it.readText() }
 }

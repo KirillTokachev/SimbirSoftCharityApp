@@ -55,6 +55,7 @@ class MainFragment : BaseFragment() {
             when (destination.id) {
                 R.id.cameraFragment -> setupBottomNavVisible(GONE)
                 R.id.detailFragment -> setupBottomNavVisible(GONE)
+                R.id.authorizationFragment -> setupBottomNavVisible(GONE)
                 else -> setupBottomNavVisible(VISIBLE)
             }
         }

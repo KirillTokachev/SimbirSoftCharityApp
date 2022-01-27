@@ -5,20 +5,12 @@ import com.example.simbirsoftsummerworkshop.tasks.Task
 
 typealias HelpListener = (List<Datas.HelpCategory>) -> Unit
 
-interface HelpRepository : Repository {
+interface HelpRepository {
     fun loadHelpList(): Task<List<Datas.HelpCategory>>
 
-    override fun addListener(listener: Listener) {
-        installListener(listener)
-    }
+    fun addListener(listener: HelpListener)
 
-    override fun removeListener(listener: Listener) {
-        deleteListener(listener)
-    }
-
-    fun installListener(listener: HelpListener)
-
-    fun deleteListener(listener: HelpListener)
+    fun removeListener(listener: HelpListener)
 
     fun helpInit(help: List<Datas.HelpCategory>)
 }

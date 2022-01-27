@@ -29,7 +29,6 @@
             app:labelVisibilityMode="labeled"
             android:background="@android:color/transparent"
             android:layout_marginEnd="@dimen/fragment_16_dp"/>
-
     </com.google.android.material.bottomappbar.BottomAppBar>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

@@ -33,11 +33,11 @@ class StorageNews(
         setNews(news)
     }
 
-    override fun installListener(listener: NewsListener) {
+    override fun addListener(listener: NewsListener) {
         listeners += listener
     }
 
-    override fun deleteListener(listener: NewsListener) {
+    override fun removeListener(listener: NewsListener) {
         listeners -= listener
     }
 

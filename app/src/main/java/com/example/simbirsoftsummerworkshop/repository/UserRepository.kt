@@ -5,18 +5,10 @@ import com.example.simbirsoftsummerworkshop.model.Datas
 typealias personsListener = (List<Datas.User>) -> Unit
 typealias UserListener = (Datas.User) -> Unit
 
-interface UserRepository : Repository {
+interface UserRepository {
     fun loadUserData(): Datas.User
 
     fun loadUsers(): List<Datas.User>
-
-    override fun addListener(listener: Listener) {
-        installListenerFriendsList(listener)
-    }
-
-    override fun removeListener(listener: Listener) {
-        deleteFriendsListener(listener)
-    }
 
     fun installListenerFriendsList(listener: personsListener)
 
