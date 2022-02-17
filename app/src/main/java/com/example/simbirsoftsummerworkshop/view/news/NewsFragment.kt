@@ -18,10 +18,10 @@ import com.example.simbirsoftsummerworkshop.view.fragments.BaseFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.functions.BiFunction
 import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.PublishSubject
 import kotlinx.android.synthetic.main.fragment_news.*
-import kotlin.properties.Delegates
 
 class NewsFragment : BaseFragment() {
     private var mCount = 0
@@ -36,9 +36,44 @@ class NewsFragment : BaseFragment() {
     ): View {
         _binding = FragmentNewsBinding.inflate(inflater, container, false)
         if (viewModel.isEmptyNews()) {
-            viewModel.initNews(JsonAdapter(requireContext()).getNews())
+            val observable1 = Observable.just(JsonAdapter(requireContext()).getNews())
+            observable1.subscribeOn(Schedulers.newThread())
+                .doOnNext {
+                    Log.d("TestCurrentThread", "Current thread " + Thread.currentThread().name)
+                }
+                .observeOn(Schedulers.newThread())
+
+            val observable2 = Observable.just("Hello")
+            observable2.subscribeOn(Schedulers.newThread())
+                .doOnNext {
+                    Log.d("TestCurrentThread", "Current thread " + Thread.currentThread().name)
+                }
+                .observeOn(Schedulers.newThread())
+
+            Observable.combineLatest(
+                observable1,
+                observable2,
+                BiFunction { t1, t2 ->
+                    for (i in t1.indices) {
+                        t1[i].name + t2
+                    }
+                    t1
+                }
+            )
+                .subscribeOn(Schedulers.io())
+                .subscribeOn(Schedulers.newThread())
+                .doAfterNext {
+                    Log.d("TestCurrentThread", "Current thread " + Thread.currentThread().name)
+                }
+                .observeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnNext {
+                    Log.d("TestCurrentThread", "Current thread " + Thread.currentThread().name)
+                }
+                .subscribe {
+                    viewModel.initNews(it)
+                }
         }
-        Log.d("Test", "OnCreateView")
         return binding.root
     }
 
@@ -46,7 +81,6 @@ class NewsFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         setupViews()
         setupNewsLIst()
-        Log.d("Test", "onViewCreated")
     }
 
     private fun showBadge(count: Int, news: List<Datas.News>) {
@@ -73,7 +107,7 @@ class NewsFragment : BaseFragment() {
                 badge.number = mCount
             },
             {
-                Log.d("Test", "OnError: $it")
+                throw IllegalArgumentException("$it")
             },
             {
                 Log.d("Test", "OnComplete")
@@ -122,5 +156,4 @@ class NewsFragment : BaseFragment() {
             findNavController().navigate(R.id.action_newsFragment_to_filterFragment)
         }
     }
-
 }
