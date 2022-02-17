@@ -1,7 +1,6 @@
 package com.example.simbirsoftsummerworkshop.view.authorization
 
 import android.os.Bundle
-
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +15,6 @@ import io.reactivex.rxjava3.functions.BiFunction
 import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_authorization.*
 
-
 const val MIN_SYMBOLS = 5
 
 class AuthorizationFragment : BaseFragment() {
@@ -24,7 +22,8 @@ class AuthorizationFragment : BaseFragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentAuthorizationBinding.inflate(inflater, container, false)

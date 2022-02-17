@@ -40,5 +40,4 @@ class StorageEvent : EventRepository {
         listeners += listener
         listener(_events)
     }
-
 }

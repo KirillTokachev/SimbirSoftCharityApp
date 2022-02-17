@@ -2,7 +2,6 @@ package com.example.simbirsoftsummerworkshop.adapters
 
 import android.content.Context
 import android.content.res.AssetManager
-
 import com.example.simbirsoftsummerworkshop.model.Datas
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types

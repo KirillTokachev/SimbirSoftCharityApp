@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import com.example.simbirsoftsummerworkshop.R
 import com.example.simbirsoftsummerworkshop.databinding.FragmentDetailNewsBinding
 import com.example.simbirsoftsummerworkshop.utils.Util.getTime
 import com.example.simbirsoftsummerworkshop.view.fragments.BaseFragment

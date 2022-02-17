@@ -1,7 +1,6 @@
 package com.example.simbirsoftsummerworkshop.utils
 
 import com.example.simbirsoftsummerworkshop.model.Datas
-import com.example.simbirsoftsummerworkshop.storage.StorageNews
 import org.threeten.bp.LocalDate
 import org.threeten.bp.format.DateTimeFormatter
 
@@ -13,16 +12,16 @@ object Util {
     fun getTime(news: Datas.News): String {
         return if (relevanceDate(news.dateEnd)) {
             "Осталось ${isRelevanceDate(news.dateEnd)} дней " +
-                    "(${
-                        news.dateStart.format(
-                            DateTimeFormatter.ofPattern(
-                                "dd.MM"
-                            )
-                        )
-                    }) - " + news.dateEnd.format(DateTimeFormatter.ofPattern("dd.MM"))
+                "(${
+                news.dateStart.format(
+                    DateTimeFormatter.ofPattern(
+                        "dd.MM"
+                    )
+                )
+                }) - " + news.dateEnd.format(DateTimeFormatter.ofPattern("dd.MM"))
         } else {
             "${mounts[news.dateEnd.monthValue - 1]} " +
-                    news.dateEnd.format(DateTimeFormatter.ofPattern("dd, yyyy"))
+                news.dateEnd.format(DateTimeFormatter.ofPattern("dd, yyyy"))
         }
     }
 

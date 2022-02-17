@@ -1,7 +1,6 @@
 package com.example.simbirsoftsummerworkshop
 
 import android.os.Bundle
-import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -27,5 +26,4 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         return mainNavController.navigateUp() || super.onSupportNavigateUp()
     }
-
 }

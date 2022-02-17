@@ -10,7 +10,6 @@ import com.example.simbirsoftsummerworkshop.view.fragments.BaseViewModel
 import com.example.simbirsoftsummerworkshop.view.fragments.LiveResult
 import com.example.simbirsoftsummerworkshop.view.fragments.MutableLiveResult
 
-
 class HelpFragmentViewModel(
     private val helpRepository: HelpRepository,
     dispatcher: Dispatcher,

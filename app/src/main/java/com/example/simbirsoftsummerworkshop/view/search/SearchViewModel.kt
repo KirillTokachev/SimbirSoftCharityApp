@@ -37,5 +37,4 @@ class SearchViewModel(
     fun loadResultSearchCount(): String {
         return repository.getSearchResultTitle()
     }
-
 }

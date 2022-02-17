@@ -13,4 +13,3 @@ class FailureResult<T>(
 ) : FinalResult<T>()
 
 class PendingResult<T> : FinalResult<T>()
-

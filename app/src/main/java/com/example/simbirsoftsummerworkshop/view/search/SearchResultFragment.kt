@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.simbirsoftsummerworkshop.adapters.JsonAdapter
 import com.example.simbirsoftsummerworkshop.adapters.RecyclerAdapter
 import com.example.simbirsoftsummerworkshop.databinding.FragmentSearchResultBinding
 import com.example.simbirsoftsummerworkshop.factories.factory
