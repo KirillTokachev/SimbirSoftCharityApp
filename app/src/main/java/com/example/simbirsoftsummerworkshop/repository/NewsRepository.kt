@@ -18,5 +18,5 @@ interface NewsRepository {
 
     fun categoryFilter(categoryList: List<Datas.FilterCategory>): List<Datas.FilterCategory>
 
-    fun isEmptyNews(): List<Datas.News>
+    fun isEmptyNews(): Boolean
 }

@@ -30,7 +30,8 @@ sealed class Datas {
         val newsImages: List<String>,
         val address: String,
         val phone: String,
-        val company: String
+        val company: String,
+        var read: Boolean = false
     ) : Datas()
 
     data class User(

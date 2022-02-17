@@ -49,8 +49,8 @@ class StorageNews(
         return sortCategory(categoryList)
     }
 
-    override fun isEmptyNews(): List<Datas.News> {
-        return getNews()
+    override fun isEmptyNews(): Boolean {
+        return newsList.isEmpty()
     }
 
     private fun sortCategory(categoryList: List<Datas.FilterCategory>): List<Datas.FilterCategory> {

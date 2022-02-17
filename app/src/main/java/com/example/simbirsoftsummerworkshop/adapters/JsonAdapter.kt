@@ -34,7 +34,7 @@ class JsonAdapter(var context: Context) {
     fun getEvents(): List<Datas.Event> {
         val events = mutableListOf<Datas.Event>()
         val jsonNews = context.assets.readFile(NEWS_PATH)
-        val news = newsAdapter.fromJson(jsonNews)!!.forEach {
+        newsAdapter.fromJson(jsonNews)!!.forEach {
             val event = Datas.Event(it.name)
             events.add(event)
         }

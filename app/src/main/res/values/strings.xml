@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SimbirSoftSummerWorkshop</string>
+    <string name="app_name">SimbirSoftCharityApp</string>
     <string name="title_activity_splash">Хочу помочь</string>
     <!-- Strings used for fragments for navigation -->
     <string name="next">Next</string>

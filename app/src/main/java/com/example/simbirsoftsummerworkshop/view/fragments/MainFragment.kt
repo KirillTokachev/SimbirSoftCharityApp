@@ -46,6 +46,7 @@ class MainFragment : BaseFragment() {
             selectedItemId = R.id.helpFragment
         }
 
+
         fb_help.setOnClickListener {
             navController?.navigate(R.id.helpFragment)
             bottom_navigation.selectedItemId = R.id.helpFragment
