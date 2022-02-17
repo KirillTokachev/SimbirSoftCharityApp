@@ -34,5 +34,4 @@ class JsonAsync(
             else -> callback!!.onFailure(exception!!)
         }
     }
-
 }

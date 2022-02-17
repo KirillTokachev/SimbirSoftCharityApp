@@ -18,5 +18,4 @@ interface EventRepository {
     fun getSearchResultTitle(): String
 
     fun clearEvents()
-
 }

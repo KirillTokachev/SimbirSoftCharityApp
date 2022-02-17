@@ -40,20 +40,22 @@ class SearchFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         setUpViews()
 
-        Observable.create(ObservableOnSubscribe<String> { emitter ->
-            search_view.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-                override fun onQueryTextSubmit(query: String?): Boolean {
-                    emitter.onNext(query!!)
-                    search_view.clearFocus()
-                    return false
-                }
+        Observable.create(
+            ObservableOnSubscribe<String> { emitter ->
+                search_view.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                    override fun onQueryTextSubmit(query: String?): Boolean {
+                        emitter.onNext(query!!)
+                        search_view.clearFocus()
+                        return false
+                    }
 
-                override fun onQueryTextChange(newText: String?): Boolean {
-                    emitter.onNext(newText!!)
-                    return false
-                }
-            })
-        })
+                    override fun onQueryTextChange(newText: String?): Boolean {
+                        emitter.onNext(newText!!)
+                        return false
+                    }
+                })
+            }
+        )
             .subscribeOn(Schedulers.io())
             .map { text -> text.lowercase().trim() }
             .debounce(500, TimeUnit.MILLISECONDS)
@@ -63,9 +65,11 @@ class SearchFragment : BaseFragment() {
 
                 when (it.isNotBlank()) {
                     true -> {
-                        viewModel.saveSearchEvent(viewModel.loadEvents().filter { event ->
-                            event.name.contains(it, true)
-                        })
+                        viewModel.saveSearchEvent(
+                            viewModel.loadEvents().filter { event ->
+                                event.name.contains(it, true)
+                            }
+                        )
                         viewModel.saveEvents(viewModel.loadSearchEvent())
                     }
                     false -> {
@@ -101,6 +105,4 @@ class SearchFragment : BaseFragment() {
         val adapter = ViewPagerAdapter(childFragmentManager, lifecycle)
         viewPager?.adapter = adapter
     }
-
-
 }

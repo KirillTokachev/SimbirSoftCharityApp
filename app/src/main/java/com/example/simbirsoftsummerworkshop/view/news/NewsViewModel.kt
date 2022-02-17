@@ -31,7 +31,6 @@ class NewsViewModel(
 
     val detailNews: LiveData<Datas.News> = _detailNews
 
-
     init {
         repository.addListener(newsListener)
         load()

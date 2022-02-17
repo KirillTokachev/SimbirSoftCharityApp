@@ -186,7 +186,7 @@ class CameraFragment : BaseFragment() {
         requestCode: Int,
         permissions: Array<String>,
         grantResults:
-        IntArray
+            IntArray
     ) {
         if (requestCode == REQUEST_CODE_PERMISSIONS) {
             if (allPermissionsGranted()) {

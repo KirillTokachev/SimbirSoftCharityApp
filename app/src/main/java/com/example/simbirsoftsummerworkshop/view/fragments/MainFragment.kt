@@ -10,7 +10,6 @@ import com.example.simbirsoftsummerworkshop.R
 import com.example.simbirsoftsummerworkshop.databinding.FragmentMainBinding
 import kotlinx.android.synthetic.main.fragment_main.*
 
-
 private const val GONE = View.GONE
 private const val VISIBLE = View.VISIBLE
 
@@ -45,7 +44,6 @@ class MainFragment : BaseFragment() {
             menu.getItem(2).isEnabled = false
             selectedItemId = R.id.helpFragment
         }
-
 
         fb_help.setOnClickListener {
             navController?.navigate(R.id.helpFragment)
