@@ -34,7 +34,7 @@ class StorageHelpCategory(
         listeners -= listener
     }
 
-    override fun helpInit(help: List<Datas.HelpCategory>) {
-        return saveHelpCategory(help)
+    override fun saveData(help: List<Datas.HelpCategory>) {
+        saveHelpCategory(help)
     }
 }
