@@ -5,7 +5,7 @@ import com.example.simbirsoftsummerworkshop.model.Datas
 typealias personsListener = (List<Datas.User>) -> Unit
 typealias UserListener = (Datas.User) -> Unit
 
-interface UserRepository{
+interface UserRepository {
     fun loadUserData(): Datas.User
 
     fun loadUsers(): List<Datas.User>

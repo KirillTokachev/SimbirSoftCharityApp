@@ -17,7 +17,6 @@ class NewsViewModel(
     dispatcher: Dispatcher
 ) : BaseViewModel(dispatcher) {
     private val _listNews = MutableLiveResult<List<Datas.News>>(PendingResult())
-
     val news: LiveResult<List<Datas.News>> = _listNews
 
     private val _category: MutableLiveData<List<Datas.FilterCategory>> by lazy {
@@ -32,9 +31,8 @@ class NewsViewModel(
 
     val detailNews: LiveData<Datas.News> = _detailNews
 
-
     init {
-        repository.installListener(newsListener)
+        repository.addListener(newsListener)
         load()
     }
 
@@ -50,7 +48,7 @@ class NewsViewModel(
         repository.saveNews(news)
     }
 
-    fun isEmptyNews(): List<Datas.News> {
+    fun isEmptyNews(): Boolean {
         return repository.isEmptyNews()
     }
 

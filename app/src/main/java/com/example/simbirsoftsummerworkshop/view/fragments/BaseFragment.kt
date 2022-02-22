@@ -9,7 +9,8 @@ import com.example.simbirsoftsummerworkshop.tasks.*
 abstract class BaseFragment : Fragment() {
 
     fun <T> renderingResult(
-        root: ViewGroup, result: Result<T>,
+        root: ViewGroup,
+        result: Result<T>,
         onPending: () -> Unit,
         onFailure: (Exception) -> Unit,
         onSuccess: (T) -> Unit

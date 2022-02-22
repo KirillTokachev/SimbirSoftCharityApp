@@ -7,6 +7,7 @@ import com.example.simbirsoftsummerworkshop.App
 import com.example.simbirsoftsummerworkshop.view.help.HelpFragmentViewModel
 import com.example.simbirsoftsummerworkshop.view.news.NewsViewModel
 import com.example.simbirsoftsummerworkshop.view.profile.ProfileViewModel
+import com.example.simbirsoftsummerworkshop.view.search.SearchViewModel
 
 class ViewModelFactory constructor(private val app: App) :
     ViewModelProvider.Factory {
@@ -20,6 +21,9 @@ class ViewModelFactory constructor(private val app: App) :
             }
             HelpFragmentViewModel::class.java -> {
                 HelpFragmentViewModel(app.storageHelpCategory, app.dispatcher)
+            }
+            SearchViewModel::class.java -> {
+                SearchViewModel(app.storageEvent)
             }
             else -> {
                 throw IllegalArgumentException("Unknown view model class")

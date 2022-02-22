@@ -26,6 +26,5 @@ class ExecutorServiceTaskFactory(
         override fun doCancel() {
             future?.cancel(true)
         }
-
     }
 }

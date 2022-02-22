@@ -10,7 +10,6 @@ import com.example.simbirsoftsummerworkshop.view.fragments.BaseViewModel
 import com.example.simbirsoftsummerworkshop.view.fragments.LiveResult
 import com.example.simbirsoftsummerworkshop.view.fragments.MutableLiveResult
 
-
 class HelpFragmentViewModel(
     private val helpRepository: HelpRepository,
     dispatcher: Dispatcher,
@@ -24,13 +23,13 @@ class HelpFragmentViewModel(
     }
 
     init {
-        helpRepository.installListener(helpListener)
+        helpRepository.addListener(helpListener)
         load()
     }
 
     override fun onCleared() {
         super.onCleared()
-        helpRepository.deleteListener(helpListener)
+        helpRepository.removeListener(helpListener)
     }
 
     private fun load() {
@@ -38,6 +37,6 @@ class HelpFragmentViewModel(
     }
 
     fun saveHelpCategory(help: List<Datas.HelpCategory>) {
-        helpRepository.saveData(help)
+        helpRepository.helpInit(help)
     }
 }

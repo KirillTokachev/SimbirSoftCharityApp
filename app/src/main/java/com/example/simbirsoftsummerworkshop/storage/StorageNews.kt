@@ -33,11 +33,11 @@ class StorageNews(
         setNews(news)
     }
 
-    override fun installListener(listener: NewsListener) {
+    override fun addListener(listener: NewsListener) {
         listeners += listener
     }
 
-    override fun deleteListener(listener: NewsListener) {
+    override fun removeListener(listener: NewsListener) {
         listeners -= listener
     }
 
@@ -49,8 +49,8 @@ class StorageNews(
         return sortCategory(categoryList)
     }
 
-    override fun isEmptyNews(): List<Datas.News> {
-        return getNews()
+    override fun isEmptyNews(): Boolean {
+        return newsList.isEmpty()
     }
 
     private fun sortCategory(categoryList: List<Datas.FilterCategory>): List<Datas.FilterCategory> {

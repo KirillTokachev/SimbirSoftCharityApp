@@ -26,17 +26,15 @@ class StorageHelpCategory(
         return@async helpCategory
     }
 
-
-    override fun installListener(listener: HelpListener) {
+    override fun addListener(listener: HelpListener) {
         listeners += listener
     }
 
-    override fun deleteListener(listener: HelpListener) {
+    override fun removeListener(listener: HelpListener) {
         listeners -= listener
     }
 
     override fun saveData(help: List<Datas.HelpCategory>) {
         saveHelpCategory(help)
     }
-
 }

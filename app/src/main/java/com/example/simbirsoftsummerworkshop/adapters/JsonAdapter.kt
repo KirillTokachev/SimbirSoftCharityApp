@@ -2,7 +2,6 @@ package com.example.simbirsoftsummerworkshop.adapters
 
 import android.content.Context
 import android.content.res.AssetManager
-
 import com.example.simbirsoftsummerworkshop.model.Datas
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
@@ -29,6 +28,16 @@ class JsonAdapter(var context: Context) {
         val jsonCategory = context.assets.readFile(CATEGORY_PATH)
         val category = categoryAdapter.fromJson(jsonCategory)!!
         return category.toList()
+    }
+
+    fun getEvents(): List<Datas.Event> {
+        val events = mutableListOf<Datas.Event>()
+        val jsonNews = context.assets.readFile(NEWS_PATH)
+        newsAdapter.fromJson(jsonNews)!!.forEach {
+            val event = Datas.Event(it.name)
+            events.add(event)
+        }
+        return events
     }
 
     private fun AssetManager.readFile(fileName: String): String =

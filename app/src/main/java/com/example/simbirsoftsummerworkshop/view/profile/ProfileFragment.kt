@@ -103,7 +103,6 @@ class ProfileFragment : BaseFragment() {
                 }
             }
         }
-
     }
 
     private fun showDialog() {

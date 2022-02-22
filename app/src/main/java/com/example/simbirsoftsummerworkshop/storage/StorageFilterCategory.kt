@@ -23,12 +23,12 @@ class StorageFilterCategory : FilterCategoryRepository {
         return filterCategoriesList
     }
 
-    override fun installListener(listener: CategoryListener) {
+    override fun addListener(listener: CategoryListener) {
         listeners += listener
         listener(filterCategoriesList)
     }
 
-    override fun deleteListener(listener: CategoryListener) {
+    override fun removeListener(listener: CategoryListener) {
         listeners -= listener
     }
 }

@@ -7,7 +7,15 @@ typealias EventListener = (List<Datas.Event>) -> Unit
 interface EventRepository {
     fun loadEvent(): List<Datas.Event>
 
-    fun installListener(listener: EventListener)
+    fun loadSearchEvent(): List<Datas.Event>
 
-    fun deleteListener(listener: EventListener)
+    fun saveSearchEvent(events: List<Datas.Event>)
+
+    fun addListener(listener: EventListener)
+
+    fun saveEvent(events: List<Datas.Event>)
+
+    fun getSearchResultTitle(): String
+
+    fun clearEvents()
 }

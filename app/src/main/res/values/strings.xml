@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SimbirSoftSummerWorkshop</string>
+    <string name="app_name">SimbirSoftCharityApp</string>
     <string name="title_activity_splash">Хочу помочь</string>
     <!-- Strings used for fragments for navigation -->
     <string name="next">Next</string>
@@ -37,8 +37,10 @@
     <string name="how_to_password"> <u>Забыли пароль?</u> </string>
     <string name="registration"><u>Регистрация</u> </string>
     <string name="authorization">Авторизация</string>
-    <string name="auth_title_text">Для участия в мероприятиях войдите в приложение через социальые сети</string>
-    <string name="auth_in_app">Или авторизуйтесь через приложение</string>
-    <string name="e_mail_text">E-mail</string>
-    <string name="password_text">Пароль</string>
+    <string name="email">E-mail</string>
+    <string name="password_auth">Пароль</string>
+    <string name="search">Search</string>
+    <string name="search_clue_text1">Напишите в строке поиска название мероприятия или ключевые слова.</string>
+    <string name="text_view_1">Например,</string>
+    <string name="text_view_2">мастер-класс, помощь</string>
 </resources>
