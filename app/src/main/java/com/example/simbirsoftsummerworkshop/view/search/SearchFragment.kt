@@ -20,6 +20,8 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_search.*
 import java.util.concurrent.TimeUnit
 
+const val TIMEOUT = 500
+
 class SearchFragment : BaseFragment() {
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
@@ -58,7 +60,7 @@ class SearchFragment : BaseFragment() {
         )
             .subscribeOn(Schedulers.io())
             .map { text -> text.lowercase().trim() }
-            .debounce(500, TimeUnit.MILLISECONDS)
+            .debounce(TIMEOUT.toLong(), TimeUnit.MILLISECONDS)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 if (viewModel.loadEvents().isEmpty()) initEvents()

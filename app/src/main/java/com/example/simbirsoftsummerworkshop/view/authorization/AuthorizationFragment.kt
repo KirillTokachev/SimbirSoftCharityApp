@@ -43,7 +43,7 @@ class AuthorizationFragment : BaseFragment() {
             BiFunction { t1, t2 ->
                 t1.view.text.length > MIN_SYMBOLS && t2.view.text.length > MIN_SYMBOLS
             }
-        ).subscribeOn(Schedulers.newThread())
+        ).subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 button_authorization.isEnabled = it
