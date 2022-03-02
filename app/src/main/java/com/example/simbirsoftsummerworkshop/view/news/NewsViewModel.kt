@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.simbirsoftsummerworkshop.dispatchers.Dispatcher
 import com.example.simbirsoftsummerworkshop.model.Datas
+import com.example.simbirsoftsummerworkshop.network.ServerApi
 import com.example.simbirsoftsummerworkshop.repository.NewsListener
 import com.example.simbirsoftsummerworkshop.repository.NewsRepository
 import com.example.simbirsoftsummerworkshop.tasks.PendingResult
@@ -11,6 +12,9 @@ import com.example.simbirsoftsummerworkshop.tasks.SuccessResult
 import com.example.simbirsoftsummerworkshop.view.fragments.BaseViewModel
 import com.example.simbirsoftsummerworkshop.view.fragments.LiveResult
 import com.example.simbirsoftsummerworkshop.view.fragments.MutableLiveResult
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.schedulers.Schedulers
 
 class NewsViewModel(
     private val repository: NewsRepository,
@@ -23,6 +27,8 @@ class NewsViewModel(
         MutableLiveData<List<Datas.FilterCategory>>()
     }
 
+    private val compositeDisposable = CompositeDisposable()
+
     private val newsListener: NewsListener = {
         _listNews.postValue(SuccessResult(it))
     }
@@ -33,11 +39,23 @@ class NewsViewModel(
 
     init {
         repository.addListener(newsListener)
-        load()
     }
 
-    private fun load() {
+    fun loadNews() {
         repository.loadNews().into(_listNews)
+    }
+
+    fun fetchNews(serverApi: ServerApi) {
+        compositeDisposable.add(
+            serverApi.getNewsList()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    saveNews(it)
+                }, {
+
+                })
+        )
     }
 
     fun saveNews(newsList: List<Datas.News>) {

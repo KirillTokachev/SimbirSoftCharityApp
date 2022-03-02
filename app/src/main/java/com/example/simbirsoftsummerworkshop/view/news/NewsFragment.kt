@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.simbirsoftsummerworkshop.App
 import com.example.simbirsoftsummerworkshop.R
 import com.example.simbirsoftsummerworkshop.adapters.JsonAdapter
 import com.example.simbirsoftsummerworkshop.adapters.RecyclerAdapter
@@ -35,19 +36,12 @@ class NewsFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentNewsBinding.inflate(inflater, container, false)
-        if (viewModel.isEmptyNews()) {
-            Observable.just(JsonAdapter(requireContext()).getNews())
-                .observeOn(Schedulers.io())
-                .subscribeOn(AndroidSchedulers.mainThread())
-                .subscribe {
-                    viewModel.initNews(it)
-                }
-        }
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (activity?.application as? App)?.let { viewModel.fetchNews(it.serverApi) }
         setupViews()
         setupNewsLIst()
     }
@@ -89,6 +83,18 @@ class NewsFragment : BaseFragment() {
     }
 
     private fun setupNewsLIst() {
+        when (viewModel.isEmptyNews()) {
+            true -> {
+                Observable.just(JsonAdapter(requireContext()).getNews())
+                    .observeOn(Schedulers.io())
+                    .subscribeOn(AndroidSchedulers.mainThread())
+                    .subscribe {
+                        viewModel.initNews(it)
+                    }
+            }
+            else -> viewModel.loadNews()
+        }
+
         viewModel.news.observe(viewLifecycleOwner) { result ->
             renderingResult(
                 root = binding.root,
