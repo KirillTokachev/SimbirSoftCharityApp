@@ -1,5 +1,7 @@
 package com.example.simbirsoftsummerworkshop.view.help
 
+import com.example.simbirsoftsummerworkshop.App
+import com.example.simbirsoftsummerworkshop.adapters.JsonAdapter
 import com.example.simbirsoftsummerworkshop.dispatchers.Dispatcher
 import com.example.simbirsoftsummerworkshop.model.Datas
 import com.example.simbirsoftsummerworkshop.network.ServerApi
@@ -15,9 +17,10 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 class HelpFragmentViewModel(
+    private val application: App,
     private val helpRepository: HelpRepository,
     dispatcher: Dispatcher,
-) : BaseViewModel(dispatcher) {
+) : BaseViewModel(application, dispatcher) {
 
     private val _currentHelp = MutableLiveResult<List<Datas.HelpCategory>>(PendingResult())
     val currentHelp: LiveResult<List<Datas.HelpCategory>> = _currentHelp
@@ -58,7 +61,7 @@ class HelpFragmentViewModel(
                 .subscribe({
                     saveHelpCategory(it)
                 }, {
-
+                    saveHelpCategory(JsonAdapter(application.applicationContext).getCategory())
                 })
         )
     }

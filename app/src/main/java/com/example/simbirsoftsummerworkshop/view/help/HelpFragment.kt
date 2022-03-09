@@ -42,48 +42,7 @@ class HelpFragment : BaseFragment() {
     }
 
     private fun setUpViews() {
-        when (viewModel.isEmptyHelpCategory()) {
-            true -> {
-                val observable1 = Observable.just(JsonAdapter(requireActivity()).getCategory())
-                observable1.subscribeOn(Schedulers.newThread())
-                    .doOnNext {
-                        Log.d("TestCurrentThread", "Current thread " + Thread.currentThread().name)
-                    }
-                    .observeOn(Schedulers.newThread())
-
-                val observable2 = Observable.just("Hello")
-                observable2.subscribeOn(Schedulers.newThread())
-                    .doOnNext {
-                        Log.d("TestCurrentThread", "Current thread " + Thread.currentThread().name)
-                    }
-                    .observeOn(Schedulers.newThread())
-
-                Observable.combineLatest(
-                    observable1,
-                    observable2,
-                    BiFunction { t1, t2 ->
-                        for (i in t1.indices) {
-                            t1[i].name + t2
-                        }
-                        t1
-                    }
-                )
-                    .subscribeOn(Schedulers.io())
-                    .subscribeOn(Schedulers.newThread())
-                    .doAfterNext {
-                        Log.d("TestCurrentThread", "Current thread " + Thread.currentThread().name)
-                    }
-                    .observeOn(Schedulers.newThread())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .doOnNext {
-                        Log.d("TestCurrentThread", "Current thread " + Thread.currentThread().name)
-                    }
-                    .subscribe {
-                        viewModel.saveHelpCategory(it)
-                    }
-            }
-            else -> viewModel.loadNews()
-        }
+        viewModel.loadNews()
 
         viewModel.currentHelp.observe(viewLifecycleOwner) { result ->
             renderingResult(

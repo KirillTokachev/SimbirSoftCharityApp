@@ -17,10 +17,10 @@ class ViewModelFactory constructor(private val app: App) :
                 ProfileViewModel(app.storageUser)
             }
             NewsViewModel::class.java -> {
-                NewsViewModel(app.storageNews, app.dispatcher)
+                NewsViewModel(app, app.storageNews, app.dispatcher)
             }
             HelpFragmentViewModel::class.java -> {
-                HelpFragmentViewModel(app.storageHelpCategory, app.dispatcher)
+                HelpFragmentViewModel(app, app.storageHelpCategory, app.dispatcher)
             }
             SearchViewModel::class.java -> {
                 SearchViewModel(app.storageEvent)

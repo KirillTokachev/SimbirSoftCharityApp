@@ -42,6 +42,7 @@ class NewsFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (activity?.application as? App)?.let { viewModel.fetchNews(it.serverApi) }
+        viewModel.loadNews()
         setupViews()
         setupNewsLIst()
     }
@@ -83,17 +84,7 @@ class NewsFragment : BaseFragment() {
     }
 
     private fun setupNewsLIst() {
-        when (viewModel.isEmptyNews()) {
-            true -> {
-                Observable.just(JsonAdapter(requireContext()).getNews())
-                    .observeOn(Schedulers.io())
-                    .subscribeOn(AndroidSchedulers.mainThread())
-                    .subscribe {
-                        viewModel.initNews(it)
-                    }
-            }
-            else -> viewModel.loadNews()
-        }
+
 
         viewModel.news.observe(viewLifecycleOwner) { result ->
             renderingResult(

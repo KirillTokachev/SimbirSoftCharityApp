@@ -1,8 +1,9 @@
 package com.example.simbirsoftsummerworkshop.view.fragments
 
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import com.example.simbirsoftsummerworkshop.App
 import com.example.simbirsoftsummerworkshop.dispatchers.Dispatcher
 import com.example.simbirsoftsummerworkshop.tasks.PendingResult
 import com.example.simbirsoftsummerworkshop.tasks.Result
@@ -13,8 +14,9 @@ typealias LiveResult<T> = LiveData<Result<T>>
 typealias MutableLiveResult<T> = MutableLiveData<Result<T>>
 
 open class BaseViewModel(
+    application: App,
     private val dispatcher: Dispatcher
-) : ViewModel() {
+) : AndroidViewModel(application) {
     private val tasks = mutableSetOf<Task<*>>()
 
     override fun onCleared() {

@@ -15,6 +15,11 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.Executors
 
 class App : Application() {
+
+    companion object {
+        private const val BASE_URL = "https://fakeserver.getsandbox.com:443"
+    }
+
     private val taskFactory = ExecutorServiceTaskFactory(Executors.newCachedThreadPool())
     private val threadUtils = ThreadUtils.Default()
     lateinit var serverApi: ServerApi
@@ -39,7 +44,7 @@ class App : Application() {
             .build()
 
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://fakeserver.getsandbox.com:443")
+            .baseUrl(BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava3CallAdapterFactory.create())

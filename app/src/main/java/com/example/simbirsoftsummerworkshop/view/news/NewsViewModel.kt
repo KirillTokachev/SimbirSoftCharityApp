@@ -2,6 +2,8 @@ package com.example.simbirsoftsummerworkshop.view.news
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.simbirsoftsummerworkshop.App
+import com.example.simbirsoftsummerworkshop.adapters.JsonAdapter
 import com.example.simbirsoftsummerworkshop.dispatchers.Dispatcher
 import com.example.simbirsoftsummerworkshop.model.Datas
 import com.example.simbirsoftsummerworkshop.network.ServerApi
@@ -17,9 +19,10 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 class NewsViewModel(
+    private val application: App,
     private val repository: NewsRepository,
     dispatcher: Dispatcher
-) : BaseViewModel(dispatcher) {
+) : BaseViewModel(application, dispatcher) {
     private val _listNews = MutableLiveResult<List<Datas.News>>(PendingResult())
     val news: LiveResult<List<Datas.News>> = _listNews
 
@@ -51,9 +54,9 @@ class NewsViewModel(
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    saveNews(it)
+                    initNews(it)
                 }, {
-
+                    initNews(JsonAdapter(application.applicationContext).getNews())
                 })
         )
     }
