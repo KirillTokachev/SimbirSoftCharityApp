@@ -13,4 +13,6 @@ interface HelpRepository {
     fun removeListener(listener: HelpListener)
 
     fun helpInit(help: List<Datas.HelpCategory>)
+
+    fun isEmptyHelpCategory(): Boolean
 }

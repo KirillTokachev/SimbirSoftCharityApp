@@ -37,4 +37,8 @@ class StorageHelpCategory(
     override fun saveData(help: List<Datas.HelpCategory>) {
         saveHelpCategory(help)
     }
+
+    override fun isEmptyHelpCategory(): Boolean {
+        return helpCategory.isEmpty()
+    }
 }

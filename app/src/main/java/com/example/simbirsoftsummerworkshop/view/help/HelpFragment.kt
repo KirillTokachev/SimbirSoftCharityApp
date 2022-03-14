@@ -8,6 +8,7 @@ import android.view.View.GONE
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.simbirsoftsummerworkshop.App
 import com.example.simbirsoftsummerworkshop.adapters.JsonAdapter
 import com.example.simbirsoftsummerworkshop.adapters.RecyclerAdapter
 import com.example.simbirsoftsummerworkshop.databinding.FragmentHelpBinding
@@ -36,48 +37,12 @@ class HelpFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        (activity?.application as? App)?.let { viewModel.fetchHelpCategory(it.serverApi) }
         setUpViews()
     }
 
     private fun setUpViews() {
-        val observable1 = Observable.just(JsonAdapter(requireActivity()).getCategory())
-        observable1.subscribeOn(Schedulers.newThread())
-            .doOnNext {
-                Log.d("TestCurrentThread", "Current thread " + Thread.currentThread().name)
-            }
-            .observeOn(Schedulers.newThread())
-
-        val observable2 = Observable.just("Hello")
-        observable2.subscribeOn(Schedulers.newThread())
-            .doOnNext {
-                Log.d("TestCurrentThread", "Current thread " + Thread.currentThread().name)
-            }
-            .observeOn(Schedulers.newThread())
-
-        Observable.combineLatest(
-            observable1,
-            observable2,
-            BiFunction { t1, t2 ->
-                for (i in t1.indices) {
-                    t1[i].name + t2
-                }
-                t1
-            }
-        )
-            .subscribeOn(Schedulers.io())
-            .subscribeOn(Schedulers.newThread())
-            .doAfterNext {
-                Log.d("TestCurrentThread", "Current thread " + Thread.currentThread().name)
-            }
-            .observeOn(Schedulers.newThread())
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnNext {
-                Log.d("TestCurrentThread", "Current thread " + Thread.currentThread().name)
-            }
-            .subscribe {
-                viewModel.saveHelpCategory(it)
-            }
+        viewModel.loadNews()
 
         viewModel.currentHelp.observe(viewLifecycleOwner) { result ->
             renderingResult(

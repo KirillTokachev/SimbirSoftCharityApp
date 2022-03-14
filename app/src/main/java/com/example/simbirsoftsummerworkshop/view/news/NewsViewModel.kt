@@ -2,8 +2,11 @@ package com.example.simbirsoftsummerworkshop.view.news
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.simbirsoftsummerworkshop.App
+import com.example.simbirsoftsummerworkshop.adapters.JsonAdapter
 import com.example.simbirsoftsummerworkshop.dispatchers.Dispatcher
 import com.example.simbirsoftsummerworkshop.model.Datas
+import com.example.simbirsoftsummerworkshop.network.ServerApi
 import com.example.simbirsoftsummerworkshop.repository.NewsListener
 import com.example.simbirsoftsummerworkshop.repository.NewsRepository
 import com.example.simbirsoftsummerworkshop.tasks.PendingResult
@@ -11,17 +14,23 @@ import com.example.simbirsoftsummerworkshop.tasks.SuccessResult
 import com.example.simbirsoftsummerworkshop.view.fragments.BaseViewModel
 import com.example.simbirsoftsummerworkshop.view.fragments.LiveResult
 import com.example.simbirsoftsummerworkshop.view.fragments.MutableLiveResult
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.schedulers.Schedulers
 
 class NewsViewModel(
+    private val application: App,
     private val repository: NewsRepository,
     dispatcher: Dispatcher
-) : BaseViewModel(dispatcher) {
+) : BaseViewModel(application, dispatcher) {
     private val _listNews = MutableLiveResult<List<Datas.News>>(PendingResult())
     val news: LiveResult<List<Datas.News>> = _listNews
 
     private val _category: MutableLiveData<List<Datas.FilterCategory>> by lazy {
         MutableLiveData<List<Datas.FilterCategory>>()
     }
+
+    private val compositeDisposable = CompositeDisposable()
 
     private val newsListener: NewsListener = {
         _listNews.postValue(SuccessResult(it))
@@ -33,11 +42,23 @@ class NewsViewModel(
 
     init {
         repository.addListener(newsListener)
-        load()
     }
 
-    private fun load() {
+    fun loadNews() {
         repository.loadNews().into(_listNews)
+    }
+
+    fun fetchNews(serverApi: ServerApi) {
+        compositeDisposable.add(
+            serverApi.getNewsList()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    initNews(it)
+                }, {
+                    initNews(JsonAdapter(application.applicationContext).getNews())
+                })
+        )
     }
 
     fun saveNews(newsList: List<Datas.News>) {
