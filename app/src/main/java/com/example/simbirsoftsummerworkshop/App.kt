@@ -11,7 +11,6 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.Executors
 
 class App : Application() {
@@ -24,14 +23,11 @@ class App : Application() {
     private val threadUtils = ThreadUtils.Default()
     lateinit var serverApi: ServerApi
     val dispatcher = MainThreadDispatcher()
-    val storageHelpCategory = StorageHelpCategory(taskFactory, threadUtils)
-    val storageNews = StorageNews(taskFactory, threadUtils)
     val storageUser = StorageUser()
     val storageEvent = StorageEvent()
 
     override fun onCreate() {
         super.onCreate()
-
         configureRetrofit()
     }
 

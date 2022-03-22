@@ -1,51 +1,59 @@
 package com.example.simbirsoftsummerworkshop.view.news
 
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.simbirsoftsummerworkshop.App
 import com.example.simbirsoftsummerworkshop.adapters.JsonAdapter
-import com.example.simbirsoftsummerworkshop.dispatchers.Dispatcher
+import com.example.simbirsoftsummerworkshop.data_base.AppDataBase
 import com.example.simbirsoftsummerworkshop.model.Datas
 import com.example.simbirsoftsummerworkshop.network.ServerApi
-import com.example.simbirsoftsummerworkshop.repository.NewsListener
-import com.example.simbirsoftsummerworkshop.repository.NewsRepository
-import com.example.simbirsoftsummerworkshop.tasks.PendingResult
-import com.example.simbirsoftsummerworkshop.tasks.SuccessResult
-import com.example.simbirsoftsummerworkshop.view.fragments.BaseViewModel
-import com.example.simbirsoftsummerworkshop.view.fragments.LiveResult
-import com.example.simbirsoftsummerworkshop.view.fragments.MutableLiveResult
+import com.example.simbirsoftsummerworkshop.storage.NewsRepository
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 class NewsViewModel(
-    private val application: App,
-    private val repository: NewsRepository,
-    dispatcher: Dispatcher
-) : BaseViewModel(application, dispatcher) {
-    private val _listNews = MutableLiveResult<List<Datas.News>>(PendingResult())
-    val news: LiveResult<List<Datas.News>> = _listNews
+    private val application: App
+) : AndroidViewModel(application) {
+    private val _listNews = MutableLiveData<List<Datas.News>>()
+    val news: LiveData<List<Datas.News>> = _listNews
 
     private val _category: MutableLiveData<List<Datas.FilterCategory>> by lazy {
         MutableLiveData<List<Datas.FilterCategory>>()
     }
 
+    val flag = MutableLiveData<Boolean>()
+
+    private val repository: NewsRepository
+
     private val compositeDisposable = CompositeDisposable()
 
-    private val newsListener: NewsListener = {
-        _listNews.postValue(SuccessResult(it))
-    }
-
     private val _detailNews = MutableLiveData<Datas.News>()
-
     val detailNews: LiveData<Datas.News> = _detailNews
 
     init {
-        repository.addListener(newsListener)
+        val newsDao = AppDataBase.getDataBase(application).getNewsDao()
+        repository = NewsRepository(newsDao)
+        flag.value = false
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        compositeDisposable.dispose()
+    }
+
+    fun initFlag(boolean: Boolean) {
+        flag.value = boolean
     }
 
     fun loadNews() {
-        repository.loadNews().into(_listNews)
+        repository.loadNews()
+    }
+
+    fun saveNews(newsList: List<Datas.News>) {
+        _listNews.postValue(newsList)
+        repository.saveNews(newsList)
     }
 
     fun fetchNews(serverApi: ServerApi) {
@@ -54,27 +62,16 @@ class NewsViewModel(
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    initNews(it)
+                    saveNews(it)
                 }, {
-                    initNews(JsonAdapter(application.applicationContext).getNews())
+                    saveNews(JsonAdapter(application.applicationContext).getNews())
                 })
         )
     }
 
-    fun saveNews(newsList: List<Datas.News>) {
-        _listNews.postValue(SuccessResult(newsList))
-    }
-
-    fun initNews(news: List<Datas.News>) {
-        repository.saveNews(news)
-    }
-
-    fun isEmptyNews(): Boolean {
-        return repository.isEmptyNews()
-    }
-
     fun sortNews(categoryList: List<Datas.FilterCategory>): List<Datas.News> {
         val news = repository.sortFilter(categoryList)
+        _listNews.postValue(news)
         saveNews(news)
         return news
     }

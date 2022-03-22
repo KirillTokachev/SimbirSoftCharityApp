@@ -1,6 +1,8 @@
 package com.example.simbirsoftsummerworkshop.model
 
 import androidx.annotation.DrawableRes
+import androidx.room.*
+import com.example.simbirsoftsummerworkshop.data_base.ListToStringConverter
 import org.threeten.bp.LocalDate
 
 sealed class Datas {
@@ -13,21 +15,26 @@ sealed class Datas {
         val name: String
     ) : Datas()
 
+    @Entity(tableName = "help_category")
     data class HelpCategory(
+        @PrimaryKey val id: Int,
         val name: String,
         val icon: String
     ) : Datas()
 
+    @Entity(tableName = "news")
     data class News(
-        val id: Int,
+        @PrimaryKey val id: Int,
         val name: String,
-        val avatarNews: String,
+        @ColumnInfo(name = "avatar_news") val avatarNews: String,
         val description: String,
-        val dateStart: LocalDate,
-        val dateEnd: LocalDate,
-        val helpCategory: List<String>,
-        val fullDescription: String,
-        val newsImages: List<String>,
+        @ColumnInfo(name = " date_start") val dateStart: Long,
+        @ColumnInfo(name = "date_end") val dateEnd: Long,
+        @TypeConverters(ListToStringConverter::class)
+        @ColumnInfo(name = "help_category") val helpCategory: List<String>,
+        @ColumnInfo(name = "full_description") val fullDescription: String,
+        @TypeConverters(ListToStringConverter::class)
+        @ColumnInfo(name = "news_images") val newsImages: List<String>,
         val address: String,
         val phone: String,
         val company: String,
