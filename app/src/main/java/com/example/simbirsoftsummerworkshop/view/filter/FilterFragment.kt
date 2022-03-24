@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.simbirsoftsummerworkshop.App
 import com.example.simbirsoftsummerworkshop.R
 import com.example.simbirsoftsummerworkshop.adapters.JsonAdapter
 import com.example.simbirsoftsummerworkshop.adapters.RecyclerAdapter
@@ -51,10 +52,12 @@ class FilterFragment : BaseFragment() {
         filter_button_accept.setOnClickListener {
             val sortCategory = viewModel.saveAndInitCategory(listCategory)
             if (sortCategory.isEmpty()) {
-                viewModel.saveNews(JsonAdapter(requireContext()).getNews())
+                (activity?.application as? App)?.let { viewModel.fetchNews(it.serverApi) }
             } else {
                 viewModel.sortNews(sortCategory)
             }
+            val flag = true
+            viewModel.initFlag(flag)
             findNavController().navigate(R.id.action_to_newsFragment)
         }
     }

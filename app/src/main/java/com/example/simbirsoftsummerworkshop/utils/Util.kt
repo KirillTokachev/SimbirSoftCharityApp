@@ -5,23 +5,27 @@ import org.threeten.bp.LocalDate
 import org.threeten.bp.format.DateTimeFormatter
 
 object Util {
-    private fun relevanceDate(dataEnd: LocalDate): Boolean = dataEnd.isAfter(LocalDate.now())
-    private fun isRelevanceDate(dataEnd: LocalDate): Int =
-        dataEnd.dayOfYear - LocalDate.now().dayOfYear
+    private fun relevanceDate(dataEnd: Long): Boolean =
+        LocalDate.ofEpochDay(dataEnd).isAfter(LocalDate.now())
+
+    private fun isRelevanceDate(dataEnd: Long): Int =
+        LocalDate.ofEpochDay(dataEnd).dayOfYear - LocalDate.now().dayOfYear
 
     fun getTime(news: Datas.News): String {
         return if (relevanceDate(news.dateEnd)) {
             "Осталось ${isRelevanceDate(news.dateEnd)} дней " +
-                "(${
-                news.dateStart.format(
-                    DateTimeFormatter.ofPattern(
-                        "dd.MM"
-                    )
-                )
-                }) - " + news.dateEnd.format(DateTimeFormatter.ofPattern("dd.MM"))
+                    "(${
+                        LocalDate.ofEpochDay(news.dateEnd).format(
+                            DateTimeFormatter.ofPattern(
+                                "dd.MM"
+                            )
+                        )
+                    }) - " + LocalDate.ofEpochDay(news.dateEnd)
+                .format(DateTimeFormatter.ofPattern("dd.MM"))
         } else {
-            "${mounts[news.dateEnd.monthValue - 1]} " +
-                news.dateEnd.format(DateTimeFormatter.ofPattern("dd, yyyy"))
+            "${mounts[LocalDate.ofEpochDay(news.dateEnd).monthValue - 1]} " +
+                    LocalDate.ofEpochDay(news.dateEnd)
+                        .format(DateTimeFormatter.ofPattern("dd, yyyy"))
         }
     }
 

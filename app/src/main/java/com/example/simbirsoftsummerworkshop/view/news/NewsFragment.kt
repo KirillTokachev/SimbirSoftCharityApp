@@ -10,7 +10,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.simbirsoftsummerworkshop.App
 import com.example.simbirsoftsummerworkshop.R
-import com.example.simbirsoftsummerworkshop.adapters.JsonAdapter
 import com.example.simbirsoftsummerworkshop.adapters.RecyclerAdapter
 import com.example.simbirsoftsummerworkshop.databinding.FragmentNewsBinding
 import com.example.simbirsoftsummerworkshop.factories.factory
@@ -19,7 +18,6 @@ import com.example.simbirsoftsummerworkshop.view.fragments.BaseFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.functions.BiFunction
 import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.PublishSubject
 import kotlinx.android.synthetic.main.fragment_news.*
@@ -41,7 +39,12 @@ class NewsFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity?.application as? App)?.let { viewModel.fetchNews(it.serverApi) }
+
+        viewModel.flag.observe(viewLifecycleOwner) { flag ->
+            if (flag == false) {
+                (activity?.application as? App)?.let { viewModel.fetchNews(it.serverApi) }
+            }
+        }
         viewModel.loadNews()
         setupViews()
         setupNewsLIst()
@@ -86,11 +89,11 @@ class NewsFragment : BaseFragment() {
     private fun setupNewsLIst() {
 
 
-        viewModel.news.observe(viewLifecycleOwner) { result ->
-            renderingResult(
-                root = binding.root,
-                result = result,
-                onSuccess = {
+        viewModel.news.observe(viewLifecycleOwner) { news ->
+            Observable.just(news)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnNext {
                     progress_bar_news.visibility = View.GONE
                     val baseAdapter = RecyclerAdapter(it)
                     showBadge(it.size, it)
@@ -103,17 +106,8 @@ class NewsFragment : BaseFragment() {
                             viewModel.saveAndInitDetailNews(it[position])
                         }
                     }
-                },
-                onPending = {
-                    bnv.visibility = View.GONE
-                    recycler_view_news.visibility = View.GONE
-                },
-                onFailure = {
-                    progress_bar_news.visibility = View.GONE
-                    bnv.visibility = View.GONE
-                    recycler_view_news.visibility = View.GONE
                 }
-            )
+                .subscribe()
         }
     }
 

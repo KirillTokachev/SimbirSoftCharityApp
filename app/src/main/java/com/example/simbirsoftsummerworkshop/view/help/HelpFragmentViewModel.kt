@@ -1,56 +1,47 @@
 package com.example.simbirsoftsummerworkshop.view.help
 
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.example.simbirsoftsummerworkshop.App
 import com.example.simbirsoftsummerworkshop.adapters.JsonAdapter
-import com.example.simbirsoftsummerworkshop.dispatchers.Dispatcher
+import com.example.simbirsoftsummerworkshop.data_base.AppDataBase
 import com.example.simbirsoftsummerworkshop.model.Datas
 import com.example.simbirsoftsummerworkshop.network.ServerApi
-import com.example.simbirsoftsummerworkshop.repository.HelpListener
-import com.example.simbirsoftsummerworkshop.repository.HelpRepository
-import com.example.simbirsoftsummerworkshop.tasks.PendingResult
-import com.example.simbirsoftsummerworkshop.tasks.SuccessResult
-import com.example.simbirsoftsummerworkshop.view.fragments.BaseViewModel
-import com.example.simbirsoftsummerworkshop.view.fragments.LiveResult
-import com.example.simbirsoftsummerworkshop.view.fragments.MutableLiveResult
+import com.example.simbirsoftsummerworkshop.storage.HelpCategoryRepository
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 class HelpFragmentViewModel(
-    private val application: App,
-    private val helpRepository: HelpRepository,
-    dispatcher: Dispatcher,
-) : BaseViewModel(application, dispatcher) {
+    private val application: App
+) : AndroidViewModel(application) {
 
-    private val _currentHelp = MutableLiveResult<List<Datas.HelpCategory>>(PendingResult())
-    val currentHelp: LiveResult<List<Datas.HelpCategory>> = _currentHelp
+    private val _currentHelp = MutableLiveData<List<Datas.HelpCategory>>()
+    val currentHelp: LiveData<List<Datas.HelpCategory>> = _currentHelp
+
+    private val repository: HelpCategoryRepository
 
     private val compositeDisposable = CompositeDisposable()
 
-    private val helpListener: HelpListener = {
-        _currentHelp.postValue(SuccessResult(it))
-    }
 
     init {
-        helpRepository.addListener(helpListener)
+        val helpCategoryDao = AppDataBase.getDataBase(application).getHelpCategoryDao()
+        repository = HelpCategoryRepository(helpCategoryDao)
     }
 
     override fun onCleared() {
         super.onCleared()
         compositeDisposable.dispose()
-        helpRepository.removeListener(helpListener)
     }
 
     fun loadNews() {
-        helpRepository.loadHelpList().into(_currentHelp)
+        repository.loadHelpList()
     }
 
-    fun saveHelpCategory(help: List<Datas.HelpCategory>) {
-        helpRepository.helpInit(help)
-    }
-
-    fun isEmptyHelpCategory(): Boolean {
-        return helpRepository.isEmptyHelpCategory()
+    private fun saveHelpCategory(helps: List<Datas.HelpCategory>) {
+        _currentHelp.postValue(helps)
+        repository.saveHelps(helps)
     }
 
     fun fetchHelpCategory(serverApi: ServerApi) {
