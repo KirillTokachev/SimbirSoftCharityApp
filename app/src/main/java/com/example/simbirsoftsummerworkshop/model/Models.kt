@@ -28,7 +28,7 @@ sealed class Datas {
         val name: String,
         @ColumnInfo(name = "avatar_news") val avatarNews: String,
         val description: String,
-        @ColumnInfo(name = " date_start") val dateStart: Long,
+        @ColumnInfo(name = "date_start") val dateStart: Long,
         @ColumnInfo(name = "date_end") val dateEnd: Long,
         @TypeConverters(ListToStringConverter::class)
         @ColumnInfo(name = "help_category") val helpCategory: List<String>,

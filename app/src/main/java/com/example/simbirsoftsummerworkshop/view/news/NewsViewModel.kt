@@ -51,7 +51,7 @@ class NewsViewModel(
         repository.loadNews()
     }
 
-    fun saveNews(newsList: List<Datas.News>) {
+    private fun saveNews(newsList: List<Datas.News>) {
         _listNews.postValue(newsList)
         repository.saveNews(newsList)
     }
