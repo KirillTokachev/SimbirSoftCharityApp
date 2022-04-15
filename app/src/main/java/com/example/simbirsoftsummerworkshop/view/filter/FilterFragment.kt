@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.simbirsoftsummerworkshop.App
 import com.example.simbirsoftsummerworkshop.R
+import com.example.simbirsoftsummerworkshop.adapters.JsonAdapter
 import com.example.simbirsoftsummerworkshop.adapters.RecyclerAdapter
 import com.example.simbirsoftsummerworkshop.databinding.FragmentFilterBinding
 import com.example.simbirsoftsummerworkshop.factories.factory
@@ -18,9 +19,6 @@ import com.example.simbirsoftsummerworkshop.view.news.NewsViewModel
 import kotlinx.android.synthetic.main.fragment_filter.*
 
 class FilterFragment : BaseFragment() {
-    private var _binding: FragmentFilterBinding? = null
-    private val binding get() = _binding!!
-
     private val viewModel: NewsViewModel by activityViewModels { factory() }
     private var listCategory = StorageFilterCategory().loadCategory()
 
@@ -28,8 +26,8 @@ class FilterFragment : BaseFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentFilterBinding.inflate(inflater, container, false)
+    ): View? {
+        val binding = FragmentFilterBinding.inflate(inflater, container, false)
         return binding.root
     }
 
